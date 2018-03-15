@@ -39847,7 +39847,7 @@ MonoBehaviour:
   speedwalk: 10
   speedrun: 20
   speedturn: 90
-  forcejump: {x: 0, y: 5, z: 0}
+  forcejump: {x: 0, y: 9, z: 0}
   inputright: 100
   inputleft: 113
   inputfront: 122
