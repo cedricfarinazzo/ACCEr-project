@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour {
+public class Entity : Photon.MonoBehaviour {
 
     [SerializeField]
     protected int life;
@@ -42,6 +42,24 @@ public class Entity : MonoBehaviour {
         if (this.life + h <= this.max_life)
         {
             this.life += h;
+        }
+    }
+
+    private void Update()
+    {
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            stream.SendNext(this.damage);
+            stream.SendNext(this.life);
+        }
+        else
+        {
+            this.damage = (int)stream.ReceiveNext();
+            this.life = (int)stream.ReceiveNext();
         }
     }
 }
