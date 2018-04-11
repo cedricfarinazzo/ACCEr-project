@@ -8,7 +8,11 @@ public class Entity : Photon.MonoBehaviour {
     protected int life;
     [SerializeField]
     protected int max_life;
+    [SerializeField]
     protected int damage;
+    [SerializeField]
+    protected int fall_damage = 42;
+    protected int reload_fall = 50;
 
     protected GameObject g;
 
@@ -32,7 +36,7 @@ public class Entity : Photon.MonoBehaviour {
         }
     }
 
-    protected void Death()
+    protected virtual void Death()
     {
         Destroy(this.gameObject);
     }
@@ -47,6 +51,8 @@ public class Entity : Photon.MonoBehaviour {
 
     private void Update()
     {
+        FallDamage();
+        Debug.Log("velocity y : " + this.g.GetComponent<Rigidbody>().velocity.y + "   life : " + this.life);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -60,6 +66,19 @@ public class Entity : Photon.MonoBehaviour {
         {
             this.damage = (int)stream.ReceiveNext();
             this.life = (int)stream.ReceiveNext();
+        }
+    }
+
+    public void FallDamage()
+    {
+        if (this.g.GetComponent<Rigidbody>().velocity.y < -40 && this.reload_fall == 50)
+        {
+            this.g.GetComponent<Entity>().getDamage(this.fall_damage);
+            this.reload_fall = 0;
+        }
+        if (this.reload_fall != 50)
+        {
+            this.reload_fall++;
         }
     }
 }

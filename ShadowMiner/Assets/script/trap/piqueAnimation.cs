@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class piqueAnimation : MonoBehaviour {
+public class piqueAnimation : Trap {
 
     protected Animation anim;
     protected bool is_up = false;
@@ -14,6 +14,7 @@ public class piqueAnimation : MonoBehaviour {
 	void Update () {
 	}
 
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -21,6 +22,7 @@ public class piqueAnimation : MonoBehaviour {
             
             if (!this.is_up)
             {
+                Attack(other.gameObject);
                 this.Up();
             }
         }
@@ -36,6 +38,7 @@ public class piqueAnimation : MonoBehaviour {
             }
         }
     }
+    
 
     public void Up()
     {
