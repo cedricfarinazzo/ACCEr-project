@@ -14,11 +14,13 @@ MonoBehaviour:
   m_Bool_keys:
   - pbEnableBackfaceSelection
   - pbGenerateUV2PerObject
+  - pb_TorusUsesInnerOuterMethod
   m_Int_keys:
   - pbHandleAlignment
   - pbDefaultEditLevel
   - pb_GIWorkflowMode
   - pbDefaultSelectionMode
+  - pbDragSelectMode
   m_Float_keys:
   - pbEditorScroll.x
   - pbEditorScroll.y
@@ -26,11 +28,11 @@ MonoBehaviour:
   - pbCurrentMaterialPalette
   m_Color_keys: []
   m_Material_keys: []
-  m_Bool_values: 0100
-  m_Int_values: 00000000000000000000000001000000
+  m_Bool_values: 010001
+  m_Int_values: 0000000001000000000000000100000002000000
   m_Float_values:
   - 0
-  - 0
+  - 246
   m_String_values:
   - Assets/package/ProCore/ProBuilder/Data/Default Material Palette.asset
   m_Color_values: []
