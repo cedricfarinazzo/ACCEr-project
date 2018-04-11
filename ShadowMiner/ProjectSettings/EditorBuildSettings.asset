@@ -11,9 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_scene/build_scene_cedric.unity
     guid: 8beaafcd7185c3f43a08c7c1832de61f
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/build_scene_antoine.unity
     guid: cc196d58d82208b4d8f75c4124a725ca
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/build_scene_clement.unity
     guid: 762ce4654478dbc42ab2efcddc6f4066
