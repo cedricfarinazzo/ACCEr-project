@@ -1,0 +1,163 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
+using SMNetwork;
+
+namespace SMNetwork.Client
+{
+    public static class Network
+    {
+
+        public static void Connect(string address, int port)
+        {
+            DataClient.Initialize(address, port);
+            DataClient.Client.Client.Connect(DataClient.Address, DataClient.Port);
+        }
+        
+        private static Protocol ReceiveMessage()
+        {
+            while (DataClient.Client.Client.Connected && DataClient.Client.Client.Available <= 1)
+            {
+            }
+
+            if (!DataClient.Client.Client.Connected)
+                throw new Exception("Disconnected from server.");
+            var message = new List<byte>();
+            var stream = DataClient.Client.GetStream();
+
+#pragma warning disable CS0652
+            while (stream.DataAvailable)
+                message.Add((byte) stream.ReadByte());
+#pragma warning restore CS0652
+
+            var msg = Formatter.ToObject<Protocol>(message.ToArray());
+            return msg;
+        }
+
+        public static string Connection(string email, string password)
+        {
+            Protocol reqProtocol = new Protocol(MessageType.Connection)
+            {
+                Email = email,
+                HashPassword = Hash.Create(password)
+            };
+            byte[] buffer = Formatter.ToByteArray(reqProtocol);
+            DataClient.Client.Client.Send(buffer, SocketFlags.None);
+            Protocol receiveMessage = ReceiveMessage();
+            if (receiveMessage == null) ;
+            {
+                return null;
+            }
+
+            if (receiveMessage.Type != MessageType.Response)
+            {
+                return null;
+            }
+
+            return receiveMessage.Token;
+        }
+
+        public static string Create(DataUser user, string email, string password)
+        {
+            Protocol reqProtocol = new Protocol(MessageType.Connection)
+            {
+                User = user,
+                Email = email,
+                HashPassword = Hash.Create(password)
+            };
+            byte[] buffer = Formatter.ToByteArray(reqProtocol);
+            DataClient.Client.Client.Send(buffer, SocketFlags.None);
+            Protocol receiveMessage = ReceiveMessage();
+            if (receiveMessage == null) ;
+            {
+                return null;
+            }
+            
+            if (receiveMessage.Type != MessageType.Response)
+            {
+                return null;
+            }
+
+            return receiveMessage.Token;
+        }
+        
+        public static string AskProgress(string token)
+        {
+            Protocol reqProtocol = new Protocol(MessageType.AskProgress)
+            {
+                Token = token
+            };
+            byte[] buffer = Formatter.ToByteArray(reqProtocol);
+            DataClient.Client.Client.Send(buffer, SocketFlags.None);
+            Protocol receiveMessage = ReceiveMessage();
+            if (receiveMessage == null) ;
+            {
+                return null;
+            }
+            
+            if (receiveMessage.Type != MessageType.Response)
+            {
+                return null;
+            }
+
+            return receiveMessage.Progress;
+        }
+        
+        public static DataUser AskProfil(string email)
+        {
+            Protocol reqProtocol = new Protocol(MessageType.AskProfil)
+            {
+                Email = email
+            };
+            byte[] buffer = Formatter.ToByteArray(reqProtocol);
+            DataClient.Client.Client.Send(buffer, SocketFlags.None);
+            Protocol receiveMessage = ReceiveMessage();
+            if (receiveMessage == null) ;
+            {
+                return null;
+            }
+            
+            if (receiveMessage.Type != MessageType.Response)
+            {
+                return null;
+            }
+
+            if (receiveMessage.Message != "success")
+            {
+                return null;
+            }
+
+            return receiveMessage.User;
+        }
+
+        public static string UpdateData(string token, DataUser user)
+        {
+            Protocol reqProtocol = new Protocol(MessageType.AskProfil)
+            {
+                User = user,
+                Token = token
+            };
+            byte[] buffer = Formatter.ToByteArray(reqProtocol);
+            DataClient.Client.Client.Send(buffer, SocketFlags.None);
+            Protocol receiveMessage = ReceiveMessage();
+            if (receiveMessage == null) ;
+            {
+                return null;
+            }
+            
+            if (receiveMessage.Type != MessageType.Response)
+            {
+                return null;
+            }
+
+            if (receiveMessage.Message != "success")
+            {
+                return null;
+            }
+
+            return receiveMessage.Message;
+        }
+        
+    }
+}
