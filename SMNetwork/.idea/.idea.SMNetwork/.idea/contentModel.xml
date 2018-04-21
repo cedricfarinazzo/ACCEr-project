@@ -25,6 +25,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="DataServer.cs" t="Include" />
         <e p="DataTcpClient.cs" t="Include" />
+        <e p="DBManager.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
         <e p="packages.config" t="Include" />
         <e p="Program.cs" t="Include" />
