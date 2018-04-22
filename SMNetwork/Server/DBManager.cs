@@ -77,42 +77,182 @@ namespace SMNetwork.Server
         }
 
         //Insert statement
-        public void Insert(string query, List<MySqlParameter> parameters)
+        public bool Insert(string query, MySqlParameter[] parameters)
         {
-            if(this.OpenConnection() == true)
+            try
             {
-                MySqlCommand cmd = new MySqlCommand(query, this.connection);
-                foreach (MySqlParameter param in parameters)
+                if(this.OpenConnection())
                 {
-                    cmd.Parameters.Add(param);
+                    MySqlCommand cmd = new MySqlCommand(query, this.connection);
+                    cmd.Prepare();
+                    foreach (MySqlParameter param in parameters)
+                    {
+                        cmd.Parameters.Add(param);
+                    }
+                        
+                
+                    cmd.ExecuteNonQuery();
+                    this.CloseConnection();
+                    return true;
                 }
-                    
-
-                cmd.ExecuteNonQuery();
-                this.CloseConnection();
+                throw new Exception("DBmanager.Insert: Connection failed to mysql server");
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }       
         }
 
         //Update statement
-        public void Update()
+        public bool Update(string query, MySqlParameter[] parameters)
         {
+            try
+            {
+                if(this.OpenConnection())
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, this.connection);
+                    cmd.Prepare();
+                    foreach (MySqlParameter param in parameters)
+                    {
+                        cmd.Parameters.Add(param);
+                    }
+                        
+                
+                    cmd.ExecuteNonQuery();
+                    this.CloseConnection();
+                    return true;
+                }
+                throw new Exception("DBmanager.Update: Connection failed to mysql server");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }       
         }
 
         //Delete statement
-        public void Delete()
+        public bool Delete(string query, MySqlParameter[] parameters)
         {
+            try
+            {
+                if(this.OpenConnection())
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, this.connection);
+                    cmd.Prepare();
+                    foreach (MySqlParameter param in parameters)
+                    {
+                        cmd.Parameters.Add(param);
+                    }
+                        
+                
+                    cmd.ExecuteNonQuery();
+                    this.CloseConnection();
+                    return true;
+                }
+                throw new Exception("DBmanager.Delete: Connection failed to mysql server");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }       
         }
 
         //Select statement
-        public List<string>[] Select()
+        public List<Dictionary<string,string>> Select(string query, MySqlParameter[] parameters)
         {
+            try
+            {
+                //Open connection
+                if (this.OpenConnection())
+                {
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.Prepare();
+                    foreach (MySqlParameter param in parameters)
+                    {
+                        cmd.Parameters.Add(param);
+                    }
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+
+                    List<Dictionary<string, string>> data = new List<Dictionary<string, string>>();
+                
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        int nb_data = dataReader.FieldCount;
+                        Dictionary<string,string> data_dico = new Dictionary<string, string>();
+                        for (int i = 0; i < nb_data; i++)
+                        {
+                            data_dico.Add((string) dataReader.GetName(i), (string) dataReader[dataReader.GetName(i)]);
+                        }
+                        data.Add(data_dico);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+
+                    //close Connection
+                    this.CloseConnection();
+
+                    //return list to be displayed
+                    return data;
+                }
+                else
+                {
+                    throw new Exception("DBmanager.Select: Connection failed to mysql server");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         //Count statement
-        public int Count()
+        public int Count(string query, MySqlParameter[] parameters)
         {
+            try
+            {
+                //Open connection
+                if (this.OpenConnection())
+                {
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.Prepare();
+                    foreach (MySqlParameter param in parameters)
+                    {
+                        cmd.Parameters.Add(param);
+                    }
+                    
+                    int Count = int.Parse(cmd.ExecuteScalar()+"");
+                    
+
+                    //close Connection
+                    this.CloseConnection();
+
+                    //return list to be displayed
+                    return Count;
+                }
+                else
+                {
+                    throw new Exception("DBmanager.Count: Connection failed to mysql server");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
+        
+        /*
         //Backup
         public void Backup()
         {
@@ -121,6 +261,6 @@ namespace SMNetwork.Server
         //Restore
         public void Restore()
         {
-        }
+        }*/
     }
 }
