@@ -23,13 +23,23 @@ namespace SMNetwork.Server
         //Initialize values
         private void Initialize()
         {
-            this.server = "localhost";
+            this.server = "127.0.0.1";
             this.database = "accer";
             string connectionString;
-            connectionString = "SERVER=" + this.server + ";" + "DATABASE=" + 
-                               this.database + ";" + "UID=" + this.uid + ";" + "PASSWORD=" + this.password + ";";
-
-            this.connection = new MySqlConnection(connectionString);
+            connectionString = "Persist Security info=False;Server=" + this.server + ";Port=3306;" + "Database=" + 
+                               this.database + ";" + "Uid=" + this.uid + ";" + "Pwd=" + this.password + ";";
+            //Console.WriteLine(connectionString);
+            MySqlConnectionStringBuilder connectionStringBuilder = new MySqlConnectionStringBuilder();
+            
+            MySqlConnectionStringBuilder conn_string = new MySqlConnectionStringBuilder();
+            conn_string.Server = this.server;
+            conn_string.UserID = this.uid;
+            conn_string.Password = this.password;
+            conn_string.Database = this.database;
+            Console.WriteLine(conn_string.ToString());
+            
+            this.connection = new MySqlConnection(conn_string.ToString());
+            Console.WriteLine(this.connection.Ping());
         }
 
         //open connection to database
@@ -52,9 +62,17 @@ namespace SMNetwork.Server
                     case 0:
                         Console.WriteLine("Cannot connect to server.  Contact administrator");
                         break;
+                        
+                    case 1042:
+                        Console.WriteLine("Unable to resolve DNS");
+                        break;
 
                     case 1045:
                         Console.WriteLine("Invalid username/password, please try again");
+                        break;
+                        
+                    default:
+                        Console.WriteLine("Invalid connection: Error Code " + ex.Number);
                         break;
                 }
                 return false;

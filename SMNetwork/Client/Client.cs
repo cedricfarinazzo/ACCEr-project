@@ -8,7 +8,7 @@ namespace SMNetwork.Client
 {    
     public class Client
     {
-        public Client(string address, int port)
+        public Client(string address = "accer.ddns.net", int port = 4247)
         {
             Network.Connect(address, port);
         }
