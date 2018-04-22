@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowMiner", "ShadowMiner.csproj", "{8D5C4E94-2F5D-2319-56B8-61382B7E546F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowMiner.Plugins", "ShadowMiner.Plugins.csproj", "{C2841281-5F18-59D2-CCD9-999AD47A1685}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowMiner.Editor", "ShadowMiner.Editor.csproj", "{A6A3172E-F0B5-BFE7-9066-39CC1B5269C1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D5C4E94-2F5D-2319-56B8-61382B7E546F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D5C4E94-2F5D-2319-56B8-61382B7E546F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D5C4E94-2F5D-2319-56B8-61382B7E546F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D5C4E94-2F5D-2319-56B8-61382B7E546F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2841281-5F18-59D2-CCD9-999AD47A1685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2841281-5F18-59D2-CCD9-999AD47A1685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2841281-5F18-59D2-CCD9-999AD47A1685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2841281-5F18-59D2-CCD9-999AD47A1685}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6A3172E-F0B5-BFE7-9066-39CC1B5269C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6A3172E-F0B5-BFE7-9066-39CC1B5269C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6A3172E-F0B5-BFE7-9066-39CC1B5269C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6A3172E-F0B5-BFE7-9066-39CC1B5269C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

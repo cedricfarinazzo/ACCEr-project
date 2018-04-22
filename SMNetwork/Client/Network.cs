@@ -40,15 +40,11 @@ namespace SMNetwork.Client
             Protocol reqProtocol = new Protocol(MessageType.Connection)
             {
                 Email = email,
-                HashPassword = Hash.Create(password)
+                Password = password
             };
             byte[] buffer = Formatter.ToByteArray(reqProtocol);
             DataClient.Client.Client.Send(buffer, SocketFlags.None);
             Protocol receiveMessage = ReceiveMessage();
-            if (receiveMessage == null) ;
-            {
-                return null;
-            }
 
             if (receiveMessage.Type != MessageType.Response)
             {
@@ -60,19 +56,15 @@ namespace SMNetwork.Client
 
         public static string Create(DataUser user, string email, string password)
         {
-            Protocol reqProtocol = new Protocol(MessageType.Connection)
+            Protocol reqProtocol = new Protocol(MessageType.Create)
             {
                 User = user,
                 Email = email,
-                HashPassword = Hash.Create(password)
+                Password = password
             };
             byte[] buffer = Formatter.ToByteArray(reqProtocol);
             DataClient.Client.Client.Send(buffer, SocketFlags.None);
             Protocol receiveMessage = ReceiveMessage();
-            if (receiveMessage == null) ;
-            {
-                return null;
-            }
             
             if (receiveMessage.Type != MessageType.Response)
             {
@@ -91,10 +83,6 @@ namespace SMNetwork.Client
             byte[] buffer = Formatter.ToByteArray(reqProtocol);
             DataClient.Client.Client.Send(buffer, SocketFlags.None);
             Protocol receiveMessage = ReceiveMessage();
-            if (receiveMessage == null) ;
-            {
-                return null;
-            }
             
             if (receiveMessage.Type != MessageType.Response)
             {
@@ -113,10 +101,6 @@ namespace SMNetwork.Client
             byte[] buffer = Formatter.ToByteArray(reqProtocol);
             DataClient.Client.Client.Send(buffer, SocketFlags.None);
             Protocol receiveMessage = ReceiveMessage();
-            if (receiveMessage == null) ;
-            {
-                return null;
-            }
             
             if (receiveMessage.Type != MessageType.Response)
             {
@@ -133,7 +117,7 @@ namespace SMNetwork.Client
 
         public static string UpdateData(string token, DataUser user)
         {
-            Protocol reqProtocol = new Protocol(MessageType.AskProfil)
+            Protocol reqProtocol = new Protocol(MessageType.UpdateData)
             {
                 User = user,
                 Token = token
@@ -141,10 +125,6 @@ namespace SMNetwork.Client
             byte[] buffer = Formatter.ToByteArray(reqProtocol);
             DataClient.Client.Client.Send(buffer, SocketFlags.None);
             Protocol receiveMessage = ReceiveMessage();
-            if (receiveMessage == null) ;
-            {
-                return null;
-            }
             
             if (receiveMessage.Type != MessageType.Response)
             {
@@ -157,6 +137,21 @@ namespace SMNetwork.Client
             }
 
             return receiveMessage.Message;
+        }
+
+        public static bool Logout(string token)
+        {
+            Protocol reqProtocol = new Protocol(MessageType.Logout);
+            byte[] buffer = Formatter.ToByteArray(reqProtocol);
+            DataClient.Client.Client.Send(buffer, SocketFlags.None);
+            Protocol receiveMessage = ReceiveMessage();
+            
+            if (receiveMessage.Type != MessageType.Response)
+            {
+                return false;
+            }
+
+            return receiveMessage.Message == "success";
         }
         
     }

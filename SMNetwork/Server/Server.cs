@@ -10,10 +10,10 @@ namespace SMNetwork.Server
 {
     public class Server
     {
-        public Server(int port)
+        public Server(int port, string uidDatabase, string passDatabase)
         {
             UPnP upnp = new UPnP(port);
-            DataServer.Initialize(IPAddress.Any, port);
+            DataServer.Initialize(IPAddress.Any, port, uidDatabase, passDatabase);
             this.Init();
         }
 
@@ -26,15 +26,21 @@ namespace SMNetwork.Server
         public void Start()
         {
             Console.WriteLine("[S] Server Started.");
-            Thread accept = new Thread(AcceptClients);
-            accept.Priority = ThreadPriority.AboveNormal;
-            accept.IsBackground = true;
-            Thread tasks = new Thread(HandleTasks);
-            tasks.Priority = ThreadPriority.Highest;
-            tasks.IsBackground = true;
-            Thread poll = new Thread(PollClients);
-            poll.Priority = ThreadPriority.Highest;
-            poll.IsBackground = true;
+            Thread accept = new Thread(AcceptClients)
+            {
+                Priority = ThreadPriority.AboveNormal,
+                IsBackground = true
+            };
+            Thread tasks = new Thread(HandleTasks)
+            {
+                Priority = ThreadPriority.Highest,
+                IsBackground = true
+            };
+            Thread poll = new Thread(PollClients)
+            {
+                Priority = ThreadPriority.Highest,
+                IsBackground = true
+            };
 
             try
             {
@@ -160,6 +166,11 @@ namespace SMNetwork.Server
                 case MessageType.UpdateData:
                     Console.WriteLine("[SINFO][UpdateData] request from " + client.Client.Client.RemoteEndPoint.ToString());
                     resp = RequestServer.UpdateData(msg, client);
+                    break;
+                    
+                case MessageType.Logout:
+                    Console.WriteLine("[SINFO][Logout] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                    resp = RequestServer.Logout(msg, client);
                     break;
 
                 default:

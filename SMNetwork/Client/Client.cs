@@ -115,6 +115,12 @@ namespace SMNetwork.Client
                 return false;
             }
         }
-        
+
+        public bool Logout()
+        {
+            bool result = Network.Logout(DataClient.Token);
+            DataClient.Token = "";
+            return result;
+        }
     }
 }

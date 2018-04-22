@@ -17,7 +17,9 @@ namespace SMNetwork.Server
 
         public static Socket _sock { get; set; }
         
-        public static void Initialize(IPAddress hosAddress, int port)
+        public static DBManager Database { get; set; }
+        
+        public static void Initialize(IPAddress hosAddress, int port, string uidDatabase, string passDatabase)
         {
             Address = hosAddress;
             Port = port;
@@ -25,6 +27,7 @@ namespace SMNetwork.Server
             Clients = new List<DataTcpClient>();
             Tasks = new Queue<DataTcpClient>();
             _sock = new Socket(hosAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            Database = new DBManager(uidDatabase, passDatabase);
         }
 
 

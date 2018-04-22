@@ -8,6 +8,7 @@ namespace SMNetwork
         Response,
         Error,      
         Connection,
+        Logout,
         Create,
         AskProgress,
         AskProfil,
@@ -23,7 +24,7 @@ namespace SMNetwork
             this.Message = "";
             this.User = null;
             this.Email = null;
-            this.HashPassword = null;
+            this.Password = null;
             this.Token = "";
 
         }
@@ -32,7 +33,7 @@ namespace SMNetwork
         public string Message { get; set; }
         public DataUser User { get; set; }
         public string Email { get; set; }
-        public string HashPassword { get; set; }
+        public string Password { get; set; }
         public string Token { get; set; }
         public string Progress { get; set; }
         

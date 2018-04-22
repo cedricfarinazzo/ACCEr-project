@@ -251,6 +251,15 @@ namespace SMNetwork.Server
             }
         }
 
+        /// <summary>
+        /// Prevent SQL injection. Remove for more fun.
+        /// </summary>
+        /// <param name="str">The string to transform.</param>
+        /// <returns>The transformed string.</returns>
+        public static string Escape(string str)
+        {
+            return str.Replace('\'', '"');
+        }
         
         /*
         //Backup
