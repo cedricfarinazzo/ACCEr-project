@@ -107,15 +107,10 @@ namespace SMNetwork.Client
                 return null;
             }
 
-            if (receiveMessage.Message != "success")
-            {
-                return null;
-            }
-
             return receiveMessage.User;
         }
 
-        public static string UpdateData(string token, DataUser user)
+        public static bool UpdateData(string token, DataUser user)
         {
             Protocol reqProtocol = new Protocol(MessageType.UpdateData)
             {
@@ -128,15 +123,10 @@ namespace SMNetwork.Client
             
             if (receiveMessage.Type != MessageType.Response)
             {
-                return null;
+                return false;
             }
 
-            if (receiveMessage.Message != "success")
-            {
-                return null;
-            }
-
-            return receiveMessage.Message;
+            return receiveMessage.Message == "success";
         }
 
         public static bool Logout(string token)

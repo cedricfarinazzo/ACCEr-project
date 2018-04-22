@@ -33,7 +33,7 @@ namespace SMNetwork.Client
                 DataClient.User = user;
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -52,7 +52,7 @@ namespace SMNetwork.Client
                 DataClient.Token = result;
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -70,7 +70,7 @@ namespace SMNetwork.Client
 
                 return result;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }
@@ -82,7 +82,7 @@ namespace SMNetwork.Client
             {
                 return Network.AskProfil(email);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }
@@ -107,10 +107,9 @@ namespace SMNetwork.Client
 
             try
             {
-                string result = Network.UpdateData(DataClient.Token, DataClient.User);
-                return result == "success";
+                return Network.UpdateData(DataClient.Token, DataClient.User);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
