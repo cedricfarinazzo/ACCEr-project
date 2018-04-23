@@ -31,6 +31,7 @@ namespace SMNetwork.Client
 
                 DataClient.Token = result;
                 DataClient.User = user;
+                DataClient.Email = email;
                 return true;
             }
             catch (Exception)
@@ -50,6 +51,7 @@ namespace SMNetwork.Client
                 }
 
                 DataClient.Token = result;
+                DataClient.Email = email;
                 return true;
             }
             catch (Exception)
@@ -80,12 +82,18 @@ namespace SMNetwork.Client
         {
             try
             {
-                return Network.AskProfil(email);
+                return Network.AskProfil(email, DataClient.Token);
             }
             catch (Exception)
             {
                 return null;
             }
+        }
+
+        public DataUser AskMyProfil()
+        {
+            DataClient.User = AskProfil(DataClient.Email);
+            return DataClient.User;
         }
 
         public bool UpdateData(string login = null, string firstname = null, string lastname = null, string description = null)

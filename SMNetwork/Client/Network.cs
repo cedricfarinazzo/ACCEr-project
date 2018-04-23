@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.Principal;
 using SMNetwork;
 
 namespace SMNetwork.Client
@@ -65,7 +66,7 @@ namespace SMNetwork.Client
             byte[] buffer = Formatter.ToByteArray(reqProtocol);
             DataClient.Client.Client.Send(buffer, SocketFlags.None);
             Protocol receiveMessage = ReceiveMessage();
-            
+            Console.WriteLine(receiveMessage.Message);
             if (receiveMessage.Type != MessageType.Response)
             {
                 return null;
@@ -83,7 +84,6 @@ namespace SMNetwork.Client
             byte[] buffer = Formatter.ToByteArray(reqProtocol);
             DataClient.Client.Client.Send(buffer, SocketFlags.None);
             Protocol receiveMessage = ReceiveMessage();
-            
             if (receiveMessage.Type != MessageType.Response)
             {
                 return null;
@@ -92,10 +92,11 @@ namespace SMNetwork.Client
             return receiveMessage.Progress;
         }
         
-        public static DataUser AskProfil(string email)
+        public static DataUser AskProfil(string email, string token)
         {
             Protocol reqProtocol = new Protocol(MessageType.AskProfil)
             {
+                Token = token,
                 Email = email
             };
             byte[] buffer = Formatter.ToByteArray(reqProtocol);
@@ -139,7 +140,6 @@ namespace SMNetwork.Client
             
             if (receiveMessage.Type != MessageType.Response)
             {
-                Console.WriteLine(receiveMessage.Message);
                 return false;
             }
 

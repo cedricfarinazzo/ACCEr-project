@@ -15,6 +15,8 @@ namespace SMNetwork.Client
         
         public static DataUser User { get; set; }
         
+        public static string Email { get; set; }
+        
         public static void Initialize(string hosAddress, int port)
         {
             Address = hosAddress;
@@ -23,6 +25,7 @@ namespace SMNetwork.Client
             Client = new TcpClient() {Client = _sock};
             Token = "";
             User = null;
+            Email = "";
         }
     }
 }

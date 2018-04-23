@@ -18,5 +18,11 @@ namespace SMNetwork
         public DataUser()
         {
         }
+
+        public override string ToString()
+        {
+            return "ID: " + ID + "; Login; " + Login + ";Lastname: " + Lastname + "; Firstname: " + Firstname + "; Description: " +
+                   Description;
+        }
     }
 }

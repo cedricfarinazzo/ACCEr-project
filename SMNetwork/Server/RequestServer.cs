@@ -23,17 +23,19 @@ namespace SMNetwork.Server
                 if (result == 0)
                 {
                     string query_insert =
-                        "INSERT INTO user(login, name, firstname, email, pass, date_register) VALUES(@login, @name, @firstname, @mail, @pass, NOW())";
-                    MySqlParameter[] parameters_insert = new MySqlParameter[5];
+                        "INSERT INTO user(login, name, firstname, email, pass, description, date_register) VALUES(@login, @name, @firstname, @mail, @pass, @descript, NOW())";
+                    MySqlParameter[] parameters_insert = new MySqlParameter[6];
                     parameters_insert[0] = new MySqlParameter("@login", DBManager.Escape(prot.User.Login));
                     parameters_insert[1] = new MySqlParameter("@name", DBManager.Escape(prot.User.Lastname));
                     parameters_insert[2] = new MySqlParameter("@firstname", DBManager.Escape(prot.User.Firstname));
                     parameters_insert[3] = new MySqlParameter("@mail", DBManager.Escape(prot.Email));
                     parameters_insert[4] = new MySqlParameter("@pass", Hash.Create(prot.Password));
+                    parameters_insert[5] = new MySqlParameter("@descript", DBManager.Escape(prot.User.Description));
                     if (DataServer.Database.Insert(query_insert, parameters_insert))
                     {
                         int time = (int)DateTime.Now.Ticks;
-                        List<Dictionary<string, string>> resList = DataServer.Database.Select(query, parameters);
+                        string query_select = "SELECT * FROM user WHERE email = @mail";
+                        List<Dictionary<string, string>> resList = DataServer.Database.Select(query_select, parameters);
                         int ID = int.Parse(resList[0]["ID"]);
                         string email = DBManager.Escape(prot.Email);
                         string login = DBManager.Escape(prot.User.Login);
@@ -48,11 +50,11 @@ namespace SMNetwork.Server
                         {
                             return new Protocol(MessageType.Response) {Token = token};
                         }
-                        return new Protocol(MessageType.Error) {Message = "Server Error"};
+                        return new Protocol(MessageType.Error) {Message = "Server Error: Code 2"};
                     }
                     else
                     {
-                        return new Protocol(MessageType.Error) {Message = "Server Error"};
+                        return new Protocol(MessageType.Error) {Message = "Server Error: Code 1"};
                     }
                 }
                 else
@@ -124,7 +126,7 @@ namespace SMNetwork.Server
                 {
                     string query_progress = "SELECT * FROM Game WHERE ID_user = @ID";
                     string query_progress_count = "SELECT COUNT(*) FROM Game WHERE ID_user = @ID";
-                    MySqlParameter[] parameters_progress = new MySqlParameter[2];
+                    MySqlParameter[] parameters_progress = new MySqlParameter[1];
                     parameters_progress[0] = new MySqlParameter("@ID", ID);
                     if (DataServer.Database.Count(query_progress_count, parameters_progress) == 1)
                     {
@@ -162,10 +164,10 @@ namespace SMNetwork.Server
                 parameters[1] = new MySqlParameter("@token", DBManager.Escape(prot.Token));
                 if (DataServer.Database.Count(query_token, parameters) == 1)
                 {
-                    string query_user = "SELECT * FROM user WHERE ID = @ID";
-                    string query_user_count = "SELECT COUNT(*) FROM user WHERE ID = @ID";
-                    MySqlParameter[] parameters_user = new MySqlParameter[2];
-                    parameters_user[0] = new MySqlParameter("@ID", ID);
+                    string query_user = "SELECT * FROM user WHERE email = @mail";
+                    string query_user_count = "SELECT COUNT(*) FROM user WHERE email = @mail";
+                    MySqlParameter[] parameters_user = new MySqlParameter[1];
+                    parameters_user[0] = new MySqlParameter("@mail", prot.Email);
                     if (DataServer.Database.Count(query_user_count, parameters_user) == 1)
                     {
                         Dictionary<string, string> result =
