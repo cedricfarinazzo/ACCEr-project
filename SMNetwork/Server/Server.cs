@@ -25,7 +25,7 @@ namespace SMNetwork.Server
 
         public void Start()
         {
-            Console.WriteLine("[S] Server Started.");
+            Log(ConsoleColor.Green, "[", "S", "] Server Started.");
             Thread accept = new Thread(AcceptClients)
             {
                 Priority = ThreadPriority.AboveNormal,
@@ -52,7 +52,7 @@ namespace SMNetwork.Server
             }
             catch (Exception e)
             {
-                Console.WriteLine("[S] Exception during execution of the server");
+                Log(ConsoleColor.DarkRed, "[", "S", "] Exception during execution of the server");
                 Console.WriteLine(e);
                 throw;
             }
@@ -66,7 +66,7 @@ namespace SMNetwork.Server
                 try
                 {
                     Socket clientSocket = DataServer._sock.Accept();
-                    Console.WriteLine("[S] Accept connection from " + clientSocket.RemoteEndPoint.ToString());
+                    Log(ConsoleColor.Green, "[", "S", "] Accept connection from " + clientSocket.RemoteEndPoint.ToString());
                     TcpClient client = new TcpClient
                     {
                         Client = clientSocket
@@ -141,44 +141,54 @@ namespace SMNetwork.Server
 
             Protocol msg = Receive(client.Client);
             Protocol resp;
-            switch (msg.Type)
+            if (msg != null)
             {
-                case MessageType.AskProfil:
-                    Console.WriteLine("[SINFO][AskProfil] request from " + client.Client.Client.RemoteEndPoint.ToString());
-                    resp = RequestServer.AskProfil(msg, client);
-                    break;
+                switch (msg.Type)
+                {
+                    case MessageType.AskProfil:
+                        Log(ConsoleColor.Green, "[", "SINFO", "][AskProfil] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                        resp = RequestServer.AskProfil(msg, client);
+                        break;
+                            
+                    case MessageType.AskProgress:
+                        Log(ConsoleColor.Green, "[", "SINFO", "][AskProgress] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                        resp = RequestServer.AskProgress(msg, client);
+                        break;
                         
-                case MessageType.AskProgress:
-                    Console.WriteLine("[SINFO][AskProgress] request from " + client.Client.Client.RemoteEndPoint.ToString());
-                    resp = RequestServer.AskProgress(msg, client);
-                    break;
-                    
-                case MessageType.Connection:
-                    Console.WriteLine("[SINFO][Connection] request from " + client.Client.Client.RemoteEndPoint.ToString());
-                    resp = RequestServer.Connection(msg, client);
-                    break;
-                    
-                case MessageType.Create:
-                    Console.WriteLine("[SINFO][Create] request from " + client.Client.Client.RemoteEndPoint.ToString());
-                    resp = RequestServer.Create(msg, client);
-                    break;
-                    
-                case MessageType.UpdateData:
-                    Console.WriteLine("[SINFO][UpdateData] request from " + client.Client.Client.RemoteEndPoint.ToString());
-                    resp = RequestServer.UpdateData(msg, client);
-                    break;
-                    
-                case MessageType.Logout:
-                    Console.WriteLine("[SINFO][Logout] request from " + client.Client.Client.RemoteEndPoint.ToString());
-                    resp = RequestServer.Logout(msg, client);
-                    break;
-
-                default:
-                    Console.WriteLine("[SINFO][Unknown] request from " + client.Client.Client.RemoteEndPoint.ToString());
-                    resp = new Protocol(MessageType.Error)
-                        { Message = "You did something, but I don't know what." };
-                    break;
+                    case MessageType.Connection:
+                        Log(ConsoleColor.Green, "[", "SINFO", "][Connection] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                        resp = RequestServer.Connection(msg, client);
+                        break;
+                        
+                    case MessageType.Create:
+                        Log(ConsoleColor.Green, "[", "SINFO", "][Create] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                        resp = RequestServer.Create(msg, client);
+                        break;
+                        
+                    case MessageType.UpdateData:
+                        Log(ConsoleColor.Green, "[", "SINFO", "][UpdateData] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                        resp = RequestServer.UpdateData(msg, client);
+                        break;
+                        
+                    case MessageType.Logout:
+                        Log(ConsoleColor.Green, "[", "SINFO", "][Logout] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                        resp = RequestServer.Logout(msg, client);
+                        break;
+    
+                    default:
+                        Log(ConsoleColor.Red, "[", "SINFO", "][Unknown] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                        resp = new Protocol(MessageType.Error)
+                            { Message = "You did something, but I don't know what." };
+                        break;
+                }
             }
+            else
+            {
+                Log(ConsoleColor.Red, "[", "SINFO", "][Unknown] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                resp = new Protocol(MessageType.Error)
+                    { Message = "You did something, but I don't know what." };
+            }
+            
             Send(client.Client, resp);
             client.IsQueued = false;
             return;
@@ -194,13 +204,30 @@ namespace SMNetwork.Server
                 message.Add((byte) stream.ReadByte());
             }
 
-            return Formatter.ToObject<Protocol>(message.ToArray());
+            try
+            {
+                return Formatter.ToObject<Protocol>(message.ToArray());
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
         }
 
         private void Send(TcpClient client, Protocol protocol)
         {
             client.Client.Send(Formatter.ToByteArray(protocol));
             return;
+        }
+
+        public static void Log(ConsoleColor color, string pre, string middle, string suf)
+        {
+            Console.Write(pre);
+            Console.ForegroundColor = color;
+            Console.Write(middle);
+            Console.ResetColor();
+            Console.WriteLine(suf);
         }
         
     }

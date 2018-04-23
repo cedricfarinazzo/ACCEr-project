@@ -132,12 +132,14 @@ namespace SMNetwork.Client
         public static bool Logout(string token)
         {
             Protocol reqProtocol = new Protocol(MessageType.Logout);
+            reqProtocol.Token = token;
             byte[] buffer = Formatter.ToByteArray(reqProtocol);
             DataClient.Client.Client.Send(buffer, SocketFlags.None);
             Protocol receiveMessage = ReceiveMessage();
             
             if (receiveMessage.Type != MessageType.Response)
             {
+                Console.WriteLine(receiveMessage.Message);
                 return false;
             }
 

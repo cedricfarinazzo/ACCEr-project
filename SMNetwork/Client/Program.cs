@@ -7,7 +7,9 @@ namespace SMNetwork.Client
         public static void Main(string[] args)
         {
             Client SMClient = new Client();
-            Console.WriteLine(SMClient.Connect("cedric.farinazzo@epita.fr", "1234AZER"));
+            Console.WriteLine("Connected: " + SMClient.Connect("cedric.farinazzo@epita.fr", "1234AZER"));
+            Console.WriteLine("Token: \"" + DataClient.Token + "\"");
+            Console.WriteLine("Logout: " + SMClient.Logout());
         }
     }
 }

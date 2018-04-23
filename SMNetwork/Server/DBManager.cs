@@ -25,21 +25,24 @@ namespace SMNetwork.Server
         {
             this.server = "127.0.0.1";
             this.database = "accer";
+            /*
             string connectionString;
-            connectionString = "Persist Security info=False;Server=" + this.server + ";Port=3306;" + "Database=" + 
-                               this.database + ";" + "Uid=" + this.uid + ";" + "Pwd=" + this.password + ";";
-            //Console.WriteLine(connectionString);
-            MySqlConnectionStringBuilder connectionStringBuilder = new MySqlConnectionStringBuilder();
+            connectionString = 
+                "database=" + this.database + "; server=" + this.server + "; user id=" + this.uid + "; pwd=" + this.password + ";SslMode=none";
+            */
+
             
             MySqlConnectionStringBuilder conn_string = new MySqlConnectionStringBuilder();
             conn_string.Server = this.server;
             conn_string.UserID = this.uid;
             conn_string.Password = this.password;
             conn_string.Database = this.database;
-            Console.WriteLine(conn_string.ToString());
+            conn_string.SslMode = MySqlSslMode.None;
             
             this.connection = new MySqlConnection(conn_string.ToString());
-            Console.WriteLine(this.connection.Ping());
+            bool result = OpenConnection();
+            Server.Log(result ? ConsoleColor.Green : ConsoleColor.Red, "Database connection : ", result.ToString(), "");
+            CloseConnection();
         }
 
         //open connection to database
@@ -99,7 +102,7 @@ namespace SMNetwork.Server
         {
             try
             {
-                if(this.OpenConnection())
+                if (this.OpenConnection())
                 {
                     MySqlCommand cmd = new MySqlCommand(query, this.connection);
                     cmd.Prepare();
@@ -107,19 +110,28 @@ namespace SMNetwork.Server
                     {
                         cmd.Parameters.Add(param);
                     }
-                        
-                
+
+
                     cmd.ExecuteNonQuery();
                     this.CloseConnection();
                     return true;
                 }
+
+                this.CloseConnection();
                 throw new Exception("DBmanager.Insert: Connection failed to mysql server");
+            }
+            catch (MySqlException ex)
+            {
+                this.CloseConnection();
+                Console.WriteLine("Code : " + ex.Number + "\n" + ex.Message);
+                throw;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                this.CloseConnection();
+                Console.WriteLine(e.Message);
                 throw;
-            }       
+            }
         }
 
         //Update statement
@@ -141,13 +153,21 @@ namespace SMNetwork.Server
                     this.CloseConnection();
                     return true;
                 }
+                this.CloseConnection();
                 throw new Exception("DBmanager.Update: Connection failed to mysql server");
             }
+            catch (MySqlException ex)
+            {
+                this.CloseConnection();
+                Console.WriteLine("Code : " + ex.Number + "\n" + ex.Message);
+                throw;
+            }        
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                this.CloseConnection();
+                Console.WriteLine(e.Message);
                 throw;
-            }       
+            }
         }
 
         //Delete statement
@@ -169,13 +189,21 @@ namespace SMNetwork.Server
                     this.CloseConnection();
                     return true;
                 }
+                this.CloseConnection();
                 throw new Exception("DBmanager.Delete: Connection failed to mysql server");
             }
-            catch (Exception e)
+            catch (MySqlException ex)
             {
-                Console.WriteLine(e);
+                this.CloseConnection();
+                Console.WriteLine("Code : " + ex.Number + "\n" + ex.Message);
                 throw;
             }       
+            catch (Exception e)
+            {
+                this.CloseConnection();
+                Console.WriteLine(e.Message);
+                throw;
+            }
         }
 
         //Select statement
@@ -206,7 +234,7 @@ namespace SMNetwork.Server
                         Dictionary<string,string> data_dico = new Dictionary<string, string>();
                         for (int i = 0; i < nb_data; i++)
                         {
-                            data_dico.Add((string) dataReader.GetName(i), (string) dataReader[dataReader.GetName(i)]);
+                            data_dico.Add(dataReader.GetName(i).ToString(), dataReader[dataReader.GetName(i)].ToString());
                         }
                         data.Add(data_dico);
                     }
@@ -225,9 +253,16 @@ namespace SMNetwork.Server
                     throw new Exception("DBmanager.Select: Connection failed to mysql server");
                 }
             }
+            catch (MySqlException ex)
+            {
+                this.CloseConnection();
+                Console.WriteLine("Code : " + ex.Number + "\n" + ex.Message);
+                throw;
+            }   
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                this.CloseConnection();
+                Console.WriteLine(e.Message);
                 throw;
             }
         }
@@ -259,12 +294,20 @@ namespace SMNetwork.Server
                 }
                 else
                 {
+                    this.CloseConnection();
                     throw new Exception("DBmanager.Count: Connection failed to mysql server");
                 }
             }
+            catch (MySqlException ex)
+            {
+                this.CloseConnection();
+                Console.WriteLine("Code : " + ex.Number + "\n" + ex.Message);
+                throw;
+            }   
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                this.CloseConnection();
+                Console.WriteLine(e.Message);
                 throw;
             }
         }

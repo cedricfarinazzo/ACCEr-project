@@ -10,7 +10,7 @@ namespace SMNetwork.Server
     {
         public static Protocol Create(Protocol prot, DataTcpClient client)
         {
-            string query = "SELECT * FROM user WHERE email = @mail";
+            string query = "SELECT COUNT(*) FROM user WHERE email = @mail";
             MySqlParameter[] parameters = new MySqlParameter[1];
             parameters[0] = new MySqlParameter("@mail", DBManager.Escape(prot.Email));
             try
@@ -39,7 +39,7 @@ namespace SMNetwork.Server
                         string login = DBManager.Escape(prot.User.Login);
                         string token = GenToken(ID, login, email, time);
                         string query_token =
-                            "INSERT INTO gamesess(ID_user, token, expire) VALUES(@ID, @token, @expire";
+                            "INSERT INTO gamesess(ID_user, token, expire) VALUES(@ID, @token, @expire)";
                         MySqlParameter[] parameters_token = new MySqlParameter[3];
                         parameters_token[0] = new MySqlParameter("@ID", ID);
                         parameters_token[1] = new MySqlParameter("@token", token);
@@ -73,10 +73,11 @@ namespace SMNetwork.Server
                 string email = prot.Email;
                 string password = Hash.Create(prot.Password);
                 string query = "SELECT * FROM user WHERE email = @mail AND pass = @pass";
+                string query_count = "SELECT COUNT(*) FROM user WHERE email = @mail AND pass = @pass";
                 MySqlParameter[] parameters = new MySqlParameter[2];
                 parameters[0] = new MySqlParameter("@mail", DBManager.Escape(email));
                 parameters[1] = new MySqlParameter("@pass", password);
-                if (DataServer.Database.Count(query, parameters) == 1)
+                if (DataServer.Database.Count(query_count, parameters) == 1)
                 {
                     Dictionary<string,string> result = DataServer.Database.Select(query, parameters)[0];
                     int time = (int)DateTime.Now.Ticks;
@@ -84,7 +85,7 @@ namespace SMNetwork.Server
                     int ID = int.Parse(result["ID"]);
                     string token = GenToken(ID, login, email, time);
                     string query_token =
-                        "INSERT INTO gamesess(ID_user, token, expire) VALUES(@ID, @token, @expire";
+                        "INSERT INTO gamesess(ID_user, token, expire) VALUES(@ID, @token, @expire)";
                     MySqlParameter[] parameters_token = new MySqlParameter[3];
                     parameters_token[0] = new MySqlParameter("@ID", ID);
                     parameters_token[1] = new MySqlParameter("@token", token);
@@ -115,16 +116,17 @@ namespace SMNetwork.Server
                     return new Protocol(MessageType.Error) {Message = "Empty token"};
                 }
                 int ID = GetIdbyToken(prot.Token);
-                string query_token = "SELECT * FROM gamesess WHERE ID_user = @ID AND token = @token";
+                string query_token = "SELECT COUNT(*) FROM gamesess WHERE ID_user = @ID AND token = @token";
                 MySqlParameter[] parameters = new MySqlParameter[2];
                 parameters[0] = new MySqlParameter("@ID", ID);
                 parameters[1] = new MySqlParameter("@token", DBManager.Escape(prot.Token));
                 if (DataServer.Database.Count(query_token, parameters) == 1)
                 {
                     string query_progress = "SELECT * FROM Game WHERE ID_user = @ID";
+                    string query_progress_count = "SELECT COUNT(*) FROM Game WHERE ID_user = @ID";
                     MySqlParameter[] parameters_progress = new MySqlParameter[2];
                     parameters_progress[0] = new MySqlParameter("@ID", ID);
-                    if (DataServer.Database.Count(query_progress, parameters_progress) == 1)
+                    if (DataServer.Database.Count(query_progress_count, parameters_progress) == 1)
                     {
                         Dictionary<string, string> result =
                             DataServer.Database.Select(query_progress, parameters_progress)[0];
@@ -154,16 +156,17 @@ namespace SMNetwork.Server
                     return new Protocol(MessageType.Error) {Message = "Empty token"};
                 }
                 int ID = GetIdbyToken(prot.Token);
-                string query_token = "SELECT * FROM gamesess WHERE ID_user = @ID AND token = @token";
+                string query_token = "SELECT COUNT(*) FROM gamesess WHERE ID_user = @ID AND token = @token";
                 MySqlParameter[] parameters = new MySqlParameter[2];
                 parameters[0] = new MySqlParameter("@ID", ID);
                 parameters[1] = new MySqlParameter("@token", DBManager.Escape(prot.Token));
                 if (DataServer.Database.Count(query_token, parameters) == 1)
                 {
                     string query_user = "SELECT * FROM user WHERE ID = @ID";
+                    string query_user_count = "SELECT COUNT(*) FROM user WHERE ID = @ID";
                     MySqlParameter[] parameters_user = new MySqlParameter[2];
                     parameters_user[0] = new MySqlParameter("@ID", ID);
-                    if (DataServer.Database.Count(query_user, parameters_user) == 1)
+                    if (DataServer.Database.Count(query_user_count, parameters_user) == 1)
                     {
                         Dictionary<string, string> result =
                             DataServer.Database.Select(query_user, parameters_user)[0];
@@ -201,13 +204,13 @@ namespace SMNetwork.Server
                     return new Protocol(MessageType.Error) {Message = "Empty token"};
                 }
                 int ID = GetIdbyToken(prot.Token);
-                string query_token = "SELECT * FROM gamesess WHERE ID_user = @ID AND token = @token";
+                string query_token = "SELECT COUNT(*) FROM gamesess WHERE ID_user = @ID AND token = @token";
                 MySqlParameter[] parameters = new MySqlParameter[2];
                 parameters[0] = new MySqlParameter("@ID", ID);
                 parameters[1] = new MySqlParameter("@token", DBManager.Escape(prot.Token));
                 if (DataServer.Database.Count(query_token, parameters) == 1)
                 {
-                    string query_user = "SELECT * FROM user WHERE ID = @ID";
+                    string query_user = "SELECT COUNT(*) FROM user WHERE ID = @ID";
                     MySqlParameter[] parameters_user = new MySqlParameter[2];
                     parameters_user[0] = new MySqlParameter("@ID", ID);
                     if (DataServer.Database.Count(query_user, parameters_user) == 1 && prot.User != null)
@@ -251,9 +254,10 @@ namespace SMNetwork.Server
                     return new Protocol(MessageType.Error) {Message = "Empty token"};
                 }
                 int ID = GetIdbyToken(prot.Token);
-                string query = "DELETE FROM gamesess WHERE ID = @ID";
-                MySqlParameter[] parameters = new MySqlParameter[1];
+                string query = "DELETE FROM gamesess WHERE ID_user = @ID AND token = @token";
+                MySqlParameter[] parameters = new MySqlParameter[2];
                 parameters[0] = new MySqlParameter("@ID", ID);
+                parameters[1] = new MySqlParameter("@token", prot.Token);
                 if (DataServer.Database.Delete(query, parameters))
                 {
                     return new Protocol(MessageType.Response) {Message = "success"};

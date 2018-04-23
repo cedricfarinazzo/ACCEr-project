@@ -1,0 +1,29 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          Epicoin
+# Required-Start:    $all
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: Epicoin Online Serveur
+### END INIT INFO
+
+
+cd /usr/local/bin/epicoin
+case "$1" in
+  start)
+     echo "Démarrage du Serveur Shadow Miner"
+     mono Server.exe
+     ;;
+  stop)
+    echo -n "Arret du Serveur Shadow Miner"
+    ps aux | grep -i Server.exe | awk {'print $2'} | xargs kill
+
+    ;;
+  *)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+esac
+exit 0
+

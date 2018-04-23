@@ -1,4 +1,6 @@
-﻿namespace SMNetwork.Server
+﻿using System;
+
+namespace SMNetwork.Server
 {
     internal class Program
     {
@@ -8,6 +10,16 @@
 
         public static void Main(string[] args)
         {
+            Console.WriteLine();
+            Console.WriteLine("  ---------------------------");
+            Console.WriteLine();
+            Console.Write("      ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Shadow Miner Server");
+            Console.ResetColor();
+            Console.WriteLine();
+            Console.WriteLine("  ---------------------------");
+            Console.WriteLine();
             Port = 4247;
             UidDatabase = "php-accer";
             PassDatabase = "Nn6=4aev5";
