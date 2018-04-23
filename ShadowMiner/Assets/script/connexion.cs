@@ -3,19 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using SMNetwork.Client;
 
 public class connexion : MonoBehaviour {
-	public InputField pseudo;
-	public InputField password;
 
-	void Update ()
+    [SerializeField]
+    public InputField email;
+    [SerializeField]
+	public InputField password;
+    [SerializeField]
+    public Button connect;
+
+    private SMNetwork.Client.Client SMClient;
+
+    public void Start()
+    {
+        this.SMClient = new Client();
+        connect.onClick.AddListener(Connect);
+    }
+
+
+    void Update ()
 	{
-		if (pseudo.text == "pseudo" && password.text == "password" && Input.GetKeyDown ("return")) {
-			Debug.Log ("Logged as guest");
-		
-		}
-		else {if (Input.GetKeyDown ("return")) {
-				Debug.Log ("Wrong password or pseudo"); }
+		if (Input.GetKeyDown("return")) {
+            Connect();
+			//Debug.Log ("Logged as guest");
 		}
 	}
+
+    public void Connect()
+    {
+        Debug.Log("Connected: " + SMClient.Connect(email.text, password.text).ToString());
+        Debug.Log("Token: \"" + DataClient.Token + "\"");
+        Debug.Log(SMClient.AskMyProfil());
+        Debug.Log(SMClient.AskProfil("antoine.claudel@hotmail.fr"));
+        Debug.Log("Logout: " + SMClient.Logout());
+    }
 }

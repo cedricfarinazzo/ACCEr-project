@@ -1,5 +1,8 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Text;
 using Newtonsoft.Json;
+
+//using Newtonsoft.Json;
 
 namespace SMNetwork
 {
@@ -11,8 +14,8 @@ namespace SMNetwork
             {
                 return null;
             }
-
-            string json = JsonConvert.SerializeObject(elm);
+            
+            string json = JsonConvert.SerializeObject(elm);            
             byte[] mesBytes = Encoding.Default.GetBytes(json);
             return mesBytes;
         }
