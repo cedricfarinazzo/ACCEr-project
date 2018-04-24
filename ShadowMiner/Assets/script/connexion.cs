@@ -8,11 +8,11 @@ using SMNetwork.Client;
 public class connexion : MonoBehaviour {
 
     [SerializeField]
-    public InputField email;
+    protected InputField email;
     [SerializeField]
-	public InputField password;
+	protected InputField password;
     [SerializeField]
-    public Button connect;
+    protected Button connect;
 
     private SMNetwork.Client.Client SMClient;
 
