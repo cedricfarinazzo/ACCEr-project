@@ -7,12 +7,10 @@ using SMNetwork.Client;
 
 public class connexion : MonoBehaviour {
 
-    [SerializeField]
-    protected InputField email;
-    [SerializeField]
-	protected InputField password;
-    [SerializeField]
-    protected Button connect;
+    public InputField email;
+	public InputField password;
+    public Button connect;
+	public Button inscription;
 
     private SMNetwork.Client.Client SMClient;
 
@@ -20,8 +18,13 @@ public class connexion : MonoBehaviour {
     {
         this.SMClient = new Client();
         connect.onClick.AddListener(Connect);
+		inscription.onClick.AddListener(Inscription);
     }
 
+	public void Inscription()
+	{
+		SceneManager.LoadScene ("inscription");
+	}
 
     void Update ()
 	{
