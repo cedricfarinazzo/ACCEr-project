@@ -445,7 +445,8 @@
     <Compile Include="Assets\script\_scene\ChangeSceneAfterDelayScript.cs" />
     <Compile Include="Assets\script\_scene\ChangeSceneOnClickScript.cs" />
     <Compile Include="Assets\script\_scene\menusoutenance.cs" />
-    <Compile Include="Assets\script\connexion.cs" />
+    <Compile Include="Assets\script\connection&amp;inscription\connexion.cs" />
+    <Compile Include="Assets\script\connection&amp;inscription\inscription.cs" />
     <Compile Include="Assets\script\DisableMouseCursor.cs" />
     <Compile Include="Assets\script\door\OpenDoor.cs" />
     <Compile Include="Assets\script\Entity.cs" />

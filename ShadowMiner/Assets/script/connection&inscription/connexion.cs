@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using SMNetwork.Client;
+using SaveData;
 
 public class connexion : MonoBehaviour {
 
@@ -16,6 +17,8 @@ public class connexion : MonoBehaviour {
 
     public void Start()
     {
+        email.text = SaveData.SaveData.GetString("DataClient.Email");
+        Debug.Log(SaveData.SaveData.GetString("DataClient.Token"));
         this.SMClient = new Client();
         connect.onClick.AddListener(Connect);
 		inscription.onClick.AddListener(Inscription);
@@ -36,10 +39,19 @@ public class connexion : MonoBehaviour {
 
     public void Connect()
     {
-        Debug.Log("Connected: " + SMClient.Connect(email.text, password.text).ToString());
-        Debug.Log("Token: \"" + DataClient.Token + "\"");
-        Debug.Log(SMClient.AskMyProfil());
-        Debug.Log(SMClient.AskProfil("antoine.claudel@hotmail.fr"));
-        Debug.Log("Logout: " + SMClient.Logout());
+        if (SMClient.Connect(email.text, password.text))
+        {
+            Debug.Log("Connected: True");
+            SaveData.SaveData.SaveString("DataClient.Token", DataClient.Token);
+            SaveData.SaveData.SaveString("DataClient.Email", DataClient.Email);
+            Debug.Log("Token: \"" + DataClient.Token + "\"");
+            Debug.Log(SMClient.AskMyProfil());
+            Debug.Log(SMClient.AskProfil("antoine.claudel@hotmail.fr"));
+            Debug.Log("Logout: " + SMClient.Logout());
+        }
+        else
+        {
+            Debug.Log("Connected: false");
+        }
     }
 }

@@ -86,6 +86,25 @@ namespace SaveData
             }
         }
 
+        public static void SaveString(string key, string value)
+        {
+            PlayerPrefs.SetString(key, value);
+            PlayerPrefs.Save();
+        }
+
+        public static string GetString(string key)
+        {
+            try
+            {
+                string value = PlayerPrefs.GetString(key, "");
+                return value;
+            }
+            catch (PlayerPrefsException)
+            {
+                return "";
+            }
+        }
+
         public static void DeleteAll()
         {
             PlayerPrefs.DeleteAll();
