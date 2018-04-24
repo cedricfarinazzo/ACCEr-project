@@ -171,6 +171,8 @@
      <Compile Include="Assets\script\Player\NetworkCharacter.cs" />
      <Compile Include="Assets\script\Player\PlayerController.cs" />
      <Compile Include="Assets\script\Respawn.cs" />
+     <Compile Include="Assets\script\SaveData\Formatter.cs" />
+     <Compile Include="Assets\script\SaveData\SaveData.cs" />
      <Compile Include="Assets\script\SMNetworkClient\Client.cs" />
      <Compile Include="Assets\script\SMNetworkClient\DataClient.cs" />
      <Compile Include="Assets\script\SMNetworkClient\DataUser.cs" />
