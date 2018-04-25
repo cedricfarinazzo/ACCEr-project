@@ -435,6 +435,7 @@
     <Compile Include="Assets\script\_scene\BackToMenu.cs" />
     <Compile Include="Assets\script\_scene\ChangeSceneAfterDelayScript.cs" />
     <Compile Include="Assets\script\_scene\ChangeSceneOnClickScript.cs" />
+    <Compile Include="Assets\script\_scene\logout.cs" />
     <Compile Include="Assets\script\_scene\menusoutenance.cs" />
     <Compile Include="Assets\script\connection&amp;inscription\connexion.cs" />
     <Compile Include="Assets\script\connection&amp;inscription\inscription.cs" />

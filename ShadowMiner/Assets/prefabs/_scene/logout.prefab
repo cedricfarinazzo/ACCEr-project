@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222540148144968950}
   - component: {fileID: 114661580366423498}
   - component: {fileID: 114935062431928714}
+  - component: {fileID: 114378425350129012}
   m_Layer: 5
   m_Name: logout
   m_TagString: Untagged
@@ -46,6 +47,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114378425350129012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1270272246111726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c69f9d741948f54faf8c6851252c36e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logoutbutton: {fileID: 114935062431928714}
 --- !u!114 &114661580366423498
 MonoBehaviour:
   m_ObjectHideFlags: 1
