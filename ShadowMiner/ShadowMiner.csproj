@@ -443,6 +443,7 @@
     <Compile Include="Assets\script\door\OpenDoor.cs" />
     <Compile Include="Assets\script\Entity.cs" />
     <Compile Include="Assets\script\manager.cs" />
+    <Compile Include="Assets\script\Multijoueur\GameManager.cs" />
     <Compile Include="Assets\script\Multijoueur\LobbyManager.cs" />
     <Compile Include="Assets\script\Multijoueur\NetworkManager.cs" />
     <Compile Include="Assets\script\Player\CursorTurnHory.cs" />
