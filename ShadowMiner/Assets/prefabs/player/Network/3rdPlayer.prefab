@@ -677,7 +677,6 @@ GameObject:
   - component: {fileID: 114746857339334722}
   - component: {fileID: 114201613976023260}
   - component: {fileID: 114023949442495502}
-  - component: {fileID: 114843366240897734}
   m_Layer: 0
   m_Name: 3rdPlayer
   m_TagString: Player
@@ -1928,10 +1927,10 @@ MonoBehaviour:
   m_PositionModel:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
-    TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
+    TeleportIfDistanceGreaterThan: 2
+    InterpolateOption: 4
     InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
+    InterpolateLerpSpeed: 5
     InterpolateMoveTowardsAcceleration: 2
     InterpolateMoveTowardsDeceleration: 2
     InterpolateSpeedCurve:
@@ -1971,11 +1970,11 @@ MonoBehaviour:
     DrawErrorGizmo: 1
   m_RotationModel:
     SynchronizeEnabled: 1
-    InterpolateOption: 1
+    InterpolateOption: 2
     InterpolateRotateTowardsSpeed: 180
     InterpolateLerpSpeed: 5
   m_ScaleModel:
-    SynchronizeEnabled: 1
+    SynchronizeEnabled: 0
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
@@ -1992,6 +1991,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 100
   max_life: 100
+  damage: 0
+  fall_damage: 42
 --- !u!114 &114315147488765138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2056,35 +2057,15 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 4406352612641564}
+  - {fileID: 114223745609127978, guid: dc68ec145855eaa499b2de02bcdebc00, type: 2}
+  - {fileID: 114873352926542008, guid: dc68ec145855eaa499b2de02bcdebc00, type: 2}
+  - {fileID: 114873352926542008, guid: dc68ec145855eaa499b2de02bcdebc00, type: 2}
+  - {fileID: 114121283592420958, guid: dc68ec145855eaa499b2de02bcdebc00, type: 2}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
---- !u!114 &114843366240897734
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1786188192254632}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d06466c03d263624786afa88b52928b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statsWindowOn: 1
-  statsOn: 1
-  healthStatsVisible: 1
-  trafficStatsOn: 1
-  buttonsOn: 1
-  statsRect:
-    serializedVersion: 2
-    x: 0
-    y: 100
-    width: 200
-    height: 50
-  WindowId: 100
 --- !u!114 &114885736777638844
 MonoBehaviour:
   m_ObjectHideFlags: 1
