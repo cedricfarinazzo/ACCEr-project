@@ -446,6 +446,7 @@
     <Compile Include="Assets\script\Multijoueur\GameManager.cs" />
     <Compile Include="Assets\script\Multijoueur\LobbyManager.cs" />
     <Compile Include="Assets\script\Multijoueur\NetworkManager.cs" />
+    <Compile Include="Assets\script\Parametre\Parametre.cs" />
     <Compile Include="Assets\script\Player\CursorTurnHory.cs" />
     <Compile Include="Assets\script\Player\CursorTurnVerti.cs" />
     <Compile Include="Assets\script\Player\NetworkCharacter.cs" />
