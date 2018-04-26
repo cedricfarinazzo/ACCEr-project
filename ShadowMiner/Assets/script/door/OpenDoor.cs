@@ -8,12 +8,14 @@ public class OpenDoor : MonoBehaviour {
     protected KeyCode touche = KeyCode.E;
 
     protected Animation animation;
+    protected GameObject _g;
     protected bool open = false;
 
     private int timeout = 0;
 
 	// Use this for initialization
 	void Start () {
+        this._g = this.gameObject;
         this.animation = this.gameObject.GetComponentInChildren<Animation>();
 	}
 
@@ -50,6 +52,7 @@ public class OpenDoor : MonoBehaviour {
         if (!this.open)
         {
             this.animation.Play("opendoor");
+            _g.GetComponent<BoxCollider>().enabled = false;
             this.open = true;
         }
     }
@@ -59,6 +62,7 @@ public class OpenDoor : MonoBehaviour {
         if (this.open)
         {
             this.animation.Play("closedoor");
+            _g.GetComponent<BoxCollider>().enabled = true;
             this.open = false;
         }
     }

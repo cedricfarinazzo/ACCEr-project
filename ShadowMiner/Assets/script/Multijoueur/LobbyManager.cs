@@ -40,7 +40,7 @@ public class LobbyManager : Photon.MonoBehaviour {
             IsVisible = true,
             MaxPlayers = 3
         };
-        PhotonNetwork.JoinOrCreateRoom(null, opt, TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom("room" + (DateTime.Now.Ticks.ToString()), opt, TypedLobby.Default);
     }
 
     private void MoveToGame()
