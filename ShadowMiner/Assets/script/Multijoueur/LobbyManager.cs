@@ -23,14 +23,13 @@ public class LobbyManager : Photon.MonoBehaviour {
 	void Update () {
 		if (PhotonNetwork.isMasterClient && PhotonNetwork.room.PlayerCount == 3)
         {
-            Debug.Log("Heeeeeeeeeeeeeeeeeeeeeeeeeee");
             MoveToGame();
         }
 	}
 
     void OnJoinedLobby()
     {
-        JoinLobby();  
+        PhotonNetwork.JoinRandomRoom();
     }
 
     void JoinLobby()
@@ -39,14 +38,19 @@ public class LobbyManager : Photon.MonoBehaviour {
         {
             isOpen = true,
             IsVisible = true,
-            MaxPlayers = 25
+            MaxPlayers = 3
         };
-        PhotonNetwork.JoinOrCreateRoom("lobby", opt, TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom(null, opt, TypedLobby.Default);
     }
 
     private void MoveToGame()
     {
         PhotonNetwork.LoadLevel("build_scene_cedric");
+    }
+
+    void OnPhotonRandomJoinFailed()
+    {
+        JoinLobby();
     }
 
     void OnJoinedRoom()
