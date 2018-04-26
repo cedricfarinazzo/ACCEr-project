@@ -1,12 +1,17 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LobbyManager : Photon.MonoBehaviour {
 
     [SerializeField]
-    GameObject player;
+    protected GameObject player;
+    [SerializeField]
+    protected Text countText;
+    [SerializeField]
+    protected Text RoomNameText;
+
+    private bool joined = false;
 
     // Use this for initialization
     void Start () {
@@ -19,8 +24,18 @@ public class LobbyManager : Photon.MonoBehaviour {
         PhotonNetwork.JoinLobby();
     }
 	
+    public void SetText()
+    {
+        this.countText.text = "Total player: " + PhotonNetwork.room.playerCount.ToString() + "/ 3";
+    }
+
 	// Update is called once per frame
 	void Update () {
+        if (this.joined)
+        { 
+            this.RoomNameText.text = "Room name : " + PhotonNetwork.room.Name;
+            this.SetText();
+        }
 		if (PhotonNetwork.isMasterClient && PhotonNetwork.room.PlayerCount == 3)
         {
             MoveToGame();
@@ -36,11 +51,13 @@ public class LobbyManager : Photon.MonoBehaviour {
     {
         RoomOptions opt = new RoomOptions()
         {
-            isOpen = true,
+            IsOpen = true,
             IsVisible = true,
             MaxPlayers = 3
         };
-        PhotonNetwork.JoinOrCreateRoom("room" + (DateTime.Now.Ticks.ToString()), opt, TypedLobby.Default);
+        System.Random tools = new System.Random();
+        string random = tools.Next().ToString().Substring(0, 4);
+        PhotonNetwork.JoinOrCreateRoom("room" + random, opt, TypedLobby.Default);
     }
 
     private void MoveToGame()
@@ -67,5 +84,6 @@ public class LobbyManager : Photon.MonoBehaviour {
         j.GetComponentInChildren<CursorTurnVerti>().enabled = true;
         j.GetComponentInChildren<Camera>().enabled = true;
         j.GetComponentInChildren<AudioListener>().enabled = true;
+        this.joined = true;
     }
 }
