@@ -15,29 +15,28 @@ namespace SMParametre
 		public KeyCode Droite = KeyCode.D;
 		public KeyCode Gauche = KeyCode.Q;
 		public KeyCode Sauter = KeyCode.Space;
-		public KeyCode Accroupir = KeyCode.LeftAlt;
+        public KeyCode Courir = KeyCode.LeftShift;
 		public KeyCode Attaquer = KeyCode.Mouse0;
 		public KeyCode Interagir = KeyCode.E;
-		public int Volumesonore = 1;
-		public int Sensibilité = 1;
-		public string Qualité = "low";
-		public int Fréquence = 30;
-		public int[] Résolution = {720,1080};
+		public float VolumeSonore = 1;
+		public float Sensi = 1;
+		public int Quality = 5; // <= 5
+		public int Frequency = 60;
+		public int[] Resolution = {1650,1050};
+        public bool Windowed = true;
+
 	    public Parametre()
 	    {
 	    }
 		
-	    public static void Load()
+	    public static Parametre Load()
 	    {
-		    // sera appélé par beaucoup de script
-		    // recupère depuis SaveData les données sauvegardées et retourne un objet Parametre
-		    // key = "Parametre"
+            return SaveData.SaveData.GetObject<Parametre>("Parametre");
 	    }
 
 	    public void Save()
 	    {
-		    //enregistre grace à savedata
-		    // key = "Parametre"
+            SaveData.SaveData.SaveObject<Parametre>("Parametre", this);
 	    }
     }
 
