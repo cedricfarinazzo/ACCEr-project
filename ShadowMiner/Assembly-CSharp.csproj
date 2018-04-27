@@ -160,7 +160,6 @@
      <Compile Include="Assets\script\_scene\ChangeSceneOnClickScript.cs" />
      <Compile Include="Assets\script\_scene\logout.cs" />
      <Compile Include="Assets\script\_scene\menusoutenance.cs" />
-     <Compile Include="Assets\script\_scene\paramètre.cs" />
      <Compile Include="Assets\script\connection&amp;inscription\connexion.cs" />
      <Compile Include="Assets\script\connection&amp;inscription\inscription.cs" />
      <Compile Include="Assets\script\DisableMouseCursor.cs" />
@@ -170,6 +169,7 @@
      <Compile Include="Assets\script\Multijoueur\GameManager.cs" />
      <Compile Include="Assets\script\Multijoueur\LobbyManager.cs" />
      <Compile Include="Assets\script\Multijoueur\NetworkManager.cs" />
+     <Compile Include="Assets\script\Parametre\Parametre.cs" />
      <Compile Include="Assets\script\Player\CursorTurnHory.cs" />
      <Compile Include="Assets\script\Player\CursorTurnVerti.cs" />
      <Compile Include="Assets\script\Player\NetworkCharacter.cs" />
