@@ -10,21 +10,19 @@ namespace SMParametre
     public class Parametre {
 
 	    public string Version = "0.2";
-		public enum Controls {
-			avancer = KeyCode.Z,
-			reculer = KeyCode.S,
-			droite = KeyCode.D,
-			gauche = KeyCode.Q,
-			sauter = KeyCode.Space,
-			accroupir = KeyCode.LeftAlt,
-			attaquer = KeyCode.Mouse0,
-			interagir = KeyCode.E}
-
-		public int volumesonore;
-		public int sensibilité;
-		public string qualité;
-		public int fréquence;
-		public int[] résolution;
+		public KeyCode Avancer = KeyCode.Z;
+		public KeyCode Reculer = KeyCode.S;
+		public KeyCode Droite = KeyCode.D;
+		public KeyCode Gauche = KeyCode.Q;
+		public KeyCode Sauter = KeyCode.Space;
+		public KeyCode Accroupir = KeyCode.LeftAlt;
+		public KeyCode Attaquer = KeyCode.Mouse0;
+		public KeyCode Interagir = KeyCode.E;
+		public int Volumesonore = 1;
+		public int Sensibilité = 1;
+		public string Qualité = "low";
+		public int Fréquence = 30;
+		public int[] Résolution = {720,1080};
 	    public Parametre()
 	    {
 	    }
