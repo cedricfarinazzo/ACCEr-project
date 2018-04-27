@@ -38,9 +38,13 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\ConvertImage.cs">
+      <Link>ConvertImage.cs</Link>
+    </Compile>
     <Compile Include="..\DataUser.cs">
       <Link>DataUser.cs</Link>
     </Compile>

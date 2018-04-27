@@ -145,6 +145,65 @@ namespace SMNetwork.Client
 
             return receiveMessage.Message == "success";
         }
+
+        public static byte[] GetImage(string email, string token)
+        {
+            Protocol reqProtocol = new Protocol(MessageType.GetImage)
+            {
+                Token = token,
+                Email = email
+            };
+            byte[] buffer = Formatter.ToByteArray(reqProtocol);
+            DataClient.Client.Client.Send(buffer, SocketFlags.None);
+            Protocol receiveMessage = ReceiveMessage();
+            
+            if (receiveMessage.Type != MessageType.Response)
+            {
+                return null;
+            }
+
+            return receiveMessage.ImageBytes;
+        }
+
+        public static bool SendImage(string email, string token, byte[] imageBytes)
+        {
+            Protocol reqProtocol = new Protocol(MessageType.GetImage)
+            {
+                Token = token,
+                Email = email,
+                ImageBytes = imageBytes
+            };
+            byte[] buffer = Formatter.ToByteArray(reqProtocol);
+            DataClient.Client.Client.Send(buffer, SocketFlags.None);
+            Protocol receiveMessage = ReceiveMessage();
+            
+            if (receiveMessage.Type != MessageType.Response)
+            {
+                return false;
+            }
+
+            return receiveMessage.Message == "success";
+        }
+
+        public static bool UpadatePassword(string token, string pass, string newpass)
+        {
+            Protocol reqProtocol = new Protocol(MessageType.GetImage)
+            {
+                Token = token,
+                Password = pass,
+                Message = newpass
+            };
+            byte[] buffer = Formatter.ToByteArray(reqProtocol);
+            DataClient.Client.Client.Send(buffer, SocketFlags.None);
+            Protocol receiveMessage = ReceiveMessage();
+            
+            if (receiveMessage.Type != MessageType.Response)
+            {
+                return false;
+            }
+
+            return receiveMessage.Message == "success";
+        }
         
     }
 }
