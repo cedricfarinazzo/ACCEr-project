@@ -174,7 +174,22 @@ namespace SMNetwork.Server
                         Log(ConsoleColor.Green, "[", "SINFO", "][Logout] request from " + client.Client.Client.RemoteEndPoint.ToString());
                         resp = RequestServer.Logout(msg, client);
                         break;
-    
+                        
+                    case MessageType.GetImage:
+                        Log(ConsoleColor.Green, "[", "SINFO", "][GetImage] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                        resp = RequestServer.GetImage(msg, client);
+                        break;
+                        
+                    case MessageType.SendImage:
+                        Log(ConsoleColor.Green, "[", "SINFO", "][SendImage] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                        resp = RequestServer.SendImage(msg, client);
+                        break;
+                        
+                    case MessageType.UpdatePassword:
+                        Log(ConsoleColor.Green, "[", "SINFO", "][UpdatePassword] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                        resp = RequestServer.UpdatePassword(msg, client);
+                        break;
+                        
                     default:
                         Log(ConsoleColor.Red, "[", "SINFO", "][Unknown] request from " + client.Client.Client.RemoteEndPoint.ToString());
                         resp = new Protocol(MessageType.Error)

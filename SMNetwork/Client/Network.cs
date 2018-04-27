@@ -167,7 +167,7 @@ namespace SMNetwork.Client
 
         public static bool SendImage(string email, string token, byte[] imageBytes)
         {
-            Protocol reqProtocol = new Protocol(MessageType.GetImage)
+            Protocol reqProtocol = new Protocol(MessageType.SendImage)
             {
                 Token = token,
                 Email = email,
@@ -187,7 +187,7 @@ namespace SMNetwork.Client
 
         public static bool UpadatePassword(string token, string pass, string newpass)
         {
-            Protocol reqProtocol = new Protocol(MessageType.GetImage)
+            Protocol reqProtocol = new Protocol(MessageType.UpdatePassword)
             {
                 Token = token,
                 Password = pass,

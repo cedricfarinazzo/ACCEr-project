@@ -1,5 +1,9 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Net.Sockets;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using SMNetwork;
@@ -29,7 +33,7 @@ namespace SMNetwork.Server
                     parameters_insert[1] = new MySqlParameter("@name", DBManager.Escape(prot.User.Lastname));
                     parameters_insert[2] = new MySqlParameter("@firstname", DBManager.Escape(prot.User.Firstname));
                     parameters_insert[3] = new MySqlParameter("@mail", DBManager.Escape(prot.Email));
-                    parameters_insert[4] = new MySqlParameter("@pass", Hash.Create(prot.Password));
+                    parameters_insert[4] = new MySqlParameter("@pass", Hash.Sha512(prot.Password));
                     parameters_insert[5] = new MySqlParameter("@descript", DBManager.Escape(prot.User.Description));
                     if (DataServer.Database.Insert(query_insert, parameters_insert))
                     {
@@ -73,7 +77,7 @@ namespace SMNetwork.Server
             try
             {
                 string email = prot.Email;
-                string password = Hash.Create(prot.Password);
+                string password = Hash.Sha512(prot.Password);
                 string query = "SELECT * FROM user WHERE email = @mail AND pass = @pass";
                 string query_count = "SELECT COUNT(*) FROM user WHERE email = @mail AND pass = @pass";
                 MySqlParameter[] parameters = new MySqlParameter[2];
@@ -213,7 +217,7 @@ namespace SMNetwork.Server
                 if (DataServer.Database.Count(query_token, parameters) == 1)
                 {
                     string query_user = "SELECT COUNT(*) FROM user WHERE ID = @ID";
-                    MySqlParameter[] parameters_user = new MySqlParameter[2];
+                    MySqlParameter[] parameters_user = new MySqlParameter[1];
                     parameters_user[0] = new MySqlParameter("@ID", ID);
                     if (DataServer.Database.Count(query_user, parameters_user) == 1 && prot.User != null)
                     {
@@ -273,9 +277,189 @@ namespace SMNetwork.Server
             }
         }
 
+        public static Protocol GetImage(Protocol prot, DataTcpClient client)
+        {
+            try
+            {
+                if (prot.Token == "")
+                {
+                    return new Protocol(MessageType.Error) {Message = "Empty token"};
+                }
+                int ID = GetIdbyToken(prot.Token);
+                string query_token = "SELECT COUNT(*) FROM gamesess WHERE ID_user = @ID AND token = @token";
+                MySqlParameter[] parameters = new MySqlParameter[2];
+                parameters[0] = new MySqlParameter("@ID", ID);
+                parameters[1] = new MySqlParameter("@token", DBManager.Escape(prot.Token));
+                if (DataServer.Database.Count(query_token, parameters) == 1)
+                {
+                    string query_user = "SELECT * FROM user WHERE email = @mail";
+                    string query_user_count = "SELECT COUNT(*) FROM user WHERE email = @mail";
+                    MySqlParameter[] parameters_user = new MySqlParameter[1];
+                    parameters_user[0] = new MySqlParameter("@mail", prot.Email);
+                    if (DataServer.Database.Count(query_user_count, parameters_user) == 1)
+                    {
+                        Dictionary<string, string> result =
+                            DataServer.Database.Select(query_user, parameters_user)[0];
+                        int idavatar = int.Parse(result["avatar_path"]);
+                        byte[] img = null;
+                        try
+                        {
+                            string query_img = "SELECT * FROM image WHERE ID = @id";
+                            MySqlParameter[] parameters_img = new MySqlParameter[1];
+                            parameters_img[0] = new MySqlParameter("@id", idavatar);
+                            Dictionary<string, string> result_img =
+                                DataServer.Database.Select(query_img, parameters_img)[0];
+                            string path = result_img["path"];
+                            img = ConvertImage.ImageToByteArray(ConvertImage.FromFile(path));
+                        }
+                        catch (Exception)
+                        {
+                            return new Protocol(MessageType.Error) {Message = "invalid request"};
+                        }
+                        return new Protocol(MessageType.Response)
+                        {
+                            Email = result["email"], 
+                            ImageBytes = img
+                        };
+                    }
+                    return new Protocol(MessageType.Error) {Message = "Bad request"};
+                }
+                else
+                {
+                    return new Protocol(MessageType.Error) {Message = "Bad token"};
+                }
+            }
+            catch (Exception)
+            {
+                return new Protocol(MessageType.Error) {Message = "Error"};
+            }
+        }
+        
+        public static Protocol SendImage(Protocol prot, DataTcpClient client)
+        {
+            try
+            {
+                if (prot.Token == "")
+                {
+                    return new Protocol(MessageType.Error) {Message = "Empty token"};
+                }
+                int ID = GetIdbyToken(prot.Token);
+                string query_token = "SELECT COUNT(*) FROM gamesess WHERE ID_user = @ID AND token = @token";
+                MySqlParameter[] parameters = new MySqlParameter[2];
+                parameters[0] = new MySqlParameter("@ID", ID);
+                parameters[1] = new MySqlParameter("@token", DBManager.Escape(prot.Token));
+                if (DataServer.Database.Count(query_token, parameters) == 1)
+                {
+                    string query_user = "SELECT COUNT(*) FROM user WHERE ID = @ID";
+                    MySqlParameter[] parameters_user = new MySqlParameter[1];
+                    parameters_user[0] = new MySqlParameter("@ID", ID);
+                    if (DataServer.Database.Count(query_user, parameters_user) == 1 && prot.User != null)
+                    {
+                        if (prot.ImageBytes == null)
+                        {
+                            return new Protocol(MessageType.Error) {Message = "Empty image"};
+                        }
+                        Image img = ConvertImage.ByteArrayToImage(prot.ImageBytes);
+                        string newpath = "/var/www/accer/data/image/" + (new Random()).Next().ToString() +
+                                         DateTime.Now.Ticks.ToString() + ".png";
+                        string hash = Hash.Sha1(newpath);
+                        ConvertImage.SaveFile(img, newpath);
+                        string insert_img = "INSERT INTO image(hash, path, extension) VALUES(@hash, @path, @ext)";
+                        MySqlParameter[] parameters_img = new MySqlParameter[3];
+                        parameters_img[0] = new MySqlParameter("@hash", hash);
+                        parameters_img[1] = new MySqlParameter("@path", newpath);
+                        parameters_img[2] = new MySqlParameter("@ext", "png");
+                        if (DataServer.Database.Insert(insert_img, parameters_img))
+                        {
+                            string query_imgid = "SELECT * FROM image WHERE path = @path AND hash = @hash";
+                            MySqlParameter[] parameters_imgid = new MySqlParameter[2];
+                            parameters_imgid[0] = new MySqlParameter("@path", newpath);
+                            parameters_imgid[1] = new MySqlParameter("@hash", hash);
+                            Dictionary<string, string> result_imgid =
+                                DataServer.Database.Select(query_imgid, parameters_imgid)[0];
+                            int idimg = int.Parse(result_imgid["ID"]);
+                            string query_update = "UPDATE user SET avatar_path = @idimg WHERE ID = @ID";
+                            MySqlParameter[] parameters_update = new MySqlParameter[2];
+                            parameters_update[0] = new MySqlParameter("@idimg", idimg);
+                            parameters_update[1] = new MySqlParameter("@ID", ID);
+                            if (DataServer.Database.Update(query_update, parameters_update))
+                            {
+                                return new Protocol(MessageType.Response) {Message = "success"};
+                            }
+                            return new Protocol(MessageType.Error) {Message = "Server Error"};
+                        }
+                        return new Protocol(MessageType.Error) {Message = "Server Error"};
+                    }
+                    return new Protocol(MessageType.Error) {Message = "Bad request"};
+                }
+                else
+                {
+                    return new Protocol(MessageType.Error) {Message = "Bad token"};
+                }
+            }
+            catch (Exception)
+            {
+                return new Protocol(MessageType.Error) {Message = "Error"};
+            }
+        }
+        
+        public static Protocol UpdatePassword(Protocol prot, DataTcpClient client)
+        {
+            try
+            {
+                if (prot.Token == "")
+                {
+                    return new Protocol(MessageType.Error) {Message = "Empty token"};
+                }
+                int ID = GetIdbyToken(prot.Token);
+                string query_token = "SELECT COUNT(*) FROM gamesess WHERE ID_user = @ID AND token = @token";
+                MySqlParameter[] parameters = new MySqlParameter[2];
+                parameters[0] = new MySqlParameter("@ID", ID);
+                parameters[1] = new MySqlParameter("@token", DBManager.Escape(prot.Token));
+                if (DataServer.Database.Count(query_token, parameters) == 1)
+                {
+                    string query_user = "SELECT COUNT(*) FROM user WHERE ID = @ID";
+                    MySqlParameter[] parameters_user = new MySqlParameter[1];
+                    parameters_user[0] = new MySqlParameter("@ID", ID);
+                    if (DataServer.Database.Count(query_user, parameters_user) == 1 && prot.User != null)
+                    {
+                        string pass = prot.Password;
+                        string newpass = prot.Message;
+                        string query_check_pass = "SELECT COUNT(*) FROM user WHERE ID = @ID AND pass = @pass";
+                        MySqlParameter[] parameters_check_pass = new MySqlParameter[2];
+                        parameters_check_pass[0] = new MySqlParameter("@ID", ID);
+                        parameters_check_pass[1] = new MySqlParameter("@pass", pass);
+                        if (DataServer.Database.Count(query_check_pass, parameters_check_pass) == 1)
+                        {
+                            string query_update = 
+                                "UPDATE user SET pass = @pass WHERE ID = @ID";
+                            MySqlParameter[] parameters_update = new MySqlParameter[2];
+                            parameters_update[0] = new MySqlParameter("@pass", Hash.Sha512(newpass));
+                            parameters_update[4] = new MySqlParameter("@ID", ID);
+                            if (DataServer.Database.Update(query_update, parameters_update))
+                            {
+                                return new Protocol(MessageType.Response) {Message = "success"};
+                            }
+                            return new Protocol(MessageType.Error) {Message = "Server Error"};
+                        }
+                        return new Protocol(MessageType.Error) {Message = "Bad password"};
+                    }
+                    return new Protocol(MessageType.Error) {Message = "Bad request"};
+                }
+                else
+                {
+                    return new Protocol(MessageType.Error) {Message = "Bad token"};
+                }
+            }
+            catch (Exception)
+            {
+                return new Protocol(MessageType.Error) {Message = "Error"};
+            }
+        }
+
         private static string GenToken(int ID, string login, string email, int timestamp)
         {
-            return ID.ToString() + "=+=-*" + Hash.Create(login + email + timestamp);
+            return ID.ToString() + "=+=-*" + Hash.Sha512(login + email + timestamp);
         }
 
         private static bool VerifToken(string dbtoken, string authtoken)
