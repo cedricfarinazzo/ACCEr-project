@@ -27,18 +27,6 @@ namespace SMParametre
 
         public static List<int[]> ResolutionList = new List<int[]>()
         {
-            new int[2] {320, 200},
-            new int[2] {320, 240},
-            new int[2] {400, 300},
-            new int[2] {512, 384},
-            new int[2] {640, 400},
-            new int[2] {640, 480},
-            new int[2] {800, 600},
-            new int[2] {1024, 768},
-            new int[2] {1152, 864},
-            new int[2] {1280, 600},
-            new int[2] {1280, 720},
-            new int[2] {1280, 768},
             new int[2] {1280, 800},
             new int[2] {1280, 960},
             new int[2] {1280, 1024},
@@ -63,7 +51,7 @@ namespace SMParametre
 		public float Sensi = 1;
 		public int Quality = 5; // <= 5
 		public int Frequency = 60;
-		public int Resolution = 20;
+		public int Resolution = 8;
         public bool FullScreen = true;
 
 	    public Parametre()

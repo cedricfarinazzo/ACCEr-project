@@ -20,6 +20,7 @@ public class ParametreGraphics : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         param = SMParametre.Parametre.Load();
+        param.Apply();
         Freq.value = param.Frequency == 60 ? 1 : 0;
         Quality.value = param.Quality;
         Resolu.value = param.Resolution;
