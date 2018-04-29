@@ -143,10 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0442e7f179b496b4ea84add3a82457db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene1: {fileID: 102900000, guid: 53d38d55c5925b547bed58d0b8edf47f, type: 3}
-  scene2: {fileID: 102900000, guid: bc256c175709c3f498ad289d6db00ce5, type: 3}
-  scene3: {fileID: 102900000, guid: ab9382d05ba970948be3be7fa5e44b05, type: 3}
-  scene4: {fileID: 102900000, guid: dece46ea7aaed7e4ba77d4ebec2670eb, type: 3}
+  scene1: niveaux_solo
+  scene2: multi_lobby
+  scene3: connexion
+  scene4: parametre
   but1: {fileID: 2111124277}
   but2: {fileID: 2073630372}
   but3: {fileID: 2037294964}

@@ -609,26 +609,26 @@ MonoBehaviour:
   - {fileID: 1119596683}
   - {fileID: 721487836}
   scene:
-  - {fileID: 102900000, guid: 762ce4654478dbc42ab2efcddc6f4066, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
-  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - Solo_level_1
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
+  - Solo_level_2
 --- !u!114 &222246303
 MonoBehaviour:
   m_ObjectHideFlags: 0
