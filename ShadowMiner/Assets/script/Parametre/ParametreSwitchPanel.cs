@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ParametreSwitchPanel : MonoBehaviour {
@@ -11,6 +12,8 @@ public class ParametreSwitchPanel : MonoBehaviour {
     protected Button KeyButton;
     [SerializeField]
     protected Button SoundButton;
+    [SerializeField]
+    protected Button BackMenu;
 
     [SerializeField]
     protected GameObject GraphicsPanel;
@@ -24,6 +27,7 @@ public class ParametreSwitchPanel : MonoBehaviour {
         GraphicsButton.onClick.AddListener(ToGraphics);
         KeyButton.onClick.AddListener(ToKey);
         SoundButton.onClick.AddListener(ToSound);
+        BackMenu.onClick.AddListener(BackToMenu);
 	}
 	
 	// Update is called once per frame
@@ -59,5 +63,10 @@ public class ParametreSwitchPanel : MonoBehaviour {
         GraphicsPanel.SetActive(false);
         KeyPanel.SetActive(false);
         SoundPanel.SetActive(true);
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("menu");
     }
 }
