@@ -467,6 +467,9 @@
     <Compile Include="Assets\script\SMNetworkClient\Hash.cs" />
     <Compile Include="Assets\script\SMNetworkClient\Network.cs" />
     <Compile Include="Assets\script\SMNetworkClient\Protocol.cs" />
+    <Compile Include="Assets\script\SMProgress\Progress.cs" />
+    <Compile Include="Assets\script\SMProgress\ProgressMulti.cs" />
+    <Compile Include="Assets\script\SMProgress\ProgressSolo.cs" />
     <Compile Include="Assets\script\trap\piqueAnimation.cs" />
     <Compile Include="Assets\script\trap\Trap.cs" />
   </ItemGroup>
