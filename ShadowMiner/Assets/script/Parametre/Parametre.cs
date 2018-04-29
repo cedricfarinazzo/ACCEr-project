@@ -39,14 +39,17 @@ namespace SMParametre
         };
 
 	    public string Version = "0.2";
-		public KeyCode Avancer = KeyCode.Z;
-		public KeyCode Reculer = KeyCode.S;
-		public KeyCode Droite = KeyCode.D;
-		public KeyCode Gauche = KeyCode.Q;
-		public KeyCode Sauter = KeyCode.Space;
-        public KeyCode Courir = KeyCode.LeftShift;
-		public KeyCode Attaquer = KeyCode.Mouse0;
-		public KeyCode Interagir = KeyCode.E;
+        public Dictionary<string, KeyCode> Key = new Dictionary<string, KeyCode>()
+        {
+            { "MoveUp", KeyCode.Z},
+            { "MoveDown", KeyCode.S },
+            { "MoveLeft", KeyCode.Q },
+            { "MoveRight", KeyCode.D },
+            { "Run", KeyCode.LeftShift },
+            { "Jump", KeyCode.Space},
+            { "Interact", KeyCode.E },
+            { "Attack", KeyCode.Mouse0 }
+        };
 		public float VolumeSonore = 1;
 		public float Sensi = 1;
 		public int Quality = 5; // <= 5
