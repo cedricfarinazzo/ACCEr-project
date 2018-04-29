@@ -432,10 +432,10 @@
     <Compile Include="Assets\package\ProCore\ProGrids\Classes\pg_SceneMeshRender.cs" />
     <Compile Include="Assets\package\ProCore\ProGrids\Classes\pg_Util.cs" />
     <Compile Include="Assets\package\ProCore\ProGrids\MonoBehaviour\pg_IgnoreSnap.cs" />
-    <Compile Include="Assets\prefabs\_scene\choixniveauxsolo.cs" />
     <Compile Include="Assets\script\_scene\BackToMenu.cs" />
     <Compile Include="Assets\script\_scene\ChangeSceneAfterDelayScript.cs" />
     <Compile Include="Assets\script\_scene\ChangeSceneOnClickScript.cs" />
+    <Compile Include="Assets\script\_scene\choixniveauxsolo.cs" />
     <Compile Include="Assets\script\_scene\logout.cs" />
     <Compile Include="Assets\script\_scene\Menu.cs" />
     <Compile Include="Assets\script\connection&amp;inscription\connexion.cs" />

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -587,26 +587,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e1d0f61f9bbe946b23805d0a2394ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  niv1: {fileID: 931088516}
-  niv2: {fileID: 904215106}
-  niv3: {fileID: 1908504806}
-  niv4: {fileID: 33720818}
-  niv5: {fileID: 2044350598}
-  niv6: {fileID: 754662659}
-  niv7: {fileID: 1126170792}
-  niv8: {fileID: 999665632}
-  niv9: {fileID: 918739341}
-  niv10: {fileID: 993932804}
-  niv11: {fileID: 229624746}
-  niv12: {fileID: 58709891}
-  niv13: {fileID: 21893132}
-  niv14: {fileID: 1990442603}
-  niv15: {fileID: 1503165971}
-  niv16: {fileID: 1078015541}
-  niv17: {fileID: 70195283}
-  niv18: {fileID: 356520019}
-  niv19: {fileID: 1119596683}
-  niv20: {fileID: 721487836}
+  niv:
+  - {fileID: 931088516}
+  - {fileID: 904215106}
+  - {fileID: 1908504806}
+  - {fileID: 33720818}
+  - {fileID: 2044350598}
+  - {fileID: 754662659}
+  - {fileID: 1126170792}
+  - {fileID: 999665632}
+  - {fileID: 918739341}
+  - {fileID: 993932804}
+  - {fileID: 229624746}
+  - {fileID: 58709891}
+  - {fileID: 21893132}
+  - {fileID: 1990442603}
+  - {fileID: 1503165971}
+  - {fileID: 1078015541}
+  - {fileID: 70195283}
+  - {fileID: 356520019}
+  - {fileID: 1119596683}
+  - {fileID: 721487836}
+  scene:
+  - {fileID: 102900000, guid: 762ce4654478dbc42ab2efcddc6f4066, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
+  - {fileID: 102900000, guid: cc196d58d82208b4d8f75c4124a725ca, type: 3}
 --- !u!114 &222246303
 MonoBehaviour:
   m_ObjectHideFlags: 0

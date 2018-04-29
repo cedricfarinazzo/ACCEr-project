@@ -32967,8 +32967,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.55780935, g: 0.64705884, b: 0, a: 1}
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -39807,6 +39807,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 100
   max_life: 100
+  damage: 0
+  fall_damage: 42
 --- !u!114 &1931763977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39844,8 +39846,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f524e8427ef5f341a8dd1caa85973bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedwalk: 10
-  speedrun: 20
+  speedwalk: 7
+  speedrun: 14
   speedturn: 90
   forcejump: {x: 0, y: 9, z: 0}
   inputright: 100
