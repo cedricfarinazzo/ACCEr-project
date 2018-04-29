@@ -574,7 +574,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b793624bce5dd4c8e737a01c6c1bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Next: {fileID: 102900000, guid: bc578586c5ef2064f893d9fb8f6c7f89, type: 3}
+  allscene:
+  - connexion
+  - inscription
+  - profilplayer
+  - menu
+  - parametre
+  - Solo_level_2
+  - Solo_level_1
+  - multi_lobby
+  - build_scene_cedric
+  Next: menu
 --- !u!1001 &2019416452
 Prefab:
   m_ObjectHideFlags: 0

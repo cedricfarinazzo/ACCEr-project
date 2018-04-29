@@ -8,13 +8,13 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour {
 
     [SerializeField]
-    protected SceneAsset scene1;
+    protected string scene1;
     [SerializeField]
-    protected SceneAsset scene2;
+    protected string scene2;
     [SerializeField]
-    protected SceneAsset scene3;
+    protected string scene3;
     [SerializeField]
-    protected SceneAsset scene4;
+    protected string scene4;
 
     [SerializeField]
     protected Button but1, but2, but3, but4, exit;
@@ -47,9 +47,9 @@ public class Menu : MonoBehaviour {
         LOAD_SCENE(scene4);
     }
     
-    public void LOAD_SCENE(SceneAsset scene)
+    public void LOAD_SCENE(string scene)
     {
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene(scene);
     }
 
     public void EXIT()
