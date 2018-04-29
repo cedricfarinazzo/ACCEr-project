@@ -15,6 +15,7 @@ public class Loading : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Application.LoadLevel(1);
         param = SMParametre.Parametre.Load();
         param.Apply();
         StartCoroutine(LoadYourAsyncScene());
