@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,12 +26,20 @@ public class myaccount : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		SMClient = new Client();
-		prénom.text = SaveData.SaveData.GetString("DataClient.User.Firstname");
-		nom.text = SaveData.SaveData.GetString("DataClient.User.Lastname");
-		email.text = SaveData.SaveData.GetString("DataClient.Email");
-		pseudo.text = SaveData.SaveData.GetString("DataClient.User.Login");
-		description.text = SaveData.SaveData.GetString("DataClient.User.Description");
+		try
+		{SMClient = new Client();}
+		catch(Exception)
+		{Debug.Log ("Failed to join server");
+			SceneManager.LoadScene ("failedNetwork");}
+		SMNetwork.Client.DataClient.Email = SaveData.SaveData.GetString("DataClient.Email");
+		SMNetwork.Client.DataClient.Token = SaveData.SaveData.GetString("DataClient.Token");
+		SMNetwork.Client.DataClient.User = SaveData.SaveData.GetObject<SMNetwork.DataUser>("DataClient.User");
+		SMClient.AskMyProfil ();
+		email.text = DataClient.Email;
+		prénom.text = DataClient.User.Firstname;
+		nom.text = DataClient.User.Lastname;
+		pseudo.text = DataClient.User.Login;
+		description.text = DataClient.User.Description;
 		backtomenu.onClick.AddListener(Retourmenu);
 		editdata.onClick.AddListener(Edituserdata);
 		editpassword.onClick.AddListener(Editpasssword);
@@ -45,7 +54,7 @@ public class myaccount : MonoBehaviour {
 
 	public void Edituserdata()
 	{
-		SMClient.UpdateData (pseudo.text, prénom.text, nom.text);
+		Debug.Log(SMClient.UpdateData (pseudo.text, prénom.text, nom.text));
 	}
 
 	public void Browsepic()
