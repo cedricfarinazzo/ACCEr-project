@@ -17,7 +17,7 @@ public class Menu : MonoBehaviour {
     protected string scene4;
 
     [SerializeField]
-    protected Button but1, but2, but3, but4, exit;
+    protected Button but1, but2, but3, but4, exit, website;
 
     public void Start()
     {
@@ -28,6 +28,7 @@ public class Menu : MonoBehaviour {
         but2.onClick.AddListener(load2);
         but3.onClick.AddListener(load3);
         but4.onClick.AddListener(load4);
+        website.onClick.AddListener(OPEN_WEBSITE);
     }
 
     void load1()
@@ -59,6 +60,10 @@ public class Menu : MonoBehaviour {
 #endif
         Application.Quit();
     }
-
+    
+    public void OPEN_WEBSITE()
+    {
+        Application.OpenURL("https://accer.ddns.net/");
+    }
     
 }

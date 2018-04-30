@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 124573088436688508}
   - component: {fileID: 81500406382136340}
   - component: {fileID: 114738594582851544}
+  - component: {fileID: 135516967815704752}
   m_Layer: 0
   m_Name: ThirdCamera
   m_TagString: Untagged
@@ -2123,6 +2124,18 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1280107089330032}
   m_Enabled: 1
+--- !u!135 &135516967815704752
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1280107089330032}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136805624294942022
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2132,10 +2145,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 1.82
+  m_Radius: 0.3
+  m_Height: 1.9
   m_Direction: 1
-  m_Center: {x: 0, y: -0.085, z: 0.015}
+  m_Center: {x: 0, y: -0.038, z: 0.015}
 --- !u!137 &137013329057450114
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

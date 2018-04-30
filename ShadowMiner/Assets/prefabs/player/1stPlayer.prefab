@@ -558,6 +558,7 @@ GameObject:
   - component: {fileID: 81664344451479452}
   - component: {fileID: 114828932574743744}
   - component: {fileID: 114111334362251676}
+  - component: {fileID: 135951095145190286}
   m_Layer: 0
   m_Name: HeadController
   m_TagString: Untagged
@@ -1910,6 +1911,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 100
   max_life: 100
+  damage: 0
+  fall_damage: 42
 --- !u!114 &114111334362251676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1986,6 +1989,18 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1684024187515310}
   m_Enabled: 1
+--- !u!135 &135951095145190286
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1684024187515310}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136512573926012324
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1995,10 +2010,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 1.82
+  m_Radius: 0.6
+  m_Height: 2.1
   m_Direction: 1
-  m_Center: {x: 0, y: -0.085, z: 0.015}
+  m_Center: {x: 0, y: -0.038, z: 0.015}
 --- !u!137 &137770243338996004
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
