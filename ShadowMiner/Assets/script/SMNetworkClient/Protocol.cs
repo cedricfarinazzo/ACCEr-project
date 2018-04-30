@@ -13,6 +13,9 @@ namespace SMNetwork
         AskProgress,
         AskProfil,
         UpdateData,
+        GetImage,
+        SendImage, 
+        UpdatePassword
     }
     
     [Serializable]
@@ -26,7 +29,7 @@ namespace SMNetwork
             this.Email = null;
             this.Password = null;
             this.Token = "";
-
+            this.ImageBytes = null;
         }
         
         public MessageType Type { get; set; }
@@ -36,6 +39,7 @@ namespace SMNetwork
         public string Password { get; set; }
         public string Token { get; set; }
         public string Progress { get; set; }
+        public byte[] ImageBytes { get; set; }
         
     }
 }

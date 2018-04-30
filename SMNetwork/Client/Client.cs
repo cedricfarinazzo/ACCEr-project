@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Net;
 using System.Runtime.Versioning;
 using System.Threading;
@@ -116,6 +117,42 @@ namespace SMNetwork.Client
             try
             {
                 return Network.UpdateData(DataClient.Token, DataClient.User);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public Image AskImage(string email)
+        {
+            try
+            {
+                return ConvertImage.ByteArrayToImage(Network.GetImage(email, DataClient.Token));
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public bool UpdateImage(Image img)
+        {
+            try
+            {
+                return Network.SendImage(DataClient.Email, DataClient.Token, ConvertImage.ImageToByteArray(img));
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool UpadatePassword(string oldpass, string newpass)
+        {
+            try
+            {
+                return Network.UpadatePassword(DataClient.Token, oldpass, newpass);
             }
             catch (Exception)
             {
