@@ -436,13 +436,13 @@
     <Compile Include="Assets\script\_scene\ChangeSceneAfterDelayScript.cs" />
     <Compile Include="Assets\script\_scene\ChangeSceneOnClickScript.cs" />
     <Compile Include="Assets\script\_scene\choixniveauxsolo.cs" />
-    <Compile Include="Assets\script\_scene\logout.cs" />
     <Compile Include="Assets\script\_scene\Menu.cs" />
-    <Compile Include="Assets\script\connection&amp;inscription\connexion.cs" />
-    <Compile Include="Assets\script\connection&amp;inscription\inscription.cs" />
+    <Compile Include="Assets\script\account\connexion.cs" />
+    <Compile Include="Assets\script\account\inscription.cs" />
+    <Compile Include="Assets\script\account\logout.cs" />
+    <Compile Include="Assets\script\account\myaccount.cs" />
     <Compile Include="Assets\script\DisableMouseCursor.cs" />
     <Compile Include="Assets\script\door\OpenDoor.cs" />
-    <Compile Include="Assets\script\Entity.cs" />
     <Compile Include="Assets\script\Loading\Loading.cs" />
     <Compile Include="Assets\script\manager.cs" />
     <Compile Include="Assets\script\Multijoueur\GameManager.cs" />
@@ -455,6 +455,7 @@
     <Compile Include="Assets\script\Parametre\ParametreSwitchPanel.cs" />
     <Compile Include="Assets\script\Player\CursorTurnHory.cs" />
     <Compile Include="Assets\script\Player\CursorTurnVerti.cs" />
+    <Compile Include="Assets\script\Player\Entity.cs" />
     <Compile Include="Assets\script\Player\NetworkCharacter.cs" />
     <Compile Include="Assets\script\Player\PlayerController.cs" />
     <Compile Include="Assets\script\Respawn.cs" />
