@@ -6,6 +6,10 @@ using UnityEngine.UI;
 using SMNetwork.Client;
 using SaveData;
 using UnityEngine.SceneManagement;
+using System.Drawing;
+using System.Drawing.Imaging;
+using ImageSys = System.Drawing.Image;
+using Image = UnityEngine.UI.Image;
 
 public class myaccount : MonoBehaviour {
 	private SMNetwork.Client.Client SMClient;
@@ -48,7 +52,8 @@ public class myaccount : MonoBehaviour {
 		editpassword.onClick.AddListener(Editpasssword);
 		browsepicture.onClick.AddListener(Browsepic);
 		savepicture.onClick.AddListener(Savepic);
-		profilpic.
+		ImageSys img = SMClient.AskMyImage();
+		//profilpic.sprite = 
 	}
 
 	public void Retourmenu()

@@ -159,7 +159,6 @@
     <Compile Include="Assets\script\_scene\BackToMenu.cs" />
     <Compile Include="Assets\script\_scene\ChangeSceneAfterDelayScript.cs" />
     <Compile Include="Assets\script\_scene\ChangeSceneOnClickScript.cs" />
-    <Compile Include="Assets\script\_scene\choixniveauxsolo.cs" />
     <Compile Include="Assets\script\_scene\Menu.cs" />
     <Compile Include="Assets\script\account\BackMenu.cs" />
     <Compile Include="Assets\script\account\connexion.cs" />
@@ -197,6 +196,7 @@
     <Compile Include="Assets\script\SMProgress\Progress.cs" />
     <Compile Include="Assets\script\SMProgress\ProgressMulti.cs" />
     <Compile Include="Assets\script\SMProgress\ProgressSolo.cs" />
+    <Compile Include="Assets\script\Solo\choixniveauxsolo.cs" />
     <Compile Include="Assets\script\trap\piqueAnimation.cs" />
     <Compile Include="Assets\script\trap\Trap.cs" />
     <None Include="Assets\package\ProCore\ProGrids\Shader\pg_GridShader.shader" />
