@@ -196,6 +196,7 @@
      <Compile Include="Assets\script\SMProgress\Progress.cs" />
      <Compile Include="Assets\script\SMProgress\ProgressMulti.cs" />
      <Compile Include="Assets\script\SMProgress\ProgressSolo.cs" />
+     <Compile Include="Assets\script\trap\faux_sol.cs" />
      <Compile Include="Assets\script\trap\piqueAnimation.cs" />
      <Compile Include="Assets\script\trap\Trap.cs" />
      <None Include="Assets\package\ProCore\ProGrids\Shader\pg_GridShader.shader" />
