@@ -437,6 +437,7 @@
     <Compile Include="Assets\script\_scene\ChangeSceneOnClickScript.cs" />
     <Compile Include="Assets\script\_scene\choixniveauxsolo.cs" />
     <Compile Include="Assets\script\_scene\Menu.cs" />
+    <Compile Include="Assets\script\account\BackMenu.cs" />
     <Compile Include="Assets\script\account\connexion.cs" />
     <Compile Include="Assets\script\account\inscription.cs" />
     <Compile Include="Assets\script\account\logout.cs" />

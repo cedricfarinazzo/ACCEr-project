@@ -38,3 +38,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_scene/solo/niveaux_solo.unity
     guid: 53d38d55c5925b547bed58d0b8edf47f
+  - enabled: 1
+    path: Assets/_scene/account/failedNetwork.unity
+    guid: ae51679e7af2f43499d1391f01b6a4ef
