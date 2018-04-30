@@ -792,7 +792,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 294.89624, y: 171}
+  m_AnchoredPosition: {x: 258.90424, y: 171}
   m_SizeDelta: {x: 267.5, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &610512643
@@ -2404,6 +2404,7 @@ MonoBehaviour:
   checkmdp: {fileID: 998791026}
   connexion: {fileID: 1444860438}
   inscription_button: {fileID: 1220455916}
+  BackMenu: {fileID: 610512643}
 --- !u!1 &2006940893
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,11 +11,13 @@ public class choixniveauxsolo : MonoBehaviour {
     public List<Button> niv;
     [SerializeField]
     public List<string> scene;
+    [SerializeField]
+    protected Button BackMenu;
 
     //private bool levelfinish = ; // booléen test à supprimer plus tard
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         for (int i = 0; i < niv.Count && i < scene.Count; i++)
         {
             string name = scene[i];
@@ -25,7 +27,8 @@ public class choixniveauxsolo : MonoBehaviour {
                 Changementscene(name);
             });
         }
-	}
+        BackMenu.onClick.AddListener(BackToMenu);
+    }
 
 	public void Changementscene(string name)
 	{
@@ -37,4 +40,9 @@ public class choixniveauxsolo : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("menu");
+    }
 }

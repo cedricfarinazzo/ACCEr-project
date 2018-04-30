@@ -12,6 +12,8 @@ public class connexion : MonoBehaviour {
 	public InputField password;
     public Button connect;
 	public Button inscription;
+    [SerializeField]
+    protected Button BackMenu;
 
     private SMNetwork.Client.Client SMClient;
 
@@ -22,6 +24,7 @@ public class connexion : MonoBehaviour {
         this.SMClient = new Client();
         connect.onClick.AddListener(Connect);
 		inscription.onClick.AddListener(Inscription);
+        BackMenu.onClick.AddListener(BackToMenu);
     }
 
 	public void Inscription()
@@ -53,5 +56,10 @@ public class connexion : MonoBehaviour {
         {
             Debug.Log("Connected: false");
         }
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("menu");
     }
 }

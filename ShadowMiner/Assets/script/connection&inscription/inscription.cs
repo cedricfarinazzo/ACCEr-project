@@ -15,6 +15,8 @@ public class inscription : MonoBehaviour {
 	public InputField checkmdp;
 	public Button connexion;
     public Button inscription_button;
+    [SerializeField]
+    protected Button BackMenu;
 
     private Client SMClient;
 
@@ -23,7 +25,8 @@ public class inscription : MonoBehaviour {
         SMClient = new Client();
         connexion.onClick.AddListener(Alreadyexist);
         inscription_button.onClick.AddListener(Create);
-	}
+        BackMenu.onClick.AddListener(BackToMenu);
+    }
 
 	public void Alreadyexist(){
 		SceneManager.LoadScene ("connexion");
@@ -54,5 +57,10 @@ public class inscription : MonoBehaviour {
         bool result = SMClient.Create(pseudo.text, prénom.text, nom.text, email.text, motdepasse.text);
         Debug.Log("Create: " + result.ToString());
         return;
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("menu");
     }
 }
