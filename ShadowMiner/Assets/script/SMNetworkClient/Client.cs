@@ -136,6 +136,11 @@ namespace SMNetwork.Client
             }
         }
 
+        public Image AskMyImage()
+        {
+            return AskImage(DataClient.Email);
+        }
+
         public bool UpdateImage(Image img)
         {
             try
