@@ -421,21 +421,21 @@ namespace SMNetwork.Server
                     string query_user = "SELECT COUNT(*) FROM user WHERE ID = @ID";
                     MySqlParameter[] parameters_user = new MySqlParameter[1];
                     parameters_user[0] = new MySqlParameter("@ID", ID);
-                    if (DataServer.Database.Count(query_user, parameters_user) == 1 && prot.User != null)
+                    if (DataServer.Database.Count(query_user, parameters_user) == 1)
                     {
                         string pass = prot.Password;
                         string newpass = prot.Message;
                         string query_check_pass = "SELECT COUNT(*) FROM user WHERE ID = @ID AND pass = @pass";
                         MySqlParameter[] parameters_check_pass = new MySqlParameter[2];
                         parameters_check_pass[0] = new MySqlParameter("@ID", ID);
-                        parameters_check_pass[1] = new MySqlParameter("@pass", pass);
+                        parameters_check_pass[1] = new MySqlParameter("@pass", Hash.Sha512(pass));
                         if (DataServer.Database.Count(query_check_pass, parameters_check_pass) == 1)
                         {
                             string query_update = 
                                 "UPDATE user SET pass = @pass WHERE ID = @ID";
                             MySqlParameter[] parameters_update = new MySqlParameter[2];
                             parameters_update[0] = new MySqlParameter("@pass", Hash.Sha512(newpass));
-                            parameters_update[4] = new MySqlParameter("@ID", ID);
+                            parameters_update[1] = new MySqlParameter("@ID", ID);
                             if (DataServer.Database.Update(query_update, parameters_update))
                             {
                                 return new Protocol(MessageType.Response) {Message = "success"};
@@ -451,7 +451,7 @@ namespace SMNetwork.Server
                     return new Protocol(MessageType.Error) {Message = "Bad token"};
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return new Protocol(MessageType.Error) {Message = "Error"};
             }

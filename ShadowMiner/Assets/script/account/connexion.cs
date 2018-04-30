@@ -21,8 +21,22 @@ public class connexion : MonoBehaviour {
 
     public void Start()
     {
-        email.text = SaveData.SaveData.GetString("DataClient.Email");
-        this.SMClient = new Client();
+        
+        try
+        {
+            this.SMClient = new Client();
+        }
+        catch (Exception)
+        {
+            Debug.Log("failed to join server");
+            SceneManager.LoadScene("failedNetwork");
+        }
+        DataClient.Email = SaveData.SaveData.GetString("DataClient.Email");
+        DataClient.Token = SaveData.SaveData.GetString("DataClient.Token");
+		if (SMClient.AskMyProfil() != null)
+		{
+			SceneManager.LoadScene("profilplayer");
+		}
         connect.onClick.AddListener(Connect);
 		inscription.onClick.AddListener(Inscription);
         BackMenu.onClick.AddListener(BackToMenu);
