@@ -33,6 +33,12 @@ public class inscription : MonoBehaviour {
             Debug.Log("failed to join server");
             SceneManager.LoadScene("failedNetwork");
         }
+        DataClient.Email = SaveData.SaveData.GetString("DataClient.Email");
+        DataClient.Token = SaveData.SaveData.GetString("DataClient.Token");
+		if (SMClient.AskMyProfil() != null)
+		{
+			SceneManager.LoadScene("profilplayer");
+		}
         connexion.onClick.AddListener(Alreadyexist);
         inscription_button.onClick.AddListener(Create);
         BackMenu.onClick.AddListener(BackToMenu);
