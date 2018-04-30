@@ -22,7 +22,15 @@ public class connexion : MonoBehaviour {
     public void Start()
     {
         email.text = SaveData.SaveData.GetString("DataClient.Email");
-        this.SMClient = new Client();
+        try
+        {
+            this.SMClient = new Client();
+        }
+        catch (Exception)
+        {
+            Debug.Log("failed to join server");
+            SceneManager.LoadScene("failedNetwork");
+        }
         connect.onClick.AddListener(Connect);
 		inscription.onClick.AddListener(Inscription);
         BackMenu.onClick.AddListener(BackToMenu);

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using SMNetwork.Client;
+using System;
 
 public class inscription : MonoBehaviour {
 
@@ -23,7 +24,15 @@ public class inscription : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        SMClient = new Client();
+        try
+        {
+            this.SMClient = new Client();
+        }
+        catch (Exception)
+        {
+            Debug.Log("failed to join server");
+            SceneManager.LoadScene("failedNetwork");
+        }
         connexion.onClick.AddListener(Alreadyexist);
         inscription_button.onClick.AddListener(Create);
         BackMenu.onClick.AddListener(BackToMenu);
