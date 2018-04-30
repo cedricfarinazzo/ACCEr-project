@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Entity : Photon.MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class Entity : Photon.MonoBehaviour {
     [SerializeField]
     protected int fall_damage = 42;
     protected int reload_fall = 50;
+
+    [SerializeField] protected Image LifeBar;
 
     protected GameObject g;
 
@@ -53,6 +56,16 @@ public class Entity : Photon.MonoBehaviour {
     {
         FallDamage();
         Debug.Log("velocity y : " + this.g.GetComponent<Rigidbody>().velocity.y + "   life : " + this.life);
+        if (LifeBar != null)
+        {
+            UpdateLifeBar();    
+        }
+    }
+
+    public void UpdateLifeBar()
+    {
+        float progress = (float) life / (float) max_life;
+        LifeBar.fillAmount = progress;
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
