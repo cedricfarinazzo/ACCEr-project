@@ -3,21 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEditor;
+using UnityEditor.Experimental.Build.AssetBundle;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Loading : MonoBehaviour {
 
     protected SMParametre.Parametre param;
 
     [SerializeField]
-    protected string Next;
+    public string NextDefault;
 
+    [SerializeField] protected Image bar;
+    [SerializeField] protected Text text;
+
+    private string Next;
+    
     // Use this for initialization
     void Start () {
-        Application.LoadLevel(1);
-        param = SMParametre.Parametre.Load();
-        param.Apply();
+        //Application.LoadLevel(1);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        string newnext = SaveData.SaveData.GetString("Loader.Next");
+        if (newnext == "")
+        {
+            Next = NextDefault;
+        }
+        else
+        {
+            Next = newnext;
+        }
+        SaveData.SaveData.DeleteKey("Loader.Next");
+        if (newnext == "")
+        {
+            param = SMParametre.Parametre.Load();
+            param.Apply();
+        }
         StartCoroutine(LoadYourAsyncScene());
     }
 	
@@ -32,14 +54,15 @@ public class Loading : MonoBehaviour {
         //This is particularly good for creating loading screens. You could also load the Scene by build //number.
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(Next);
-
+        
         //Wait until the last operation fully loads to return anything
         while (!asyncLoad.isDone)
         {
-            Debug.Log(asyncLoad.progress);
+            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
+            Debug.Log("Progress: "+progress.ToString());
+            bar.fillAmount = progress;
+            text.text = "Loading ...             " + (progress * 100) + "%";
             yield return null;
         }
     }
-
-
 }

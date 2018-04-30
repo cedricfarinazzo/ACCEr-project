@@ -21,7 +21,8 @@ public class connexion : MonoBehaviour {
 
     public void Start()
     {
-        
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         try
         {
             this.SMClient = new Client();

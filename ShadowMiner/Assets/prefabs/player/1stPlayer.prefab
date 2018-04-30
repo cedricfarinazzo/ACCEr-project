@@ -1924,7 +1924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a56b9ef8a0b584b4ea38569d952f1a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnspeed: 100
+  turnspeed: 40
 --- !u!114 &114253048274654754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1936,7 +1936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0979d50f86e124481ce425c632d8fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnspeed: 100
+  turnspeed: 120
 --- !u!114 &114262704726340348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1997,7 +1997,7 @@ SphereCollider:
   m_GameObject: {fileID: 1684024187515310}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}

@@ -37,7 +37,9 @@ public class Menu : MonoBehaviour {
     }
     void load2()
     {
-        LOAD_SCENE(scene2);
+        SaveData.SaveData.SaveString("Loader.Next", scene2);
+        SceneManager.LoadScene("loading");
+        //LOAD_SCENE(scene2);
     }
     void load3()
     {

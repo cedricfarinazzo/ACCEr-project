@@ -18,6 +18,8 @@ public class choixniveauxsolo : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+	    Cursor.visible = true;
+	    Cursor.lockState = CursorLockMode.None;
         for (int i = 0; i < niv.Count && i < scene.Count; i++)
         {
             string name = scene[i];
@@ -32,7 +34,9 @@ public class choixniveauxsolo : MonoBehaviour {
 
 	public void Changementscene(string name)
 	{
-        SceneManager.LoadScene(name);
+		SaveData.SaveData.SaveString("Loader.Next", name);
+		SceneManager.LoadScene("loading");
+        //SceneManager.LoadScene(name);
 	}
 			
 		

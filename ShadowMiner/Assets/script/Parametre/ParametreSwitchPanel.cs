@@ -24,6 +24,8 @@ public class ParametreSwitchPanel : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+	    Cursor.visible = true;
+	    Cursor.lockState = CursorLockMode.None;
         GraphicsButton.onClick.AddListener(ToGraphics);
         KeyButton.onClick.AddListener(ToKey);
         SoundButton.onClick.AddListener(ToSound);

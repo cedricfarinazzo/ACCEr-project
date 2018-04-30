@@ -29,6 +29,8 @@ public class myaccount : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
 		try
 		{SMClient = new Client();}
 		catch(Exception)
