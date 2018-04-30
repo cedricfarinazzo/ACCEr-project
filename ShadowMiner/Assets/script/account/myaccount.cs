@@ -34,7 +34,10 @@ public class myaccount : MonoBehaviour {
 		SMNetwork.Client.DataClient.Email = SaveData.SaveData.GetString("DataClient.Email");
 		SMNetwork.Client.DataClient.Token = SaveData.SaveData.GetString("DataClient.Token");
 		SMNetwork.Client.DataClient.User = SaveData.SaveData.GetObject<SMNetwork.DataUser>("DataClient.User");
-		SMClient.AskMyProfil ();
+		if (SMClient.AskMyProfil() == null)
+		{
+			SceneManager.LoadScene("connexion");
+		}
 		email.text = DataClient.Email;
 		prénom.text = DataClient.User.Firstname;
 		nom.text = DataClient.User.Lastname;
@@ -45,11 +48,12 @@ public class myaccount : MonoBehaviour {
 		editpassword.onClick.AddListener(Editpasssword);
 		browsepicture.onClick.AddListener(Browsepic);
 		savepicture.onClick.AddListener(Savepic);
+		profilpic.
 	}
 
 	public void Retourmenu()
 	{
-		SceneManager.LoadScene ("menu");
+		SceneManager.LoadScene("menu");
 	}
 
 	public void Edituserdata()
@@ -59,7 +63,7 @@ public class myaccount : MonoBehaviour {
 
 	public void Browsepic()
 	{
-		SceneManager.LoadScene ("menu");
+		
 	}
 
 	public void Savepic()
@@ -69,7 +73,14 @@ public class myaccount : MonoBehaviour {
 
 	public void Editpasssword()
 	{
-		SceneManager.LoadScene ("menu");
+		if (oldpassword.text != ""
+		    && newpassword.text != ""
+		    && confpassword.text != ""
+		    && newpassword.text == confpassword.text)
+		{
+			Debug.Log(SMClient.UpadatePassword(oldpassword.text, newpassword.text));
+		}
+		return;
 	}
 	// Update is called once per frame
 	void Update () {

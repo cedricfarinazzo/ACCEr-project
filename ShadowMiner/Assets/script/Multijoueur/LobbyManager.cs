@@ -1,5 +1,9 @@
-﻿using System;
+﻿using SMParametre;
+using System;
+using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LobbyManager : Photon.MonoBehaviour {
@@ -15,15 +19,52 @@ public class LobbyManager : Photon.MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if (!PhotonNetwork.connectedAndReady)
+        Parametre param = SMParametre.Parametre.Load();
+        try
         {
-            PhotonNetwork.ConnectUsingSettings("0.1");
-            PhotonNetwork.offlineMode = false;
+            if (!IsConnected())
+            {
+                throw new Exception();
+            }
+            if (!PhotonNetwork.connectedAndReady)
+            {
+                PhotonNetwork.ConnectUsingSettings(param.Version);
+                PhotonNetwork.offlineMode = false;
+            }
+            PhotonNetwork.automaticallySyncScene = true;
+            PhotonNetwork.JoinLobby();
         }
-        PhotonNetwork.automaticallySyncScene = true;
-        PhotonNetwork.JoinLobby();
+        catch (UnityException)
+        {
+            Debug.Log("failed to join server");
+            SceneManager.LoadScene("failedNetwork");
+        }
+        catch (Exception)
+        {
+            Debug.Log("failed to join server");
+            SceneManager.LoadScene("failedNetwork");
+        }
     }
-	
+
+    public static bool IsConnected(string hostedURL = "http://www.google.com")
+    {
+        try
+        {
+            UnityWebRequest w = new UnityWebRequest(hostedURL);
+            w.SendWebRequest();
+            long Htmlcode = w.responseCode;
+            Debug.Log("Code: " + Htmlcode.ToString());
+            if (Htmlcode == 404 || Htmlcode == 0)
+                return false;
+            else
+                return true;
+        }
+        catch (IOException ex)
+        {
+            return false;
+        }
+    }
+
     public void SetText()
     {
         this.countText.text = "Total player: " + PhotonNetwork.room.playerCount.ToString() + "/ 3";
@@ -31,14 +72,28 @@ public class LobbyManager : Photon.MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (this.joined)
-        { 
-            this.RoomNameText.text = "Room name : " + PhotonNetwork.room.Name;
-            this.SetText();
-        }
-		if (PhotonNetwork.isMasterClient && PhotonNetwork.room.PlayerCount == 3)
+
+        try
         {
-            MoveToGame();
+            if (this.joined)
+            {
+                this.RoomNameText.text = "Room name : " + PhotonNetwork.room.Name;
+                this.SetText();
+            }
+            if (PhotonNetwork.isMasterClient && PhotonNetwork.room.PlayerCount == 3)
+            {
+                MoveToGame();
+            }
+        }
+        catch (UnityException)
+        {
+            Debug.Log("failed to join server");
+            SceneManager.LoadScene("failedNetwork");
+        }
+        catch (Exception)
+        {
+            Debug.Log("failed to join server");
+            SceneManager.LoadScene("failedNetwork");
         }
 	}
 
