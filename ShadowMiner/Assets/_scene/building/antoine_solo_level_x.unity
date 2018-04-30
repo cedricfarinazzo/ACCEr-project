@@ -1703,6 +1703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 991884774}
   - component: {fileID: 991884773}
+  - component: {fileID: 991884775}
   m_Layer: 0
   m_Name: fauxsol
   m_TagString: Untagged
@@ -1736,6 +1737,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 51
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &991884775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 991884772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81cea91351bca424ea088139fc5bb52c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fauxsol: {fileID: 993651257}
 --- !u!1 &993651257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1748,7 +1761,7 @@ GameObject:
   - component: {fileID: 993651259}
   - component: {fileID: 993651258}
   m_Layer: 0
-  m_Name: fauxsol
+  m_Name: fauxsol2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
