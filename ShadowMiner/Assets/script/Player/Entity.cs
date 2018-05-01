@@ -57,7 +57,7 @@ public class Entity : Photon.MonoBehaviour {
     private void Update()
     {
         FallDamage();
-        Debug.Log("velocity y : " + this.g.GetComponent<Rigidbody>().velocity.y + "   life : " + this.life);
+        //Debug.Log("velocity y : " + this.g.GetComponent<Rigidbody>().velocity.y + "   life : " + this.life);
         if (LifeBar != null)
         {
             UpdateLifeBar();    
