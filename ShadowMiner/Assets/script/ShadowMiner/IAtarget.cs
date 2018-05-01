@@ -8,23 +8,46 @@ public class IAtarget : MonoBehaviour {
 	[SerializeField]
 	private NavMeshAgent agent;
 
+	[SerializeField] protected Vector3 startposition;
+	[SerializeField] protected float roamRadius;
+
+	private bool targetting = false;
+	[SerializeField]
+	private int reload_target_free = 175;
+
 	protected Vector3 target;
 	
 	// Use this for initialization
 	void Start ()
 	{
-		target = this.gameObject.transform.position;
+		target = Vector3.zero;
 		agent.SetDestination(target);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		agent.SetDestination(target);
+		if (targetting)
+		{
+			agent.SetDestination(target);
+		}
+		else
+		{
+			if (reload_target_free == 0)
+			{
+				FreeRoam();
+				reload_target_free = 100;
+			}
+			else
+			{
+				reload_target_free--;
+			}
+		}
+		
 	}
 
-	private void OnTriggerEnter(Collider other)
+	private void OnTriggerStay(Collider other)
 	{
-		if (other.gameObject.CompareTag("Player"))
+		if (other.gameObject.CompareTag("Player") && !targetting)
 		{
 			Debug.Log("target: on");
 			target = other.transform.position;
@@ -34,9 +57,21 @@ public class IAtarget : MonoBehaviour {
 	/*
 	private void OnTriggerExit(Collider other)
 	{
-		if (other.gameObject.CompareTag("Player"))
+		if (other.gameObject.CompareTag("Player") && targetting)
 		{
-			target = this.gameObject.transform.position;
+			Debug.Log("target: off");
+			target = Vector3.zero;
 		}
 	}*/
+	
+	void FreeRoam()
+	{
+		
+		Vector3 randomDirection = Random.insideUnitSphere * roamRadius;
+		randomDirection += startposition;
+		NavMeshHit hit;
+		NavMesh.SamplePosition(randomDirection, out hit, roamRadius, 1);
+		Vector3 finalPosition = hit.position;     
+		agent.destination = finalPosition;
+	}
 }
