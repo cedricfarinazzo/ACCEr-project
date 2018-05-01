@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SMParametre;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : Photon.MonoBehaviour {
 
     //data
     [SerializeField]
@@ -54,8 +54,21 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        move();
-        jump();
+	    if (PhotonNetwork.connectedAndReady)
+	    {
+            if (photonView.isMine)
+            {
+                 move();
+                 jump();
+            }
+	    }
+	    else
+	    {
+	        move();
+	        jump();
+	    }
+
+
 
         Debug.DrawRay(transform.position, this.gameObject.transform.TransformDirection(Vector3.down) * (this.gameObject.transform.lossyScale.y), Color.red);
     }
