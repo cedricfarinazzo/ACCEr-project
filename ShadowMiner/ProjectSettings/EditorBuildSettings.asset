@@ -15,26 +15,29 @@ EditorBuildSettings:
     path: Assets/_scene/menu/parametre.unity
     guid: dece46ea7aaed7e4ba77d4ebec2670eb
   - enabled: 1
-    path: Assets/_scene/multi/multi_lobby.unity
-    guid: bc256c175709c3f498ad289d6db00ce5
-  - enabled: 1
-    path: Assets/_scene/solo/level/Solo_level_2.unity
-    guid: cc196d58d82208b4d8f75c4124a725ca
-  - enabled: 1
     path: Assets/_scene/account/connexion.unity
     guid: ab9382d05ba970948be3be7fa5e44b05
   - enabled: 1
     path: Assets/_scene/account/inscription.unity
     guid: 931c1d78863c54a46b1cee6011a13098
   - enabled: 1
-    path: Assets/_scene/building/build_scene_cedric.unity
-    guid: 8beaafcd7185c3f43a08c7c1832de61f
+    path: Assets/_scene/account/profilplayer.unity
+    guid: 0d5760145dcb9684184420b0a087c67c
   - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_1.unity
     guid: 762ce4654478dbc42ab2efcddc6f4066
   - enabled: 1
-    path: Assets/_scene/account/profilplayer.unity
-    guid: 0d5760145dcb9684184420b0a087c67c
+    path: Assets/_scene/solo/level/Solo_level_2.unity
+    guid: cc196d58d82208b4d8f75c4124a725ca
+  - enabled: 1
+    path: Assets/_scene/solo/level/Solo_level_3.unity
+    guid: c89c828735635824a8dfd9430cdf9a77
+  - enabled: 1
+    path: Assets/_scene/multi/multi_lobby.unity
+    guid: bc256c175709c3f498ad289d6db00ce5
+  - enabled: 1
+    path: Assets/_scene/building/build_scene_cedric.unity
+    guid: 8beaafcd7185c3f43a08c7c1832de61f
   - enabled: 1
     path: Assets/_scene/solo/niveaux_solo.unity
     guid: 53d38d55c5925b547bed58d0b8edf47f
