@@ -2176,8 +2176,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 0
   max_life: 0
-  damage: 100
+  damage: 67
   fall_damage: 42
+  LifeBar: {fileID: 0}
+  canvasLife: {fileID: 0}
   reload_time: 100
 --- !u!135 &135084594458564178
 SphereCollider:

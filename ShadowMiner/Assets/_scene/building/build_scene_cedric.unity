@@ -1038,7 +1038,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615bd7727138349448be7dbd701ad20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 793870636}
+  _agent: {fileID: 0}
+  startposition: {x: 0, y: 0, z: 0}
+  roamRadius: 0
+  _reloadTargetFree: 175
 --- !u!135 &793870638
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1657,7 +1660,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1741323031457428, guid: 41888c9ecc2fe424484a05944e0b9369, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 41888c9ecc2fe424484a05944e0b9369, type: 2}

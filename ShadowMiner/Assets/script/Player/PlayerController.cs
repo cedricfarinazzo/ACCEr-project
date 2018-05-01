@@ -34,8 +34,8 @@ public class PlayerController : Photon.MonoBehaviour {
     protected AudioSource _audioSource;
 
     [SerializeField] protected AudioClip[] sound;
-    protected int Walksoundfrequency = 13;
-    protected int Runsoundfrequency = 7;
+    protected int Walksoundfrequency = 25;
+    protected int Runsoundfrequency = 15;
     
     //animation component
     //protected Animation anim;
@@ -204,7 +204,7 @@ public class PlayerController : Photon.MonoBehaviour {
     {
         if (Walksoundfrequency == 0)
         {
-            Walksoundfrequency = 13;
+            Walksoundfrequency = 25;
             int n = Random.Range(1, 4);
             _audioSource.clip = sound[n];
             _audioSource.PlayOneShot(_audioSource.clip);
@@ -221,7 +221,7 @@ public class PlayerController : Photon.MonoBehaviour {
     {
         if (Runsoundfrequency == 0)
         {
-            Runsoundfrequency = 7;
+            Runsoundfrequency = 15;
             int n = Random.Range(1, 4);
             _audioSource.clip = sound[n];
             _audioSource.PlayOneShot(_audioSource.clip);
