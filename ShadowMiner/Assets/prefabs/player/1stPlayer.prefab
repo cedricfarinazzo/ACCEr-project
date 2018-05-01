@@ -306,7 +306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1260548481091620
 GameObject:
   m_ObjectHideFlags: 1
@@ -331,6 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4963146441715818}
   - component: {fileID: 111890772830891454}
+  - component: {fileID: 95632071821532678}
   m_Layer: 0
   m_Name: 1st Person Controller
   m_TagString: Player
@@ -1948,13 +1949,30 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1684024187515310}
   m_Enabled: 1
+--- !u!95 &95632071821532678
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1265802545952960}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 449b48f7eb5d87a4baaa5fb73f875a59, type: 3}
+  m_Controller: {fileID: 9100000, guid: 991604697a015e846a10771d8cd963b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!111 &111890772830891454
 Animation:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1265802545952960}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400012, guid: 449b48f7eb5d87a4baaa5fb73f875a59, type: 3}
   m_Animations:
@@ -1984,6 +2002,7 @@ MonoBehaviour:
   damage: 0
   fall_damage: 42
   LifeBar: {fileID: 114459146509320848}
+  canvasLife: {fileID: 1251398107452702}
 --- !u!114 &114111334362251676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2029,6 +2048,7 @@ MonoBehaviour:
   inputback: 115
   inputjump: 32
   inputrun: 304
+  animator: {fileID: 95632071821532678}
 --- !u!114 &114299096489007476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2208,7 +2228,7 @@ CapsuleCollider:
   m_Radius: 0.6
   m_Height: 2.1
   m_Direction: 1
-  m_Center: {x: 0, y: -0.038, z: 0.015}
+  m_Center: {x: 0, y: 0.0955, z: 0.015}
 --- !u!137 &137770243338996004
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

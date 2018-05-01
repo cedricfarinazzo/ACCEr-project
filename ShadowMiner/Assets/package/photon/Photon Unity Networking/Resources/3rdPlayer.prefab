@@ -58,7 +58,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1031259172154944
 GameObject:
   m_ObjectHideFlags: 1
@@ -249,6 +249,8 @@ GameObject:
   - component: {fileID: 4780971607300726}
   - component: {fileID: 111573508013120102}
   - component: {fileID: 114664656577841396}
+  - component: {fileID: 95188084773058436}
+  - component: {fileID: 114039879389622388}
   m_Layer: 0
   m_Name: 3rd Person Controller
   m_TagString: Player
@@ -1952,6 +1954,23 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1280107089330032}
   m_Enabled: 0
+--- !u!95 &95188084773058436
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1235580232890242}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 449b48f7eb5d87a4baaa5fb73f875a59, type: 3}
+  m_Controller: {fileID: 9100000, guid: 991604697a015e846a10771d8cd963b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!111 &111573508013120102
 Animation:
   m_ObjectHideFlags: 1
@@ -1984,6 +2003,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnspeed: 120
+--- !u!114 &114039879389622388
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1235580232890242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: walk
+  - Type: 4
+    SynchronizeType: 1
+    Name: run
+  - Type: 4
+    SynchronizeType: 1
+    Name: jump
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!114 &114121283592420958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2000,6 +2045,7 @@ MonoBehaviour:
   damage: 0
   fall_damage: 42
   LifeBar: {fileID: 114711238635125316}
+  canvasLife: {fileID: 1022450868790402}
 --- !u!114 &114223745609127978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2086,6 +2132,7 @@ MonoBehaviour:
   inputback: 115
   inputjump: 32
   inputrun: 304
+  animator: {fileID: 95188084773058436}
 --- !u!114 &114505772447486564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2182,12 +2229,12 @@ MonoBehaviour:
   group: 0
   OwnerShipWasTransfered: 0
   prefixBackup: -1
-  synchronization: 3
+  synchronization: 0
   onSerializeTransformOption: 4
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 4780971607300726}
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

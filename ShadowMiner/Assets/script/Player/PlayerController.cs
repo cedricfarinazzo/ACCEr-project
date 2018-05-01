@@ -28,8 +28,10 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     protected KeyCode inputrun;
 
+    [SerializeField] protected Animator animator;
+    
     //animation component
-    protected Animation anim;
+    //protected Animation anim;
 
     //feet collider
     protected CapsuleCollider playercollider;
@@ -39,7 +41,7 @@ public class PlayerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        this.anim = this.gameObject.GetComponentInChildren<Animation>();
+        //this.anim = this.gameObject.GetComponentInChildren<Animation>();
         this.playercollider = this.gameObject.GetComponent<CapsuleCollider>();
         this.ri = this.gameObject.GetComponent<Rigidbody>();
 	}
@@ -67,37 +69,74 @@ public class PlayerController : MonoBehaviour {
     {
         if (!Input.GetKey(this.inputback) && !Input.GetKey(this.inputfront) && ! Input.GetKey(this.inputjump))
         {
-            this.anim.Play("idle");
+            animator.SetBool("walk", false);
+            animator.SetBool("run", false);
+            animator.SetBool("jump", false);
+            //this.anim.Play("idle");
         }
 
         if (Input.GetKey(this.inputleft))
         {
             this.gameObject.transform.Translate(-(this.speedwalk / 2) * Time.deltaTime, 0, 0);
+            //animator.SetBool("walk", true);
             //this.anim.Play("walk");
         }
 
         if (Input.GetKey(this.inputright))
         {
             this.gameObject.transform.Translate((this.speedwalk / 2) * Time.deltaTime, 0, 0);
+            //animator.SetBool("walk", true);
             //this.anim.Play("walk");
         }
 
         if (Input.GetKey(this.inputfront) && !Input.GetKey(this.inputrun))
         {
             this.gameObject.transform.Translate(0, 0, this.speedwalk * Time.deltaTime);
-            this.anim.Play("walk");
+            if (Input.GetKeyDown(this.inputjump) && IsGrounded())
+            {
+                animator.SetBool("jump", true);
+            }
+            else
+            {
+                animator.SetBool("walk", true);
+                animator.SetBool("run", false);
+                animator.SetBool("jump", false);
+            }
+            //this.anim.Play("walk");
         }
 
         if (Input.GetKey(this.inputfront) && Input.GetKey(this.inputrun))
         {
             this.gameObject.transform.Translate(0, 0, this.speedrun * Time.deltaTime);
-            this.anim.Play("run");
+            //this.anim.Play("run");
+            if (Input.GetKeyDown(this.inputjump) && IsGrounded())
+            {
+                animator.SetBool("jump", true);
+            }
+            else
+            {
+                animator.SetBool("walk", false);
+                animator.SetBool("run", true);
+                animator.SetBool("jump", false);
+            }
+            
         }
 
         if (Input.GetKey(this.inputback))
         {
             this.gameObject.transform.Translate(0, 0, -(this.speedwalk / 2) * Time.deltaTime);
-            this.anim.Play("walk");
+            //this.anim.Play("walk");
+            if (Input.GetKeyDown(this.inputjump) && IsGrounded())
+            {
+                animator.SetBool("jump", true);
+            }
+            else
+            {
+                animator.SetBool("walk", true);
+                animator.SetBool("run", false);
+                animator.SetBool("jump", false);
+            }
+
         }
     }
 
@@ -109,6 +148,7 @@ public class PlayerController : MonoBehaviour {
             v.y = this.forcejump.y;
 
             this.gameObject.GetComponent<Rigidbody>().velocity = this.forcejump;
+            animator.SetBool("jump", true);
             //this.anim.Play("jump_pose");
         }
     }

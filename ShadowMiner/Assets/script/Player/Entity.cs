@@ -16,11 +16,13 @@ public class Entity : Photon.MonoBehaviour {
     protected int reload_fall = 50;
 
     [SerializeField] protected Image LifeBar;
+    [SerializeField] protected GameObject canvasLife;
 
     protected GameObject g;
 
     void Start()
     {
+        canvasLife.SetActive(true);
         this.g = this.gameObject;
     }
 
