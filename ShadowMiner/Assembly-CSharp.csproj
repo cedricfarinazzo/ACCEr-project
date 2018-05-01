@@ -187,6 +187,8 @@
     <Compile Include="Assets\script\SaveData\Formatter.cs" />
     <Compile Include="Assets\script\SaveData\SaveData.cs" />
     <Compile Include="Assets\script\ShadowMiner\IAtarget.cs" />
+    <Compile Include="Assets\script\ShadowMiner\LocalNavMeshBuilder.cs" />
+    <Compile Include="Assets\script\ShadowMiner\NavMeshSourceTag.cs" />
     <Compile Include="Assets\script\SMNetworkClient\Client.cs" />
     <Compile Include="Assets\script\SMNetworkClient\ConvertImage.cs" />
     <Compile Include="Assets\script\SMNetworkClient\DataClient.cs" />
