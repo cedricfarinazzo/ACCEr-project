@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class OpenDoor : MonoBehaviour {
 
-    [SerializeField]
-    protected KeyCode touche = KeyCode.E;
+	protected KeyCode touche;
 
     protected Animation animation;
     protected GameObject _g;
@@ -15,6 +14,8 @@ public class OpenDoor : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		SMParametre.Parametre param = SMParametre.Parametre.Load ();
+		touche = param.Key ["Interact"];
         this._g = this.gameObject;
         this.animation = this.gameObject.GetComponentInChildren<Animation>();
 	}

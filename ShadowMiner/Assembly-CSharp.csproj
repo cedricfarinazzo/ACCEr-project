@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>4</LangVersion>
-    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -170,6 +169,7 @@
     <Compile Include="Assets\script\door\OpenDoor.cs" />
     <Compile Include="Assets\script\Loading\Loading.cs" />
     <Compile Include="Assets\script\manager.cs" />
+    <Compile Include="Assets\script\Move_etagere.cs" />
     <Compile Include="Assets\script\Multijoueur\GameManager.cs" />
     <Compile Include="Assets\script\Multijoueur\LobbyManager.cs" />
     <Compile Include="Assets\script\Multijoueur\NetworkManager.cs" />
@@ -187,6 +187,9 @@
     <Compile Include="Assets\script\Respawn.cs" />
     <Compile Include="Assets\script\SaveData\Formatter.cs" />
     <Compile Include="Assets\script\SaveData\SaveData.cs" />
+    <Compile Include="Assets\script\ShadowMiner\IAtarget.cs" />
+    <Compile Include="Assets\script\ShadowMiner\LocalNavMeshBuilder.cs" />
+    <Compile Include="Assets\script\ShadowMiner\NavMeshSourceTag.cs" />
     <Compile Include="Assets\script\SMNetworkClient\Client.cs" />
     <Compile Include="Assets\script\SMNetworkClient\ConvertImage.cs" />
     <Compile Include="Assets\script\SMNetworkClient\DataClient.cs" />

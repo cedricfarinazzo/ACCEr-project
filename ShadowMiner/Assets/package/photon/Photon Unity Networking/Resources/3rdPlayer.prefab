@@ -1961,7 +1961,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1235580232890242}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 449b48f7eb5d87a4baaa5fb73f875a59, type: 3}
   m_Controller: {fileID: 9100000, guid: 991604697a015e846a10771d8cd963b4, type: 2}
   m_CullingMode: 0
@@ -1977,7 +1977,7 @@ Animation:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1235580232890242}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400012, guid: 449b48f7eb5d87a4baaa5fb73f875a59, type: 3}
   m_Animations:
@@ -2124,14 +2124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedwalk: 7
   speedrun: 14
-  speedturn: 90
   forcejump: {x: 0, y: 10, z: 0}
-  inputright: 100
-  inputleft: 113
-  inputfront: 122
-  inputback: 115
-  inputjump: 32
-  inputrun: 304
   animator: {fileID: 95188084773058436}
 --- !u!114 &114505772447486564
 MonoBehaviour:
@@ -2229,12 +2222,12 @@ MonoBehaviour:
   group: 0
   OwnerShipWasTransfered: 0
   prefixBackup: -1
-  synchronization: 0
+  synchronization: 3
   onSerializeTransformOption: 4
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 114039879389622388}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
