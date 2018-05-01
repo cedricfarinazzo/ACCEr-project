@@ -168,6 +168,7 @@
     <Compile Include="Assets\script\account\myaccount.cs" />
     <Compile Include="Assets\script\DisableMouseCursor.cs" />
     <Compile Include="Assets\script\door\OpenDoor.cs" />
+    <Compile Include="Assets\script\JumpStop.cs" />
     <Compile Include="Assets\script\Loading\Loading.cs" />
     <Compile Include="Assets\script\manager.cs" />
     <Compile Include="Assets\script\Move_etagere.cs" />

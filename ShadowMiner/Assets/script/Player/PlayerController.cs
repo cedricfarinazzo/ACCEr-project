@@ -28,10 +28,14 @@ public class PlayerController : Photon.MonoBehaviour {
     //[SerializeField]
     protected KeyCode inputrun;
 
+    private int reloadjump = 20;
+
     [SerializeField] protected Animator animator;
     protected AudioSource _audioSource;
 
     [SerializeField] protected AudioClip[] sound;
+    protected int Walksoundfrequency = 13;
+    protected int Runsoundfrequency = 7;
     
     //animation component
     //protected Animation anim;
@@ -74,12 +78,16 @@ public class PlayerController : Photon.MonoBehaviour {
 	    }
 
 
-
+	    if (reloadjump < 20)
+	    {
+	        reloadjump++;
+	    }
         Debug.DrawRay(transform.position, this.gameObject.transform.TransformDirection(Vector3.down) * (this.gameObject.transform.lossyScale.y), Color.red);
     }
 
     void FixedUpdate()
     {
+
         this.ri.AddForce(Vector3.down * Physics.gravity.x * ri.mass);
     }
 
@@ -166,54 +174,69 @@ public class PlayerController : Photon.MonoBehaviour {
                 animator.SetBool("jump", false);
 
             }
-
         }
+        
     }
 
     protected void jump()
     {
-        if (Input.GetKeyDown(this.inputjump) && IsGrounded())
+        if (Input.GetKey(this.inputjump))
+         {
+             animator.SetBool("jump", false);
+         }
+        if (reloadjump == 20)
         {
-            Vector3 v = this.gameObject.GetComponent<Rigidbody>().velocity;
-            v.y = this.forcejump.y;
+            reloadjump = 0;
+            if (Input.GetKey(this.inputjump) && IsGrounded())
+            {
+                PlayJumpClip();
+                Vector3 v = this.gameObject.GetComponent<Rigidbody>().velocity;
+                v.y = this.forcejump.y;
 
-            this.gameObject.GetComponent<Rigidbody>().velocity = this.forcejump;
-            animator.SetBool("jump", true);
-            //this.anim.Play("jump_pose");
+                this.gameObject.GetComponent<Rigidbody>().velocity = this.forcejump;
+                animator.SetBool("jump", true);
+                //this.anim.Play("jump_pose");
+            }
         }
     }
 
     protected void PlayWalkClip()
     {
-        _audioSource.clip = MakeSubclip(sound[0], 3, 5);
-        _audioSource.Play();
+        if (Walksoundfrequency == 0)
+        {
+            Walksoundfrequency = 13;
+            int n = Random.Range(1, 4);
+            _audioSource.clip = sound[n];
+            _audioSource.PlayOneShot(_audioSource.clip);
+            sound[n] = sound[0];
+            sound[0] = _audioSource.clip;
+        }
+        else
+        {
+            Walksoundfrequency--;
+        }
     }
 
     protected void PlayRunClip()
     {
-        _audioSource.clip = MakeSubclip(sound[1], 3, 5);
-        _audioSource.Play();
+        if (Runsoundfrequency == 0)
+        {
+            Runsoundfrequency = 7;
+            int n = Random.Range(1, 4);
+            _audioSource.clip = sound[n];
+            _audioSource.PlayOneShot(_audioSource.clip);
+            sound[n] = sound[0];
+            sound[0] = _audioSource.clip;
+        }
+        else
+        {
+            Runsoundfrequency--;
+        }
     }
-    
-    /**
-    * Creates a sub clip from an audio clip based off of the start time
-    * and the stop time. The new clip will have the same frequency as
-    * the original.
-    */
-    private AudioClip MakeSubclip(AudioClip clip, float start, float stop)
+
+    protected void PlayJumpClip()
     {
-        /* Create a new audio clip */
-        int frequency = clip.frequency;
-        float timeLength = stop - start;
-        int samplesLength = (int)(frequency * timeLength);
-        AudioClip newClip = AudioClip.Create(clip.name + "-sub", samplesLength, 1, frequency, false);
-        /* Create a temporary buffer for the samples */
-        float[] data = new float[samplesLength];
-        /* Get the data from the original clip */
-        clip.GetData(data, (int)(frequency * start));
-        /* Transfer the data to the new clip */
-        newClip.SetData(data, 0);
-        /* Return the sub clip */
-        return newClip;
+        _audioSource.clip = sound[4];
+        _audioSource.PlayOneShot(_audioSource.clip);
     }
 }

@@ -2099,8 +2099,11 @@ MonoBehaviour:
   forcejump: {x: 0, y: 5, z: 0}
   animator: {fileID: 95552743898798588}
   sound:
-  - {fileID: 8300000, guid: a72e1ebe1031976479d352e9e4d12bed, type: 3}
-  - {fileID: 8300000, guid: 353d88b85ad85484381d6fe153a7b6a7, type: 3}
+  - {fileID: 8300000, guid: e3444e02106f5454da9f9ee404328e4a, type: 3}
+  - {fileID: 8300000, guid: 88bba2c18c84e17458d443e302fb9bbb, type: 3}
+  - {fileID: 8300000, guid: 510b5f71cfa05f64aa00d89770c0ba42, type: 3}
+  - {fileID: 8300000, guid: e402222f5f3ec55408ee84fdc629891b, type: 3}
+  - {fileID: 8300000, guid: 7f451c0d697c5e14d93b552a922fbaa3, type: 3}
 --- !u!114 &114412730696399658
 MonoBehaviour:
   m_ObjectHideFlags: 1
