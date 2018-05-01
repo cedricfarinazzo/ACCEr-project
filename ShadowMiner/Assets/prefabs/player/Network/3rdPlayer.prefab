@@ -291,6 +291,8 @@ GameObject:
   - component: {fileID: 4337254277498298}
   - component: {fileID: 111977335832123278}
   - component: {fileID: 95526042530806928}
+  - component: {fileID: 114348013440380170}
+  - component: {fileID: 114367112768337840}
   m_Layer: 0
   m_Name: 3rd Person Controller
   m_TagString: Player
@@ -2152,15 +2154,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedwalk: 5
   speedrun: 10
-  speedturn: 90
   forcejump: {x: 0, y: 5, z: 0}
-  inputright: 100
-  inputleft: 113
-  inputfront: 122
-  inputback: 115
-  inputjump: 32
-  inputrun: 304
   animator: {fileID: 95526042530806928}
+--- !u!114 &114348013440380170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1213251562383364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 114367112768337840}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
+--- !u!114 &114367112768337840
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1213251562383364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 0
+    Name: walk
+  - Type: 4
+    SynchronizeType: 0
+    Name: run
+  - Type: 4
+    SynchronizeType: 0
+    Name: jump
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!114 &114456815195445610
 MonoBehaviour:
   m_ObjectHideFlags: 1
