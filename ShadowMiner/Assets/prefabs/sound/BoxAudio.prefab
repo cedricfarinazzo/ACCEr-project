@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4889087341061680}
+  - component: {fileID: 114511268102903358}
   - component: {fileID: 82959961200312762}
   m_Layer: 0
   m_Name: BoxAudio
@@ -48,12 +49,13 @@ AudioSource:
   m_GameObject: {fileID: 1939091409282778}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: fb80d33b59095964c82584fe819262aa,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: f339f6875aa4d6a4a9d3360460e16ec4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -120,3 +122,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114511268102903358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1939091409282778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f31c117ee0d4c0469a74cf282d89f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: fb80d33b59095964c82584fe819262aa, type: 2}
