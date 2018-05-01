@@ -159,7 +159,6 @@
     <Compile Include="Assets\script\_scene\BackToMenu.cs" />
     <Compile Include="Assets\script\_scene\ChangeSceneAfterDelayScript.cs" />
     <Compile Include="Assets\script\_scene\ChangeSceneOnClickScript.cs" />
-    <Compile Include="Assets\script\_scene\choixniveauxsolo.cs" />
     <Compile Include="Assets\script\_scene\Menu.cs" />
     <Compile Include="Assets\script\account\BackMenu.cs" />
     <Compile Include="Assets\script\account\connexion.cs" />
@@ -173,6 +172,7 @@
     <Compile Include="Assets\script\Multijoueur\GameManager.cs" />
     <Compile Include="Assets\script\Multijoueur\LobbyManager.cs" />
     <Compile Include="Assets\script\Multijoueur\NetworkManager.cs" />
+    <Compile Include="Assets\script\NavAgentController.cs" />
     <Compile Include="Assets\script\Parametre\Parametre.cs" />
     <Compile Include="Assets\script\Parametre\ParametreGraphics.cs" />
     <Compile Include="Assets\script\Parametre\ParametreKey.cs" />
@@ -197,6 +197,8 @@
     <Compile Include="Assets\script\SMProgress\Progress.cs" />
     <Compile Include="Assets\script\SMProgress\ProgressMulti.cs" />
     <Compile Include="Assets\script\SMProgress\ProgressSolo.cs" />
+    <Compile Include="Assets\script\Solo\choixniveauxsolo.cs" />
+    <Compile Include="Assets\script\trap\faux_sol.cs" />
     <Compile Include="Assets\script\trap\piqueAnimation.cs" />
     <Compile Include="Assets\script\trap\Trap.cs" />
     <None Include="Assets\package\ProCore\ProGrids\Shader\pg_GridShader.shader" />

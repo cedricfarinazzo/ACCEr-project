@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using SMNetwork.Client;
 using SaveData;
 using UnityEngine.SceneManagement;
+using System.Drawing;
+using System.Drawing.Imaging;
+using Image = UnityEngine.UI.Image;
 
 public class myaccount : MonoBehaviour {
 	private SMNetwork.Client.Client SMClient;
@@ -26,6 +29,8 @@ public class myaccount : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
 		try
 		{SMClient = new Client();}
 		catch(Exception)
@@ -48,7 +53,35 @@ public class myaccount : MonoBehaviour {
 		editpassword.onClick.AddListener(Editpasssword);
 		browsepicture.onClick.AddListener(Browsepic);
 		savepicture.onClick.AddListener(Savepic);
-		profilpic.
+		
+		/*Bitmap img = (Bitmap)SMClient.AskMyImage();
+		
+		
+		/*
+		Texture2D t = new Texture2D(img.Width, img.Height);
+		for (int i = 0; i < img.Width; i++)
+		{
+			for (int j = 0; j < img.Height; j++)
+			{
+				int r = img.GetPixel(i, j).R;
+				int g = img.GetPixel(i, j).G;
+				int b = img.GetPixel(i, j).B;
+				int a = img.GetPixel(i, j).A;
+				t.SetPixel(i, j, new Color(r, g, b, a));
+			}
+		}
+		t.Apply();
+		Texture2D bmp = new Texture2D(img.Width, img.Height, TextureFormat.RGBA32, false);
+		bmp.LoadRawTextureData(ConvertImage.ImageToByteArray((ImageSys)img));
+		Vector2 pivot = new Vector2(0.5f, 0.5f);
+		Rect tRect = new Rect(0, 0, img.Width, img.Height);
+		Sprite newSprite = Sprite.Create(t, tRect, pivot);
+		profilpic.overrideSprite = newSprite;
+		profilpic.texture = t;
+		Texture2D tex = new Texture2D(2, 2);
+		tex.LoadImage(ConvertImage.ImageToByteArray((ImageSys)img));
+		profilpic.material.mainTexture = tex;
+		*/
 	}
 
 	public void Retourmenu()

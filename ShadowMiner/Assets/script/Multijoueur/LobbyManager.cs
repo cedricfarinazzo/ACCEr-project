@@ -36,12 +36,12 @@ public class LobbyManager : Photon.MonoBehaviour {
         }
         catch (UnityException)
         {
-            Debug.Log("failed to join server");
+            Debug.Log("failed to join server : Photon");
             SceneManager.LoadScene("failedNetwork");
         }
         catch (Exception)
         {
-            Debug.Log("failed to join server");
+            Debug.Log("failed to join server: No network");
             SceneManager.LoadScene("failedNetwork");
         }
     }
@@ -54,7 +54,7 @@ public class LobbyManager : Photon.MonoBehaviour {
             w.SendWebRequest();
             long Htmlcode = w.responseCode;
             Debug.Log("Code: " + Htmlcode.ToString());
-            if (Htmlcode == 404 || Htmlcode == 0)
+            if (Htmlcode == 404)
                 return false;
             else
                 return true;
