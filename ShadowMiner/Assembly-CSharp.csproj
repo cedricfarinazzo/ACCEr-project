@@ -172,6 +172,7 @@
     <Compile Include="Assets\script\Multijoueur\GameManager.cs" />
     <Compile Include="Assets\script\Multijoueur\LobbyManager.cs" />
     <Compile Include="Assets\script\Multijoueur\NetworkManager.cs" />
+    <Compile Include="Assets\script\NavAgentController.cs" />
     <Compile Include="Assets\script\Parametre\Parametre.cs" />
     <Compile Include="Assets\script\Parametre\ParametreGraphics.cs" />
     <Compile Include="Assets\script\Parametre\ParametreKey.cs" />
