@@ -1,13 +1,10 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowMiner", "Assembly-CSharp.csproj", "{04A77204-E445-74AB-8213-660EDF8173F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{04A77204-E445-74AB-8213-660EDF8173F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowMiner", "Assembly-CSharp-firstpass.csproj", "{E43AA848-0C18-B0D1-A3EC-58C6C8C7AA30}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{E43AA848-0C18-B0D1-A3EC-58C6C8C7AA30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowMiner", "Assembly-CSharp-Editor.csproj", "{9D0CC9A1-C807-AF3E-37E8-DF2A67B14B70}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowMiner", "Assembly-CSharp-Editor-firstpass.csproj", "{B2DA79C4-18EA-41EB-81D3-14A109BAA3D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{9D0CC9A1-C807-AF3E-37E8-DF2A67B14B70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +24,6 @@ Global
 		{9D0CC9A1-C807-AF3E-37E8-DF2A67B14B70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D0CC9A1-C807-AF3E-37E8-DF2A67B14B70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D0CC9A1-C807-AF3E-37E8-DF2A67B14B70}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2DA79C4-18EA-41EB-81D3-14A109BAA3D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2DA79C4-18EA-41EB-81D3-14A109BAA3D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2DA79C4-18EA-41EB-81D3-14A109BAA3D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2DA79C4-18EA-41EB-81D3-14A109BAA3D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
