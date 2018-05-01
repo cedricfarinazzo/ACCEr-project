@@ -136,7 +136,6 @@ public class LobbyManager : Photon.MonoBehaviour {
         j.GetComponent<PlayerController>().enabled = true;
         j.GetComponent<CursorTurnHory>().enabled = true;
         j.GetComponent<Entity>().enabled = true;
-        j.GetComponentInChildren<Animator>().enabled = true;
         j.GetComponentInChildren<CursorTurnVerti>().enabled = true;
         j.GetComponentInChildren<Camera>().enabled = true;
         j.GetComponentInChildren<AudioListener>().enabled = true;
