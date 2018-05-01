@@ -11,13 +11,17 @@ public class logout : MonoBehaviour {
 	public Button logoutbutton;
 	// Use this for initialization
 	void Start () {
+		DataClient.Email = SaveData.SaveData.GetString("DataClient.Email");
+		DataClient.Token = SaveData.SaveData.GetString("DataClient.Token");
 		nouveauclient = new Client();
 		logoutbutton.onClick.AddListener(Logout);
 	}
 
 	public void Logout(){
 		nouveauclient.Logout ();
-		SceneManager.LoadScene ("connexion");
+		SaveData.SaveData.DeleteKey("DataClient.Email");
+		SaveData.SaveData.DeleteKey("DataClient.Token");
+		SceneManager.LoadScene ("menu");
 	}
 	// Update is called once per frame
 	void Update () {

@@ -118,7 +118,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "D\xE9connexion"
+  m_Text: Logout
 --- !u!114 &114935062431928714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,7 +189,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 333.12, y: 164.72}
-  m_SizeDelta: {x: 205.75, y: 51.45}
+  m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224297698968229758
 RectTransform:
