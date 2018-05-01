@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using SMParametre;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -10,22 +11,20 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     protected int speedrun;
     [SerializeField]
-    protected int speedturn;
-    [SerializeField]
     protected Vector3 forcejump;
 
     //inputs
-    [SerializeField]
+    //[SerializeField]
     protected KeyCode inputright;
-    [SerializeField]
+    //[SerializeField]
     protected KeyCode inputleft;
-    [SerializeField]
+    //[SerializeField]
     protected KeyCode inputfront;
-    [SerializeField]
+    //[SerializeField]
     protected KeyCode inputback;
-    [SerializeField]
+    //[SerializeField]
     protected KeyCode inputjump;
-    [SerializeField]
+    //[SerializeField]
     protected KeyCode inputrun;
 
     [SerializeField] protected Animator animator;
@@ -42,6 +41,13 @@ public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //this.anim = this.gameObject.GetComponentInChildren<Animation>();
+        Parametre param = Parametre.Load();
+        this.inputfront = param.Key["MoveUp"];
+        this.inputback = param.Key["MoveDown"];
+        this.inputleft = param.Key["MoveLeft"];
+        this.inputright = param.Key["MoveRight"];
+        this.inputjump = param.Key["Jump"];
+        this.inputrun = param.Key["Run"];
         this.playercollider = this.gameObject.GetComponent<CapsuleCollider>();
         this.ri = this.gameObject.GetComponent<Rigidbody>();
 	}
