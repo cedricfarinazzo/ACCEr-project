@@ -9,6 +9,10 @@ public class GameManager : Photon.MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+	    if (PhotonNetwork.isMasterClient)
+	    {
+		    PhotonNetwork.automaticallySyncScene = false;
+	    }
         Instantiate();
 	}
 	
