@@ -5116,6 +5116,7 @@ GameObject:
   - component: {fileID: 472802737}
   - component: {fileID: 472802736}
   - component: {fileID: 472802735}
+  - component: {fileID: 472802741}
   m_Layer: 0
   m_Name: Stairs
   m_TagString: Untagged
@@ -11260,6 +11261,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 81
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &472802741
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 472802734}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 40, y: 62.487495, z: 153.82062}
+  m_Center: {x: -20, y: 31.243748, z: 76.91031}
 --- !u!1001 &489113600
 Prefab:
   m_ObjectHideFlags: 0
@@ -17016,7 +17029,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh25480
+  m_Name: pb_Mesh3114286
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2

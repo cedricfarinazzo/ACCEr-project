@@ -9,8 +9,11 @@ public class CursorTurnVerti : MonoBehaviour {
 
     private Transform _t;
 
+    private float sensi;
+
     void Start()
     {
+        sensi = SMParametre.Parametre.Load().Sensi;
         this._t = this.transform;
     }
 
@@ -18,7 +21,7 @@ public class CursorTurnVerti : MonoBehaviour {
     void Update () {
         var euler = this._t.localRotation.eulerAngles;
 
-        float newAngle = euler.x - Input.GetAxis("Mouse Y") * Time.deltaTime * this.turnspeed;
+        float newAngle = euler.x - Input.GetAxis("Mouse Y") * Time.deltaTime * (this.turnspeed * sensi);
 
         this._t.localRotation =
             Quaternion.Euler(
