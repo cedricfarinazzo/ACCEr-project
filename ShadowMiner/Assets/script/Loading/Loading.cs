@@ -59,7 +59,7 @@ public class Loading : MonoBehaviour {
             float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
             Debug.Log("Progress: "+progress.ToString());
             bar.fillAmount = progress;
-            text.text = "Loading ...             " + (progress * 100) + "%";
+            text.text = "Laoding ...             " + (progress * 100) + "%";
             yield return null;
         }
     }
