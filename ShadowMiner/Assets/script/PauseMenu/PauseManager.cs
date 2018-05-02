@@ -57,7 +57,21 @@ public class PauseManager : MonoBehaviour
 
     public void ClickBackMenu()
     {
-        SaveData.SaveData.SaveString("niveaux_solo", name);
+        if (PhotonNetwork.inRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+
+        if (PhotonNetwork.insideLobby)
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+
+        if (PhotonNetwork.connected)
+        {
+            PhotonNetwork.Disconnect();
+        }
+        SaveData.SaveData.SaveString("menu", name);
         SceneManager.LoadScene("loading");
     }
 }

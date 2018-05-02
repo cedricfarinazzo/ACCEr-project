@@ -12,7 +12,22 @@ public class BackToMenu : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene(this.menu);
+            if (PhotonNetwork.inRoom)
+            {
+                PhotonNetwork.LeaveRoom();
+            }
+
+            if (PhotonNetwork.insideLobby)
+            {
+                PhotonNetwork.LeaveRoom();
+            }
+
+            if (PhotonNetwork.connected)
+            {
+                PhotonNetwork.Disconnect();
+            }
+            SaveData.SaveData.SaveString("menu", name);
+            SceneManager.LoadScene("loading");
         }
     }
 }
