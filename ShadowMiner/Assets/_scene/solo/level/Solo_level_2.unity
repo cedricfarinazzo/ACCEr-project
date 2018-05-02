@@ -14288,6 +14288,18 @@ Prefab:
       propertyPath: forcejump.y
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 4446504875558712, guid: 30c3a262fdc0256499e47eabcb327374, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446504875558712, guid: 30c3a262fdc0256499e47eabcb327374, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446504875558712, guid: 30c3a262fdc0256499e47eabcb327374, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 30c3a262fdc0256499e47eabcb327374, type: 2}
   m_IsPrefabParent: 0
