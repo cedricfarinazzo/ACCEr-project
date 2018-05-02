@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -723,23 +723,23 @@ MonoBehaviour:
   - Solo_level_1
   - Solo_level_2
   - Solo_level_3
-  - Solo_level_2
-  - Solo_level_2
-  - Solo_level_2
-  - Solo_level_2
-  - Solo_level_2
-  - Solo_level_2
-  - Solo_level_2
-  - Solo_level_2
-  - Solo_level_2
-  - Solo_level_2
-  - Solo_level_2
-  - Solo_level_2
-  - Solo_level_2
-  - Solo_level_2
-  - Solo_level_2
-  - Solo_level_2
-  - Solo_level_2
+  - Solo_level_4
+  - Solo_level_5
+  - Solo_level_6
+  - Solo_level_7
+  - Solo_level_8
+  - Solo_level_9
+  - Solo_level_10
+  - Solo_level_11
+  - Solo_level_12
+  - Solo_level_13
+  - Solo_level_14
+  - Solo_level_15
+  - Solo_level_16
+  - Solo_level_17
+  - Solo_level_18
+  - Solo_level_19
+  - Solo_level_20
   BackMenu: {fileID: 159891923}
 --- !u!114 &222246303
 MonoBehaviour:
