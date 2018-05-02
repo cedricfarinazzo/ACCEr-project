@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowMiner", "Assembly-CSh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowMiner", "Assembly-CSharp-Editor.csproj", "{9D0CC9A1-C807-AF3E-37E8-DF2A67B14B70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowMiner", "Assembly-CSharp-Editor-firstpass.csproj", "{B2DA79C4-18EA-41EB-81D3-14A109BAA3D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{9D0CC9A1-C807-AF3E-37E8-DF2A67B14B70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D0CC9A1-C807-AF3E-37E8-DF2A67B14B70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D0CC9A1-C807-AF3E-37E8-DF2A67B14B70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2DA79C4-18EA-41EB-81D3-14A109BAA3D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2DA79C4-18EA-41EB-81D3-14A109BAA3D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2DA79C4-18EA-41EB-81D3-14A109BAA3D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2DA79C4-18EA-41EB-81D3-14A109BAA3D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
