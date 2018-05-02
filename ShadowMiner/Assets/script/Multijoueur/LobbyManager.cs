@@ -82,6 +82,7 @@ public class LobbyManager : Photon.MonoBehaviour {
             }
             if (PhotonNetwork.isMasterClient && PhotonNetwork.room.PlayerCount == 3)
             {
+                PhotonNetwork.automaticallySyncScene = true;
                 MoveToGame();
             }
         }
