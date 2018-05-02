@@ -28,7 +28,7 @@ public class PlayerController : Photon.MonoBehaviour {
     //[SerializeField]
     protected KeyCode inputrun;
 
-    private int reloadjump = 20;
+    private int reloadjump = 10;
 
     [SerializeField] protected Animator animator;
     protected AudioSource _audioSource;
@@ -184,7 +184,7 @@ public class PlayerController : Photon.MonoBehaviour {
          {
              animator.SetBool("jump", false);
          }
-        if (reloadjump == 20)
+        if (reloadjump == 10)
         {
             reloadjump = 0;
             if (Input.GetKey(this.inputjump) && IsGrounded())
