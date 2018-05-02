@@ -63,30 +63,30 @@ public class PlayerController : Photon.MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (PhotonNetwork.connectedAndReady)
-	    {
+	        }
+
+    void FixedUpdate()
+    {
+        if (PhotonNetwork.connectedAndReady)
+        {
             if (photonView.isMine)
             {
                  move();
                  jump();
             }
-	    }
-	    else
-	    {
-	        move();
-	        jump();
-	    }
-
-
-	    if (reloadjump < 20)
-	    {
-	        reloadjump++;
-	    }
+        }
+        else
+        {
+            move();
+            jump();
+        }
+        
+        
+        if (reloadjump < 10)
+        {
+            reloadjump++;
+        }
         Debug.DrawRay(transform.position, this.gameObject.transform.TransformDirection(Vector3.down) * (this.gameObject.transform.lossyScale.y), Color.red);
-    }
-
-    void FixedUpdate()
-    {
 
         this.ri.AddForce(Vector3.down * Physics.gravity.x * ri.mass);
     }

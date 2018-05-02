@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene1: niveaux_solo
-  scene2: Multi_room_1
+  scene2: lobby
   scene3: connexion
   scene4: parametre
   but1: {fileID: 2111124277}

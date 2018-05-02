@@ -24,48 +24,12 @@ public class LobbyManager : Photon.MonoBehaviour {
     // Use this for initialization
     void Start () {
         Parametre param = SMParametre.Parametre.Load();
-        try
+        if (!PhotonNetwork.connectedAndReady)
         {
-            if (!IsConnected())
-            {
-                throw new Exception();
-            }
-            if (!PhotonNetwork.connectedAndReady)
-            {
-                PhotonNetwork.ConnectUsingSettings(param.Version);
-                PhotonNetwork.offlineMode = false;
-            }
-            PhotonNetwork.JoinLobby();
+            PhotonNetwork.ConnectUsingSettings(param.Version);
+            PhotonNetwork.offlineMode = false;
         }
-        catch (UnityException)
-        {
-            Debug.Log("failed to join server : Photon");
-            SceneManager.LoadScene("failedNetwork");
-        }
-        catch (Exception)
-        {
-            Debug.Log("failed to join server: No network");
-            SceneManager.LoadScene("failedNetwork");
-        }
-    }
-
-    public static bool IsConnected(string hostedURL = "http://www.google.com")
-    {
-        try
-        {
-            UnityWebRequest w = new UnityWebRequest(hostedURL);
-            w.SendWebRequest();
-            long Htmlcode = w.responseCode;
-            Debug.Log("Code: " + Htmlcode.ToString());
-            if (Htmlcode == 404)
-                return false;
-            else
-                return true;
-        }
-        catch (IOException ex)
-        {
-            return false;
-        }
+        PhotonNetwork.JoinLobby();
     }
 
     public void SetText()
@@ -124,8 +88,8 @@ public class LobbyManager : Photon.MonoBehaviour {
             MaxPlayers = 3
         };
         System.Random tools = new System.Random();
-        string random = tools.Next().ToString().Substring(0, 4);
-        PhotonNetwork.JoinOrCreateRoom("room" + random, opt, TypedLobby.Default);
+        string random = tools.Next().ToString().Substring(0, 2);
+        PhotonNetwork.JoinOrCreateRoom(SceneManager.GetActiveScene().name+"=="+random, opt, TypedLobby.Default);
     }
 
     private void MoveToGame()

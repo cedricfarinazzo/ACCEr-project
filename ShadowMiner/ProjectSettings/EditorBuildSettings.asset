@@ -144,7 +144,10 @@ EditorBuildSettings:
     path: Assets/_scene/solo/level/Solo_level_40.unity
     guid: 00a92eba1b5a6794ba0e5cf55eb56401
   - enabled: 1
-    path: Assets/_scene/multi/multi_lobby.unity
+    path: Assets/_scene/multi/lobby.unity
+    guid: 5f21fb3789c0aeb4ebe2e538b704bd16
+  - enabled: 1
+    path: Assets/_scene/multi/level/Multi_room_1.unity
     guid: bc256c175709c3f498ad289d6db00ce5
   - enabled: 1
     path: Assets/_scene/building/build_scene_cedric.unity
