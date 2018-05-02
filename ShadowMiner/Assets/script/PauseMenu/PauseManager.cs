@@ -18,7 +18,7 @@ public class PauseManager : MonoBehaviour
     
     private void Start()
     {
-        
+        key = SMParametre.Parametre.Load().Key["Escape"];
     }
 
     private void Update()
@@ -51,6 +51,7 @@ public class PauseManager : MonoBehaviour
 
     public void ClickResume()
     {
+        Debug.Log("Resume");
         visible = false;
     }
 

@@ -4,26 +4,13 @@ using SMParametre;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class UpdateVolume : Photon.MonoBehaviour
+public class UpdateVolume : MonoBehaviour
 {
-
-
     [SerializeField] protected AudioMixer mixer;
 
     private void Start()
     {
-        if (PhotonNetwork.connectedAndReady)
-        {
-            if (photonView.isMine)
-            {
-                SMParametre.Parametre p = Parametre.Load();
-                mixer.SetFloat("Main", p.VolumeSonore);
-            }
-        }
-        else
-        {
-            SMParametre.Parametre p = Parametre.Load();
-            mixer.SetFloat("Main", p.VolumeSonore);
-        }
+        SMParametre.Parametre p = Parametre.Load();
+        mixer.SetFloat("Main", p.VolumeSonore);
     }
 }

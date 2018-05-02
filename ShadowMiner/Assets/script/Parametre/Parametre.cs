@@ -48,7 +48,8 @@ namespace SMParametre
             { "Run", KeyCode.LeftShift },
             { "Jump", KeyCode.Space},
             { "Interact", KeyCode.E },
-            { "Attack", KeyCode.Mouse0 }
+            { "Attack", KeyCode.Mouse0 }, 
+	        { "Escape", KeyCode.Escape}
         };
 		public float VolumeSonore = 1;
 		public float Sensi = 1;
