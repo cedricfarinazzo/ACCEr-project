@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PauseManager : Photon.MonoBehaviour
+public class PauseManager : MonoBehaviour
 {
 
     [SerializeField] protected GameObject canvas;
@@ -39,8 +39,6 @@ public class PauseManager : Photon.MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             canvas.SetActive(true);
-            Resume.onClick.AddListener(ClickResume);
-            BackMenu.onClick.AddListener(ClickBackMenu);
         }
         else
         {
