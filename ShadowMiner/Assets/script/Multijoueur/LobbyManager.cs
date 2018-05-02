@@ -15,6 +15,10 @@ public class LobbyManager : Photon.MonoBehaviour {
     [SerializeField]
     protected Text RoomNameText;
 
+    [SerializeField] protected GameObject gameManager;
+
+
+    private GameObject PhotonPlayer;
     private bool joined = false;
 
     // Use this for initialization
@@ -31,7 +35,6 @@ public class LobbyManager : Photon.MonoBehaviour {
                 PhotonNetwork.ConnectUsingSettings(param.Version);
                 PhotonNetwork.offlineMode = false;
             }
-            PhotonNetwork.automaticallySyncScene = true;
             PhotonNetwork.JoinLobby();
         }
         catch (UnityException)
@@ -72,19 +75,29 @@ public class LobbyManager : Photon.MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+        /*
         try
-        {
+        {*/
             if (this.joined)
             {
                 this.RoomNameText.text = "Room name : " + PhotonNetwork.room.Name;
                 this.SetText();
             }
-            if (PhotonNetwork.isMasterClient && PhotonNetwork.room.PlayerCount == 3)
+
+	    try
+	    {
+            if (PhotonNetwork.room.PlayerCount == 3)
             {
                 MoveToGame();
+                this.gameObject.SetActive(false);
             }
-        }
+	    }
+	    catch (Exception e)
+	    {
+            
+	    }
+
+        /*}
         catch (UnityException)
         {
             Debug.Log("failed to join server");
@@ -94,7 +107,7 @@ public class LobbyManager : Photon.MonoBehaviour {
         {
             Debug.Log("failed to join server");
             SceneManager.LoadScene("failedNetwork");
-        }
+        }*/
 	}
 
     void OnJoinedLobby()
@@ -117,7 +130,10 @@ public class LobbyManager : Photon.MonoBehaviour {
 
     private void MoveToGame()
     {
-        PhotonNetwork.LoadLevel("build_scene_cedric");
+        if (joined)
+        {
+            gameManager.SetActive(true);
+        }
     }
 
     void OnPhotonRandomJoinFailed()
@@ -136,9 +152,11 @@ public class LobbyManager : Photon.MonoBehaviour {
         j.GetComponent<PlayerController>().enabled = true;
         j.GetComponent<CursorTurnHory>().enabled = true;
         j.GetComponent<Entity>().enabled = true;
+        j.GetComponent<NetworkCharacter>().enabled = true;
         j.GetComponentInChildren<CursorTurnVerti>().enabled = true;
         j.GetComponentInChildren<Camera>().enabled = true;
         j.GetComponentInChildren<AudioListener>().enabled = true;
         this.joined = true;
+        PhotonPlayer = j;
     }
 }

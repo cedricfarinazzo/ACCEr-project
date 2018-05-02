@@ -8,18 +8,32 @@ public class NetworkCharacter : Photon.MonoBehaviour {
     Quaternion trueRot;
     PhotonView pv;
 
+    [SerializeField]
+    private List<Vector3> posList;
+
+    private bool onGame = false;
+
+    private int _photonId;
+    
     // Use this for initialization
     void Start () {
         this.pv = GetComponent<PhotonView>();
+        _photonId = PhotonNetwork.room.PlayerCount - 1;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (!pv.isMine)
+	    if (!pv.isMine)
         {
             transform.position = Vector3.Lerp(transform.position, trueLoc, Time.deltaTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, trueRot, Time.deltaTime);
         }
+        Debug.Log(PhotonNetwork.room.PlayerCount);
+	    if (PhotonNetwork.room.PlayerCount == 3 && !onGame)
+	    {
+	        onGame = true;
+	        MoveToGame();
+	    }
     }
 
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -38,5 +52,11 @@ public class NetworkCharacter : Photon.MonoBehaviour {
                 stream.SendNext(transform.position);
             }
         }
+    }
+
+    void MoveToGame()
+    {
+        Debug.Log("MoveToGame");
+        this.gameObject.transform.position = posList[_photonId];
     }
 }
