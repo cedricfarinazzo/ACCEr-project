@@ -149,7 +149,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_scene/multi/level/Multi_room_1.unity
     guid: bc256c175709c3f498ad289d6db00ce5
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/building/build_scene_cedric.unity
     guid: 8beaafcd7185c3f43a08c7c1832de61f
   - enabled: 1
