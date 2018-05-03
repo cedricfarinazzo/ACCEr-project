@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,16 +13,20 @@ public class Entity : Photon.MonoBehaviour {
     [SerializeField]
     protected int damage;
     [SerializeField]
-    protected int fall_damage = 42;
-    protected int reload_fall = 50;
+    protected int fall_damage = 10;
 
     [SerializeField] protected Image LifeBar;
     [SerializeField] protected GameObject canvasLife;
+
+    private float LastPost;
+    private float fallDist;
 
     protected GameObject g;
 
     void Start()
     {
+        fallDist = 0;
+        LastPost = this.gameObject.transform.position.y;
         canvasLife.SetActive(true);
         this.g = this.gameObject;
     }
@@ -62,6 +67,10 @@ public class Entity : Photon.MonoBehaviour {
         {
             UpdateLifeBar();    
         }
+        if (this.life <= 0)
+        {
+            this.Death();
+        }
     }
 
     public void UpdateLifeBar()
@@ -83,17 +92,33 @@ public class Entity : Photon.MonoBehaviour {
             this.life = (int)stream.ReceiveNext();
         }
     }
+    
+    bool IsGrounded()
+    {
+        Vector3 dwn = this.gameObject.transform.TransformDirection(Vector3.down);
+        return Physics.Raycast(this.transform.position, dwn, this.gameObject.transform.lossyScale.y);
+    }
 
     public void FallDamage()
     {
-        if (this.g.GetComponent<Rigidbody>().velocity.y < -40 && this.reload_fall == 50)
+        if (LastPost > this.gameObject.transform.position.y)
         {
-            this.g.GetComponent<Entity>().getDamage(this.fall_damage);
-            this.reload_fall = 0;
+            fallDist += LastPost - this.gameObject.transform.position.y;
         }
-        if (this.reload_fall != 50)
+
+        if (fallDist < 500 && IsGrounded())
         {
-            this.reload_fall++;
+            fallDist = 0;
+            LastPost = 0;
+            Debug.Log("Fail without damage");
+        }
+
+        if (fallDist >= 500 && IsGrounded())
+        {
+            fallDist = 0;
+            LastPost = 0;
+            life -= fall_damage;
+            Debug.Log("Fail with damage");
         }
     }
 }
