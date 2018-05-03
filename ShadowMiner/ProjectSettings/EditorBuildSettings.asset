@@ -38,49 +38,49 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_5.unity
     guid: 52130c9f02c71e049ae3dec4871f4e35
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_6.unity
     guid: 3ed71d5fbc74d2a4bb53467835e6a2e0
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_7.unity
     guid: b30059f4b0b9d2f47bf9e896b42bd8a1
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_8.unity
     guid: 7e6159bf23bc34942bf5f5b7bba53fce
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_9.unity
     guid: 27c63bc3bc3e7594e8a814a31f61d836
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_10.unity
     guid: 387c028b24fc3ba42913aba7a4f5ef77
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_11.unity
     guid: eda549b3f9d124644accce3314d3e6a1
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_12.unity
     guid: cf954b7973ae57541b69a720435df6ef
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_13.unity
     guid: 0d4c1789f1e834747adc0ca835c04a08
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_14.unity
     guid: 09aef3efcdef7ca4f8c93678c06ec411
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_15.unity
     guid: d168a23e29cab5c4ca36de418ecbc20a
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_16.unity
     guid: 8426660783fe38c41b56942f12b2c043
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_17.unity
     guid: d486704246ea8c04fa6d459d69434590
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_18.unity
     guid: f828394028d893145a9a8f5b603aeb9a
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_19.unity
     guid: 0b37d2ed7f275d24d8bb71ad622d417b
-  - enabled: 1
+  - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_20.unity
     guid: ebe55bfcdef2b134f96ae67deddef4c3
   - enabled: 0

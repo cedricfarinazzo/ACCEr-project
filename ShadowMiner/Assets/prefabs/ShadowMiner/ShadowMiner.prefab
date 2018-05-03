@@ -2687,7 +2687,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615bd7727138349448be7dbd701ad20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 195847604458089000}
+  _agent: {fileID: 195847604458089000}
+  startposition: {x: 0, y: 0, z: 0}
+  roamRadius: 0
+  _reloadTargetFree: 175
 --- !u!135 &135701755059105374
 SphereCollider:
   m_ObjectHideFlags: 1

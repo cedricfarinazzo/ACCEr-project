@@ -726,21 +726,21 @@ MonoBehaviour:
   - Solo_level_3
   - Solo_level_4
   - Solo_level_5
-  - Solo_level_6
-  - Solo_level_7
-  - Solo_level_8
-  - Solo_level_9
-  - Solo_level_10
-  - Solo_level_11
-  - Solo_level_12
-  - Solo_level_13
-  - Solo_level_14
-  - Solo_level_15
-  - Solo_level_16
-  - Solo_level_17
-  - Solo_level_18
-  - Solo_level_19
-  - Solo_level_20
+  - Solo_level_5
+  - Solo_level_5
+  - Solo_level_5
+  - Solo_level_5
+  - Solo_level_5
+  - Solo_level_5
+  - Solo_level_5
+  - Solo_level_5
+  - Solo_level_5
+  - Solo_level_5
+  - Solo_level_5
+  - Solo_level_5
+  - Solo_level_5
+  - Solo_level_5
+  - Solo_level_5
   BackMenu: {fileID: 159891923}
 --- !u!114 &222246303
 MonoBehaviour:
