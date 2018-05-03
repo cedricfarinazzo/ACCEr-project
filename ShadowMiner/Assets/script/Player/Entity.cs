@@ -13,7 +13,7 @@ public class Entity : Photon.MonoBehaviour {
     [SerializeField]
     protected int damage;
     [SerializeField]
-    protected float fall_damage = 10f;
+    protected int fall_damage = 10;
 
     [SerializeField] protected Image LifeBar;
     [SerializeField] protected GameObject canvasLife;
@@ -106,29 +106,18 @@ public class Entity : Photon.MonoBehaviour {
             fallDist += LastPost - this.gameObject.transform.position.y;
         }
 
-        if (fallDist < 5 && IsGrounded())
+        if (fallDist < 500 && IsGrounded())
         {
             fallDist = 0;
             LastPost = 0;
             Debug.Log("Fail without damage");
         }
 
-        if (fallDist >= 5 && IsGrounded())
+        if (fallDist >= 500 && IsGrounded())
         {
             fallDist = 0;
             LastPost = 0;
-            float damage = fall_damage; //(fall_damage *  (fallDist / 2f));
-            int intdamage = 0;
-            if (damage % 1 >= 0.5)
-            {
-                intdamage = (int) damage + 1;
-            }
-            else
-            {
-                intdamage = (int) damage;
-            }
-
-            life -= intdamage;
+            life -= fall_damage;
             Debug.Log("Fail with damage");
         }
     }
