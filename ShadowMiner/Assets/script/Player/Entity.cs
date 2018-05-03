@@ -106,14 +106,14 @@ public class Entity : Photon.MonoBehaviour {
             fallDist += LastPost - this.gameObject.transform.position.y;
         }
 
-        if (fallDist < 500 && IsGrounded())
+        if (fallDist < 5000 && IsGrounded())
         {
             fallDist = 0;
             LastPost = 0;
             Debug.Log("Fail without damage");
         }
 
-        if (fallDist >= 500 && IsGrounded())
+        if (fallDist >= 5000 && IsGrounded())
         {
             fallDist = 0;
             LastPost = 0;

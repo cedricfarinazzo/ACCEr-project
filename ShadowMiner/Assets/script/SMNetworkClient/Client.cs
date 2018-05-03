@@ -11,7 +11,21 @@ namespace SMNetwork.Client
     {
         public Client(string address = "accer.ddns.net", int port = 4247)
         {
-            Network.Connect(address, port);
+            try
+            {
+                Network.Connect(address, port);
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    Network.Connect("88.139.79.108" , port);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e + "no connect");
+                }
+            }
         }
 
         public bool Create(string login, string firstname, string lastname, string email, string password, string description = "")

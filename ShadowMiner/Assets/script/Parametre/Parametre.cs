@@ -79,9 +79,17 @@ namespace SMParametre
 
         public void Apply()
         {
-            QualitySettings.SetQualityLevel(this.Quality, true);
-            Screen.SetResolution(ResolutionList[Resolution][0],
-                ResolutionList[Resolution][1], FullScreen, Frequency);
+	        try
+	        {
+				QualitySettings.SetQualityLevel(this.Quality, true);
+				Screen.SetResolution(ResolutionList[Resolution][0],
+					ResolutionList[Resolution][1], FullScreen, Frequency);
+	        }
+	        catch (Exception e)
+	        {
+				Debug.Log("Settings error");
+	        }
+
         }
     }
 

@@ -2437,7 +2437,7 @@ MonoBehaviour:
   life: 100
   max_life: 100
   damage: 0
-  fall_damage: 42
+  fall_damage: 10
   LifeBar: {fileID: 114155427066784156}
   canvasLife: {fileID: 1846532022131630}
 --- !u!114 &114315147488765138
@@ -2970,6 +2970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba81b146f3eaa4449fa3015abce14a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  posList: []
 --- !u!114 &114917583875170424
 MonoBehaviour:
   m_ObjectHideFlags: 1

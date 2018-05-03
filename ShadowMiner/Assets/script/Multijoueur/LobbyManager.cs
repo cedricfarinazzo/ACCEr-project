@@ -42,14 +42,14 @@ public class LobbyManager : Photon.MonoBehaviour {
         /*
         try
         {*/
-            if (this.joined)
-            {
-                this.RoomNameText.text = "Room name : " + PhotonNetwork.room.Name;
-                this.SetText();
-            }
 
 	    try
 	    {
+	        if (this.joined)
+	        {
+	            this.RoomNameText.text = "Room name : " + PhotonNetwork.room.Name;
+	            this.SetText();
+	        }
             if (PhotonNetwork.room.PlayerCount == 3)
             {
                 MoveToGame();

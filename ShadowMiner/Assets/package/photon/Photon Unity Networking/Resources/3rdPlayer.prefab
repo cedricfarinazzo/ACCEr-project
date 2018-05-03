@@ -2361,7 +2361,7 @@ MonoBehaviour:
   life: 100
   max_life: 100
   damage: 0
-  fall_damage: 42
+  fall_damage: 10
   LifeBar: {fileID: 114711238635125316}
   canvasLife: {fileID: 1022450868790402}
 --- !u!114 &114206776998071822

@@ -51,7 +51,17 @@ public class Loading : MonoBehaviour {
         // The Application loads the Scene in the background at the same time as the current Scene.
         //This is particularly good for creating loading screens. You could also load the Scene by build //number.
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(Next);
+        AsyncOperation asyncLoad;
+
+        try
+        {
+            asyncLoad= SceneManager.LoadSceneAsync(Next);
+        }
+        catch (Exception e)
+        {
+            asyncLoad= SceneManager.LoadSceneAsync("menu");
+        }
+           
         
         //Wait until the last operation fully loads to return anything
         while (!asyncLoad.isDone)
