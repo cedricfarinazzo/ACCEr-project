@@ -12,6 +12,10 @@ public class piqueAnimation : Trap {
 	}
 	
 	void Update () {
+	    if (this.actual_time > 0)
+	    {
+	        this.actual_time--;
+	    }
 	}
 
 

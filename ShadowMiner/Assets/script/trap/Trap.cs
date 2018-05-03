@@ -6,7 +6,7 @@ public class Trap : Entity {
 
     [SerializeField]
     private int reload_time;
-    private int actual_time = 0;
+    protected int actual_time = 0;
 
     // Use this for initialization
 	void Start () {
@@ -15,7 +15,10 @@ public class Trap : Entity {
 	
 	// Update is called once per frame
 	void Update () {
-		
+	    if (actual_time > 0)
+	    {
+	        actual_time--;
+	    }
 	}
 
     protected override void Death()
@@ -31,14 +34,5 @@ public class Trap : Entity {
             Entity entity = other.GetComponent<Entity>();
             entity.getDamage(this.damage);
         }
-        else
-        {
-            this.actual_time--;
-        }
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        this.actual_time = 0;
     }
 }
