@@ -34,7 +34,7 @@ EditorBuildSettings:
     guid: c89c828735635824a8dfd9430cdf9a77
   - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_4.unity
-    guid: b1d356ce1c9e7884a80d18eaba8dae8d
+    guid: d33c2bddd916e494a91b240e045ceed5
   - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_5.unity
     guid: 52130c9f02c71e049ae3dec4871f4e35
