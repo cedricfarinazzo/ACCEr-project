@@ -32,9 +32,15 @@ public class connexion : MonoBehaviour {
             {
                 SceneManager.LoadScene("profilplayer");
             }
+
             connect.onClick.AddListener(Connect);
             inscription.onClick.AddListener(Inscription);
             BackMenu.onClick.AddListener(BackToMenu);
+        }
+        catch (UnityException)
+        {
+            Debug.Log("failed to join server");
+            SceneManager.LoadScene("failedNetwork");
         }
         catch (Exception)
         {

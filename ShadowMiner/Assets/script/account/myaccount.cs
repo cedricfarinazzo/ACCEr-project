@@ -32,10 +32,20 @@ public class myaccount : MonoBehaviour {
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
 		try
-		{SMClient = new Client();}
+		{
+			SMClient = new Client();
+		}
+		catch (UnityException)
+		{
+			Debug.Log("failed to join server");
+			SceneManager.LoadScene("failedNetwork");
+		}
 		catch(Exception)
-		{Debug.Log ("Failed to join server");
-			SceneManager.LoadScene ("failedNetwork");}
+		{
+			Debug.Log ("Failed to join server");
+			SceneManager.LoadScene ("failedNetwork");
+			
+		}
 		SMNetwork.Client.DataClient.Email = SaveData.SaveData.GetString("DataClient.Email");
 		SMNetwork.Client.DataClient.Token = SaveData.SaveData.GetString("DataClient.Token");
 		SMNetwork.Client.DataClient.User = SaveData.SaveData.GetObject<SMNetwork.DataUser>("DataClient.User");

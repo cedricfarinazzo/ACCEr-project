@@ -17,14 +17,7 @@ namespace SMNetwork.Client
             }
             catch (Exception)
             {
-                try
-                {
-                    Network.Connect("88.139.79.108" , port);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e + "no connect");
-                }
+                Network.Connect("88.139.79.108" , port);
             }
         }
 

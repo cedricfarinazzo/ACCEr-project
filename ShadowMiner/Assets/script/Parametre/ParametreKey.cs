@@ -14,6 +14,8 @@ public class ParametreKey : MonoBehaviour {
     protected Button UpButton, DownButton, RightButton, LeftButton, RunButton, JumpButton, InteractButton, AttackButton;
     protected Text UpText, DownText, RightText, LeftText, RunText, JumpText, InteractText, AttackText;
 
+    [SerializeField] protected Button ResetButton;
+
     protected string currentkey = null;
 
     // Use this for initialization
@@ -53,6 +55,7 @@ public class ParametreKey : MonoBehaviour {
         JumpButton.onClick.AddListener(ClickButtonJump);
         InteractButton.onClick.AddListener(ClickButtonInteract);
         AttackButton.onClick.AddListener(ClickButtonAttack);
+        ResetButton.onClick.AddListener(ClickButtonReset);
     }
 
     // Update is called once per frame
@@ -111,6 +114,13 @@ public class ParametreKey : MonoBehaviour {
     {
         currentkey = Attack.name;
         AttackText.text = "Selected";
+    }
+
+    void ClickButtonReset()
+    {
+        param.Key = new Parametre().Key;
+        param.Save();
+        ShowKey();
     }
 
     void ResetCurrentKey()

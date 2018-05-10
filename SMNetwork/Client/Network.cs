@@ -13,7 +13,14 @@ namespace SMNetwork.Client
         public static void Connect(string address, int port)
         {
             DataClient.Initialize(address, port);
-            DataClient.Client.Client.Connect(DataClient.Address, DataClient.Port);
+            try
+            {
+                DataClient.Client.Client.Connect(DataClient.Address, DataClient.Port);
+            }
+            catch (Exception e)
+            {
+                DataClient.Client.Client.Connect(DataClient.IpAddressEntry.AddressList, port);
+            }
         }
         
         private static Protocol ReceiveMessage()

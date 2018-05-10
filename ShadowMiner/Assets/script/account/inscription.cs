@@ -39,6 +39,11 @@ public class inscription : MonoBehaviour {
             inscription_button.onClick.AddListener(Create);
             BackMenu.onClick.AddListener(BackToMenu);
         }
+        catch (UnityException)
+        {
+            Debug.Log("failed to join server");
+            SceneManager.LoadScene("failedNetwork");
+        }
         catch (Exception)
         {
             Debug.Log("failed to join server");

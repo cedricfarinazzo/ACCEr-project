@@ -7,6 +7,7 @@ namespace SMNetwork.Client
     public static class DataClient
     {
         public static string Address { get; set; }
+        public static IPHostEntry IpAddressEntry { get; set; }
         public static int Port { get; set; }
 
         public static TcpClient Client { get; set; }
@@ -20,6 +21,7 @@ namespace SMNetwork.Client
         public static void Initialize(string hosAddress, int port)
         {
             Address = hosAddress;
+            IpAddressEntry = Dns.Resolve(hosAddress);
             Port = port;
             Socket _sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             Client = new TcpClient() {Client = _sock};
