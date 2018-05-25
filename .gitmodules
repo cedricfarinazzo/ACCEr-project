@@ -1,0 +1,3 @@
+[submodule "ShadowMiner/Assets/package/giles"]
+	path = ShadowMiner/Assets/package/giles
+	url = https://github.com/cedricfarinazzo/giles.git
