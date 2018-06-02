@@ -31,5 +31,20 @@ namespace SMNetwork
             T obj = JsonConvert.DeserializeObject<T>(json);
             return obj;
         }
+
+        public static string ToJson<T>(T elm)
+        {
+            return JsonConvert.SerializeObject(elm);
+        }
+
+        public static T JsonToObejct<T>(string json)
+        {
+            if (json == null)
+            {
+                return default(T);
+            }
+
+            return JsonConvert.DeserializeObject<T>(json);
+        }
     }
 }

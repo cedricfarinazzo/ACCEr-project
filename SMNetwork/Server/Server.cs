@@ -170,6 +170,11 @@ namespace SMNetwork.Server
                         resp = RequestServer.UpdateData(msg, client);
                         break;
                         
+                    case MessageType.UpdateProgress:
+                        Log(ConsoleColor.Green, "[", "SINFO", "][UpdateProgress] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                        resp = RequestServer.UpdateProgress(msg, client);
+                        break;
+                        
                     case MessageType.Logout:
                         Log(ConsoleColor.Green, "[", "SINFO", "][Logout] request from " + client.Client.Client.RemoteEndPoint.ToString());
                         resp = RequestServer.Logout(msg, client);
@@ -188,6 +193,21 @@ namespace SMNetwork.Server
                     case MessageType.UpdatePassword:
                         Log(ConsoleColor.Green, "[", "SINFO", "][UpdatePassword] request from " + client.Client.Client.RemoteEndPoint.ToString());
                         resp = RequestServer.UpdatePassword(msg, client);
+                        break;
+                        
+                    case MessageType.GetMapList:
+                        Log(ConsoleColor.Green, "[", "SINFO", "][GetMapList] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                        resp = RequestServer.GetMapList(msg, client);
+                        break;
+                        
+                    case MessageType.GetMapId:
+                        Log(ConsoleColor.Green, "[", "SINFO", "][GetMapID] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                        resp = RequestServer.GetMapId(msg, client);
+                        break;
+                        
+                    case MessageType.SendMap:
+                        Log(ConsoleColor.Green, "[", "SINFO", "][SendMap] request from " + client.Client.Client.RemoteEndPoint.ToString());
+                        resp = RequestServer.SendMap(msg, client);
                         break;
                         
                     default:

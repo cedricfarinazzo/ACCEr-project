@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Net.Sockets;
@@ -12,6 +13,8 @@ namespace SMNetwork.Server
 {
     public static class RequestServer
     {
+        #region ConnectAndCreate
+
         public static Protocol Create(Protocol prot, DataTcpClient client)
         {
             string query = "SELECT COUNT(*) FROM user WHERE email = @mail";
@@ -113,6 +116,36 @@ namespace SMNetwork.Server
             }
         }
         
+        public static Protocol Logout(Protocol prot, DataTcpClient client)
+        {
+            try
+            {
+                if (prot.Token == "")
+                {
+                    return new Protocol(MessageType.Error) {Message = "Empty token"};
+                }
+                int ID = GetIdbyToken(prot.Token);
+                string query = "DELETE FROM gamesess WHERE ID_user = @ID AND token = @token";
+                MySqlParameter[] parameters = new MySqlParameter[2];
+                parameters[0] = new MySqlParameter("@ID", ID);
+                parameters[1] = new MySqlParameter("@token", prot.Token);
+                if (DataServer.Database.Delete(query, parameters))
+                {
+                    return new Protocol(MessageType.Response) {Message = "success"};
+                }
+                return new Protocol(MessageType.Response) {Message = "failed"};
+                
+            }
+            catch (Exception)
+            {
+                return new Protocol(MessageType.Error) {Message = "Error"};
+            }
+        }
+        
+        #endregion
+
+        #region GetData
+
         public static Protocol AskProgress(Protocol prot, DataTcpClient client)
         {
             try
@@ -140,7 +173,14 @@ namespace SMNetwork.Server
                         result.Remove("ID_user");
                         return new Protocol(MessageType.Response){Progress = JsonConvert.SerializeObject(result)};
                     }
-                    return new Protocol(MessageType.Error) {Message = "Bad request"};
+                    else
+                    {
+                        Dictionary<string, string> data = new Dictionary<string, string>();
+                        data.Add("SoloStats", "0");
+                        data.Add("MultiStats", "0");
+                        data.Add("LastTime", DateTime.Now.ToString());
+                        return new Protocol(MessageType.Response){Progress = JsonConvert.SerializeObject(data)};
+                    }
                 }
                 else
                 {
@@ -201,6 +241,10 @@ namespace SMNetwork.Server
             }
         }
         
+        #endregion
+
+        #region UpdateData
+
         public static Protocol UpdateData(Protocol prot, DataTcpClient client)
         {
             try
@@ -251,7 +295,61 @@ namespace SMNetwork.Server
             }
         }
 
-        public static Protocol Logout(Protocol prot, DataTcpClient client)
+        public static Protocol UpdatePassword(Protocol prot, DataTcpClient client)
+        {
+           try
+           {
+               if (prot.Token == "")
+               {
+                   return new Protocol(MessageType.Error) {Message = "Empty token"};
+               }
+               int ID = GetIdbyToken(prot.Token);
+               string query_token = "SELECT COUNT(*) FROM gamesess WHERE ID_user = @ID AND token = @token";
+               MySqlParameter[] parameters = new MySqlParameter[2];
+               parameters[0] = new MySqlParameter("@ID", ID);
+               parameters[1] = new MySqlParameter("@token", DBManager.Escape(prot.Token));
+               if (DataServer.Database.Count(query_token, parameters) == 1)
+               {
+                   string query_user = "SELECT COUNT(*) FROM user WHERE ID = @ID";
+                   MySqlParameter[] parameters_user = new MySqlParameter[1];
+                   parameters_user[0] = new MySqlParameter("@ID", ID);
+                   if (DataServer.Database.Count(query_user, parameters_user) == 1)
+                   {
+                       string pass = prot.Password;
+                       string newpass = prot.Message;
+                       string query_check_pass = "SELECT COUNT(*) FROM user WHERE ID = @ID AND pass = @pass";
+                       MySqlParameter[] parameters_check_pass = new MySqlParameter[2];
+                       parameters_check_pass[0] = new MySqlParameter("@ID", ID);
+                       parameters_check_pass[1] = new MySqlParameter("@pass", Hash.Sha512(pass));
+                       if (DataServer.Database.Count(query_check_pass, parameters_check_pass) == 1)
+                       {
+                           string query_update = 
+                               "UPDATE user SET pass = @pass WHERE ID = @ID";
+                           MySqlParameter[] parameters_update = new MySqlParameter[2];
+                           parameters_update[0] = new MySqlParameter("@pass", Hash.Sha512(newpass));
+                           parameters_update[1] = new MySqlParameter("@ID", ID);
+                           if (DataServer.Database.Update(query_update, parameters_update))
+                           {
+                               return new Protocol(MessageType.Response) {Message = "success"};
+                           }
+                           return new Protocol(MessageType.Error) {Message = "Server Error"};
+                       }
+                       return new Protocol(MessageType.Error) {Message = "Bad password"};
+                   }
+                   return new Protocol(MessageType.Error) {Message = "Bad request"};
+               }
+               else
+               {
+                   return new Protocol(MessageType.Error) {Message = "Bad token"};
+               }
+           }
+           catch (Exception e)
+           {
+               return new Protocol(MessageType.Error) {Message = "Error"};
+           }
+        }
+
+        public static Protocol UpdateProgress(Protocol prot, DataTcpClient client)
         {
             try
             {
@@ -260,22 +358,65 @@ namespace SMNetwork.Server
                     return new Protocol(MessageType.Error) {Message = "Empty token"};
                 }
                 int ID = GetIdbyToken(prot.Token);
-                string query = "DELETE FROM gamesess WHERE ID_user = @ID AND token = @token";
+                string query_token = "SELECT COUNT(*) FROM gamesess WHERE ID_user = @ID AND token = @token";
                 MySqlParameter[] parameters = new MySqlParameter[2];
                 parameters[0] = new MySqlParameter("@ID", ID);
-                parameters[1] = new MySqlParameter("@token", prot.Token);
-                if (DataServer.Database.Delete(query, parameters))
+                parameters[1] = new MySqlParameter("@token", DBManager.Escape(prot.Token));
+                if (prot.Progress == "")
                 {
-                    return new Protocol(MessageType.Response) {Message = "success"};
+                    throw new Exception();
                 }
-                return new Protocol(MessageType.Response) {Message = "failed"};
+
+                Dictionary<string, string> data =
+                    JsonConvert.DeserializeObject<Dictionary<string, string>>(prot.Progress);
                 
+                if (DataServer.Database.Count(query_token, parameters) == 1)
+                {
+                    string query_progress_count = "SELECT COUNT(*) FROM Game WHERE ID_user = @ID";
+                    MySqlParameter[] parameters_progress = new MySqlParameter[1];
+                    parameters_progress[0] = new MySqlParameter("@ID", ID);
+                    MySqlParameter[] params_progress = new MySqlParameter[4];
+                    params_progress[0] = new MySqlParameter("@ID_user", ID);
+                    params_progress[1] = new MySqlParameter("@solo", data["SoloStats"]);
+                    params_progress[2] = new MySqlParameter("@multi", data["MultiStats"]);
+                    params_progress[3] = new MySqlParameter("@date", DateTime.Now.ToString());
+                    bool result;
+                    if (DataServer.Database.Count(query_progress_count, parameters_progress) == 1)
+                    {//update
+                        string query_progress = 
+                            "UPDATE Game SET SoloStats = @solo, MultiStats = @multi, LastTime = @date WHERE ID_user = @ID_user";
+                        result = DataServer.Database.Update(query_progress, params_progress);
+                    }
+                    else
+                    {//insert
+                        string query_progress =
+                            "INSERT INTO Game(ID_user, SoloStats, MultiStats, LastTime) VALUES(@ID_user, @solo, @multi, @date)";
+                        result = DataServer.Database.Insert(query_progress, params_progress);
+                    }
+
+                    if (result)
+                    {
+                        return new Protocol(MessageType.Response) {Message = "success"};
+                    }
+                    else
+                    {
+                        return new Protocol(MessageType.Error) {Message = "failed"};
+                    }
+                }
+                else
+                {
+                    return new Protocol(MessageType.Error) {Message = "Bad token"};
+                }
             }
             catch (Exception)
             {
                 return new Protocol(MessageType.Error) {Message = "Error"};
             }
         }
+        
+        #endregion
+
+        #region Image
 
         public static Protocol GetImage(Protocol prot, DataTcpClient client)
         {
@@ -403,7 +544,117 @@ namespace SMNetwork.Server
             }
         }
         
-        public static Protocol UpdatePassword(Protocol prot, DataTcpClient client)
+        #endregion
+
+        #region Map
+
+        public static Protocol GetMapList(Protocol prot, DataTcpClient client)
+        {
+            try
+            {
+                if (prot.Token == "")
+                {
+                    return new Protocol(MessageType.Error) {Message = "Empty token"};
+                }
+                int ID = GetIdbyToken(prot.Token);
+                string query_token = "SELECT COUNT(*) FROM gamesess WHERE ID_user = @ID AND token = @token";
+                MySqlParameter[] parameters = new MySqlParameter[2];
+                parameters[0] = new MySqlParameter("@ID", ID);
+                parameters[1] = new MySqlParameter("@token", DBManager.Escape(prot.Token));
+                if (DataServer.Database.Count(query_token, parameters) == 1)
+                {
+                    string query_user = "SELECT * FROM user WHERE email = @mail";
+                    string query_user_count = "SELECT COUNT(*) FROM user WHERE email = @mail";
+                    MySqlParameter[] parameters_user = new MySqlParameter[1];
+                    parameters_user[0] = new MySqlParameter("@mail", prot.Email);
+                    if (DataServer.Database.Count(query_user_count, parameters_user) == 1)
+                    {
+                        try
+                        {
+                            string query_map = "SELECT ID, name, date FROM gamemap";
+                            List<Dictionary<string, string>> data =
+                                DataServer.Database.Select(query_map, new MySqlParameter[0]);
+                            return new Protocol(MessageType.Response)
+                            {
+                                Message = Formatter.ToJson(data)
+                            };
+                        }
+                        catch (Exception)
+                        {
+                            return new Protocol(MessageType.Error) {Message = "invalid request"};
+                        }
+                    }
+                    return new Protocol(MessageType.Error) {Message = "Bad request"};
+                }
+                else
+                {
+                    return new Protocol(MessageType.Error) {Message = "Bad token"};
+                }
+            }
+            catch (Exception)
+            {
+                return new Protocol(MessageType.Error) {Message = "Error"};
+            }
+        }
+        
+        public static Protocol GetMapId(Protocol prot, DataTcpClient client)
+        {
+            try
+            {
+                if (prot.Token == "")
+                {
+                    return new Protocol(MessageType.Error) {Message = "Empty token"};
+                }
+                int ID = GetIdbyToken(prot.Token);
+                string query_token = "SELECT COUNT(*) FROM gamesess WHERE ID_user = @ID AND token = @token";
+                MySqlParameter[] parameters = new MySqlParameter[2];
+                parameters[0] = new MySqlParameter("@ID", ID);
+                parameters[1] = new MySqlParameter("@token", DBManager.Escape(prot.Token));
+                if (DataServer.Database.Count(query_token, parameters) == 1)
+                {
+                    string query_user = "SELECT * FROM user WHERE email = @mail";
+                    string query_user_count = "SELECT COUNT(*) FROM user WHERE email = @mail";
+                    MySqlParameter[] parameters_user = new MySqlParameter[1];
+                    parameters_user[0] = new MySqlParameter("@mail", prot.Email);
+                    if (DataServer.Database.Count(query_user_count, parameters_user) == 1)
+                    {
+                        try
+                        {
+                            int id_map = int.Parse(prot.Message);
+                            string query_map = "SELECT ID, name, date, mapjsonzip FROM gamemap WHERE ID = @ID";
+                            MySqlParameter[] params_map = new MySqlParameter[1];
+                            params_map[0] = new MySqlParameter("@ID", id_map);
+                            List<Dictionary<string, string>> data =
+                                DataServer.Database.Select(query_map, new MySqlParameter[0]);
+                            if (data.Count != 1)
+                            {
+                                throw new Exception();
+                            }
+                            return new Protocol(MessageType.Response)
+                            {
+                                Message = Formatter.ToJson(data[0]),
+                                MApJsonZip = data[0]["mapjsonzip"]
+                            };
+                        }
+                        catch (Exception)
+                        {
+                            return new Protocol(MessageType.Error) {Message = "invalid request"};
+                        }
+                    }
+                    return new Protocol(MessageType.Error) {Message = "Bad request"};
+                }
+                else
+                {
+                    return new Protocol(MessageType.Error) {Message = "Bad token"};
+                }
+            }
+            catch (Exception)
+            {
+                return new Protocol(MessageType.Error) {Message = "Error"};
+            }
+        }
+        
+        public static Protocol SendMap(Protocol prot, DataTcpClient client)
         {
             try
             {
@@ -421,28 +672,35 @@ namespace SMNetwork.Server
                     string query_user = "SELECT COUNT(*) FROM user WHERE ID = @ID";
                     MySqlParameter[] parameters_user = new MySqlParameter[1];
                     parameters_user[0] = new MySqlParameter("@ID", ID);
-                    if (DataServer.Database.Count(query_user, parameters_user) == 1)
+                    if (DataServer.Database.Count(query_user, parameters_user) == 1 && prot.User != null)
                     {
-                        string pass = prot.Password;
-                        string newpass = prot.Message;
-                        string query_check_pass = "SELECT COUNT(*) FROM user WHERE ID = @ID AND pass = @pass";
-                        MySqlParameter[] parameters_check_pass = new MySqlParameter[2];
-                        parameters_check_pass[0] = new MySqlParameter("@ID", ID);
-                        parameters_check_pass[1] = new MySqlParameter("@pass", Hash.Sha512(pass));
-                        if (DataServer.Database.Count(query_check_pass, parameters_check_pass) == 1)
+                        try
                         {
-                            string query_update = 
-                                "UPDATE user SET pass = @pass WHERE ID = @ID";
-                            MySqlParameter[] parameters_update = new MySqlParameter[2];
-                            parameters_update[0] = new MySqlParameter("@pass", Hash.Sha512(newpass));
-                            parameters_update[1] = new MySqlParameter("@ID", ID);
-                            if (DataServer.Database.Update(query_update, parameters_update))
+                            if (prot.MApJsonZip == "" && prot.Message == "")
+                            {
+                                throw new Exception();
+                            }
+
+                            string mapname = prot.Message;
+                            string mapjsonzip = prot.MApJsonZip;
+                            string query_insert_map = "INSERT INTO gamemap(ID_user, name, mapjsonzip, date) VALUES(@ID_user, @name, @jon, NOW())";
+                            MySqlParameter[] params_map = new MySqlParameter[3];
+                            params_map[0] = new MySqlParameter("@ID_user", ID);
+                            params_map[1] = new MySqlParameter("@name", mapname);
+                            params_map[2] = new MySqlParameter("@json", mapjsonzip);
+                            if (DataServer.Database.Insert(query_insert_map, params_map))
                             {
                                 return new Protocol(MessageType.Response) {Message = "success"};
                             }
+                            else
+                            {
+                                return new Protocol(MessageType.Error) {Message = "Error"};
+                            }
+                        }
+                        catch (Exception)
+                        {
                             return new Protocol(MessageType.Error) {Message = "Server Error"};
                         }
-                        return new Protocol(MessageType.Error) {Message = "Bad password"};
                     }
                     return new Protocol(MessageType.Error) {Message = "Bad request"};
                 }
@@ -451,25 +709,31 @@ namespace SMNetwork.Server
                     return new Protocol(MessageType.Error) {Message = "Bad token"};
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new Protocol(MessageType.Error) {Message = "Error"};
             }
         }
+        
+        #endregion
+
+        #region tools
 
         private static string GenToken(int ID, string login, string email, int timestamp)
         {
             return ID.ToString() + "=+=-*" + Hash.Sha512(login + email + timestamp);
         }
-
+        
         private static bool VerifToken(string dbtoken, string authtoken)
         {
             return dbtoken == authtoken;
         }
-
+        
         private static int GetIdbyToken(string token)
         {
             return int.Parse(token.Split('=')[0]);
         }
+
+        #endregion
     }
 }
