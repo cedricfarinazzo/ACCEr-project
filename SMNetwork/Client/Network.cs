@@ -269,7 +269,7 @@ namespace SMNetwork.Client
         
         public static bool SendMap(string token, string json, string name)
         {
-            Protocol reqProtocol = new Protocol(MessageType.GetMapId)
+            Protocol reqProtocol = new Protocol(MessageType.SendMap)
             {
                 Token = token,
                 MApJsonZip = json,
@@ -278,6 +278,7 @@ namespace SMNetwork.Client
             byte[] buffer = Formatter.ToByteArray(reqProtocol);
             DataClient.Client.Client.Send(buffer, SocketFlags.None);
             Protocol receiveMessage = ReceiveMessage();
+            Console.WriteLine(receiveMessage.Message);
             if (receiveMessage.Type != MessageType.Response)
             {
                 return false;
