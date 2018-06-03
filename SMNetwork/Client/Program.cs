@@ -21,7 +21,7 @@ namespace SMNetwork.Client
             Console.WriteLine(SMClient.AskMyProfil());
             Console.WriteLine(JsonConvert.SerializeObject(SMClient.AskMapList()));
             Console.WriteLine(JsonConvert.SerializeObject(SMClient.AskMapId(0)));
-            Console.WriteLine(SMClient.SendMap("firsttest", "tftyfytfytftytf"));
+            //Console.WriteLine(SMClient.SendMap("firsttest", "tftyfytfytftytf"));
             Console.WriteLine("Logout: " + SMClient.Logout());
             
         }

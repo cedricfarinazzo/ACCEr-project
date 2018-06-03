@@ -278,7 +278,6 @@ namespace SMNetwork.Client
             byte[] buffer = Formatter.ToByteArray(reqProtocol);
             DataClient.Client.Client.Send(buffer, SocketFlags.None);
             Protocol receiveMessage = ReceiveMessage();
-            Console.WriteLine(receiveMessage.Message);
             if (receiveMessage.Type != MessageType.Response)
             {
                 return false;
