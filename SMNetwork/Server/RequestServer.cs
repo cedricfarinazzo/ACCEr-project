@@ -563,11 +563,10 @@ namespace SMNetwork.Server
                 parameters[1] = new MySqlParameter("@token", DBManager.Escape(prot.Token));
                 if (DataServer.Database.Count(query_token, parameters) == 1)
                 {
-                    string query_user = "SELECT * FROM user WHERE email = @mail";
-                    string query_user_count = "SELECT COUNT(*) FROM user WHERE email = @mail";
+                    string query_user = "SELECT COUNT(*) FROM user WHERE ID = @ID";
                     MySqlParameter[] parameters_user = new MySqlParameter[1];
-                    parameters_user[0] = new MySqlParameter("@mail", prot.Email);
-                    if (DataServer.Database.Count(query_user_count, parameters_user) == 1)
+                    parameters_user[0] = new MySqlParameter("@ID", ID);
+                    if (DataServer.Database.Count(query_user, parameters_user) == 1)
                     {
                         try
                         {
@@ -612,11 +611,10 @@ namespace SMNetwork.Server
                 parameters[1] = new MySqlParameter("@token", DBManager.Escape(prot.Token));
                 if (DataServer.Database.Count(query_token, parameters) == 1)
                 {
-                    string query_user = "SELECT * FROM user WHERE email = @mail";
-                    string query_user_count = "SELECT COUNT(*) FROM user WHERE email = @mail";
+                    string query_user = "SELECT COUNT(*) FROM user WHERE ID = @ID";
                     MySqlParameter[] parameters_user = new MySqlParameter[1];
-                    parameters_user[0] = new MySqlParameter("@mail", prot.Email);
-                    if (DataServer.Database.Count(query_user_count, parameters_user) == 1)
+                    parameters_user[0] = new MySqlParameter("@ID", ID);
+                    if (DataServer.Database.Count(query_user, parameters_user) == 1)
                     {
                         try
                         {
@@ -625,7 +623,7 @@ namespace SMNetwork.Server
                             MySqlParameter[] params_map = new MySqlParameter[1];
                             params_map[0] = new MySqlParameter("@ID", id_map);
                             List<Dictionary<string, string>> data =
-                                DataServer.Database.Select(query_map, new MySqlParameter[0]);
+                                DataServer.Database.Select(query_map, params_map);
                             if (data.Count != 1)
                             {
                                 throw new Exception();

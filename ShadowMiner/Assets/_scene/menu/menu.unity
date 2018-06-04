@@ -149,7 +149,7 @@ MonoBehaviour:
   scene3: connexion
   scene4: parametre
   scene5: Level Editor
-  scene6: 
+  scene6: MapLoader
   but1: {fileID: 2111124277}
   but2: {fileID: 2073630372}
   but3: {fileID: 2037294964}
@@ -1206,7 +1206,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PLayer Map
+  m_Text: Custom Map
 --- !u!222 &1687937566
 CanvasRenderer:
   m_ObjectHideFlags: 0

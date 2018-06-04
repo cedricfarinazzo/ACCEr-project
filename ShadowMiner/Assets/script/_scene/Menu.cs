@@ -38,7 +38,8 @@ public class Menu : MonoBehaviour {
 
     void load1()
     {
-        LOAD_SCENE(scene1);
+        SaveData.SaveData.SaveString("Loader.Next", scene1);
+        SceneManager.LoadScene("loading");
     }
     void load2()
     {
@@ -48,7 +49,8 @@ public class Menu : MonoBehaviour {
     }
     void load3()
     {
-        LOAD_SCENE(scene3);
+        SaveData.SaveData.SaveString("Loader.Next", scene3);
+        SceneManager.LoadScene("loading");
     }
     void load4()
     {
@@ -63,7 +65,8 @@ public class Menu : MonoBehaviour {
 
     void load6()
     {
-        LOAD_SCENE(scene6);
+        SaveData.SaveData.SaveString("Loader.Next", scene6);
+        SceneManager.LoadScene("loading");
     }
 
     public void LOAD_SCENE(string scene)

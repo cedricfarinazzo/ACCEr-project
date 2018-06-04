@@ -1,16 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ChangeSceneOnClickScript : MonoBehaviour {
 
 	public string _nextScene = "";
+    public Button butt;
 
-	public void Update()
+    public void Start()
+    {
+        butt.onClick.AddListener(Load);
+    }
+
+    public void Load()
 	{
-		if (Input.GetMouseButtonDown(0) || (Input.touches != null && Input.touches.Length > 0))
-		{
-            SceneManager.LoadScene(_nextScene);
-		}
+         SceneManager.LoadScene(_nextScene);
 	}
 }
