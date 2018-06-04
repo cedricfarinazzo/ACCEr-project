@@ -8,6 +8,7 @@ namespace SMProgress
     {
         public int SoloStats = 0;
         public int MultiStats = 0;
+        public string LastUpdate = DateTime.Now.ToString();
 
         public Progress()
         {
@@ -33,6 +34,7 @@ namespace SMProgress
         {
             Progress p = Progress.Load();
             p.SoloStats++;
+            p.LastUpdate = DateTime.Now.ToString();
             p.Save();
         }
 
@@ -40,6 +42,7 @@ namespace SMProgress
         {
             Progress p = Progress.Load();
             p.MultiStats++;
+            p.LastUpdate = DateTime.Now.ToString();
             p.Save();
         }
 

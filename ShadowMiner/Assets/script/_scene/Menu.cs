@@ -18,9 +18,11 @@ public class Menu : MonoBehaviour {
     protected string scene5;
     [SerializeField]
     protected string scene6;
+    [SerializeField]
+    protected string scene7;
 
     [SerializeField]
-    protected Button but1, but2, but3, but4, but5, but6, exit, website;
+    protected Button but1, but2, but3, but4, but5, but6, but7, exit, website;
 
     public void Start()
     {
@@ -33,6 +35,7 @@ public class Menu : MonoBehaviour {
         but4.onClick.AddListener(load4);
         but5.onClick.AddListener(load5);
         but6.onClick.AddListener(load6);
+        but7.onClick.AddListener(load7);
         website.onClick.AddListener(OPEN_WEBSITE);
     }
 
@@ -66,6 +69,12 @@ public class Menu : MonoBehaviour {
     void load6()
     {
         SaveData.SaveData.SaveString("Loader.Next", scene6);
+        SceneManager.LoadScene("loading");
+    }
+
+    void load7()
+    {
+        SaveData.SaveData.SaveString("Loader.Next", scene7);
         SceneManager.LoadScene("loading");
     }
 
