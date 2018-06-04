@@ -1,3 +1,3 @@
-[submodule "ShadowMiner/Assets/package/giles"]
-	path = ShadowMiner/Assets/package/giles
+[submodule "ShadowMiner/Assets/package/ACCEr-giles"]
+	path = ShadowMiner/Assets/package/ACCEr-giles
 	url = https://github.com/cedricfarinazzo/ACCEr-giles.git
