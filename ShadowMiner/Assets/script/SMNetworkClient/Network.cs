@@ -5,7 +5,6 @@ using System.Net.Sockets;
 using System.Security.Principal;
 using Newtonsoft.Json;
 using SMNetwork;
-using UnityEngine;
 
 namespace SMNetwork.Client
 {
@@ -103,7 +102,7 @@ namespace SMNetwork.Client
         
         public static bool UpdateProgress(string token, Dictionary<string, string> data)
         {
-            Protocol reqProtocol = new Protocol(MessageType.UpdateData)
+            Protocol reqProtocol = new Protocol(MessageType.UpdateProgress)
             {
                 Token = token,
                 Progress = JsonConvert.SerializeObject(data)

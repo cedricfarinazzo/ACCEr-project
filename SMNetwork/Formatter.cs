@@ -16,7 +16,7 @@ namespace SMNetwork
             }
             
             string json = JsonConvert.SerializeObject(elm);            
-            byte[] mesBytes = Encoding.Default.GetBytes(json);
+            byte[] mesBytes = Encoding.UTF8.GetBytes(json);
             return mesBytes;
         }
 
@@ -27,7 +27,7 @@ namespace SMNetwork
                 return default(T);
             }
 
-            string json = Encoding.Default.GetString(mesBytes);
+            string json = Encoding.UTF8.GetString(mesBytes);
             T obj = JsonConvert.DeserializeObject<T>(json);
             return obj;
         }
