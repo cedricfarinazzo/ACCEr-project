@@ -672,7 +672,7 @@ namespace SMNetwork.Server
                     string query_user = "SELECT COUNT(*) FROM user WHERE ID = @ID";
                     MySqlParameter[] parameters_user = new MySqlParameter[1];
                     parameters_user[0] = new MySqlParameter("@ID", ID);
-                    if (DataServer.Database.Count(query_user, parameters_user) == 1 && prot.User != null)
+                    if (DataServer.Database.Count(query_user, parameters_user) == 1)
                     {
                         try
                         {
@@ -683,7 +683,7 @@ namespace SMNetwork.Server
 
                             string mapname = prot.Message;
                             string mapjsonzip = prot.MApJsonZip;
-                            string query_insert_map = "INSERT INTO gamemap(ID_user, name, mapjsonzip, date) VALUES(@ID_user, @name, @jon, NOW())";
+                            string query_insert_map = "INSERT INTO gamemap(ID_user, name, mapjsonzip, date) VALUES(@ID_user, @name, @json, NOW())";
                             MySqlParameter[] params_map = new MySqlParameter[3];
                             params_map[0] = new MySqlParameter("@ID_user", ID);
                             params_map[1] = new MySqlParameter("@name", mapname);

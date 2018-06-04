@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Security.Principal;
+using Newtonsoft.Json;
 using SMNetwork;
 
 namespace SMNetwork.Client
@@ -82,7 +83,7 @@ namespace SMNetwork.Client
             return receiveMessage.Token;
         }
         
-        public static string AskProgress(string token)
+        public static Dictionary<string, string> AskProgress(string token)
         {
             Protocol reqProtocol = new Protocol(MessageType.AskProgress)
             {
@@ -96,7 +97,25 @@ namespace SMNetwork.Client
                 return null;
             }
 
-            return receiveMessage.Progress;
+            return JsonConvert.DeserializeObject<Dictionary<string, string>>(receiveMessage.Progress);
+        }
+        
+        public static bool UpdateProgress(string token, Dictionary<string, string> data)
+        {
+            Protocol reqProtocol = new Protocol(MessageType.UpdateData)
+            {
+                Token = token,
+                Progress = JsonConvert.SerializeObject(data)
+            };
+            byte[] buffer = Formatter.ToByteArray(reqProtocol);
+            DataClient.Client.Client.Send(buffer, SocketFlags.None);
+            Protocol receiveMessage = ReceiveMessage();
+            if (receiveMessage.Type != MessageType.Response)
+            {
+                return false;
+            }
+
+            return true;
         }
         
         public static DataUser AskProfil(string email, string token)
@@ -210,6 +229,61 @@ namespace SMNetwork.Client
             }
 
             return receiveMessage.Message == "success";
+        }
+        
+        public static List<Dictionary<string, string>> AskMapList(string token)
+        {
+            Protocol reqProtocol = new Protocol(MessageType.GetMapList)
+            {
+                Token = token
+            };
+            byte[] buffer = Formatter.ToByteArray(reqProtocol);
+            DataClient.Client.Client.Send(buffer, SocketFlags.None);
+            Protocol receiveMessage = ReceiveMessage();
+            if (receiveMessage.Type != MessageType.Response)
+            {
+                return new List<Dictionary<string, string>>();
+            }
+
+            return JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(receiveMessage.Progress);
+        }
+        
+        public static Dictionary<string, string> AskMapId(string token, int id)
+        {
+            Protocol reqProtocol = new Protocol(MessageType.GetMapId)
+            {
+                Token = token,
+                Message = id.ToString()
+            };
+            byte[] buffer = Formatter.ToByteArray(reqProtocol);
+            DataClient.Client.Client.Send(buffer, SocketFlags.None);
+            Protocol receiveMessage = ReceiveMessage();
+            if (receiveMessage.Type != MessageType.Response)
+            {
+                return new Dictionary<string, string>();
+            }
+            Dictionary<string, string> data = JsonConvert.DeserializeObject<Dictionary<string, string>>(receiveMessage.Progress);
+            data.Add("mapjsonzip", receiveMessage.MApJsonZip);
+            return data;
+        }
+        
+        public static bool SendMap(string token, string json, string name)
+        {
+            Protocol reqProtocol = new Protocol(MessageType.SendMap)
+            {
+                Token = token,
+                MApJsonZip = json,
+                Message = name
+            };
+            byte[] buffer = Formatter.ToByteArray(reqProtocol);
+            DataClient.Client.Client.Send(buffer, SocketFlags.None);
+            Protocol receiveMessage = ReceiveMessage();
+            if (receiveMessage.Type != MessageType.Response)
+            {
+                return false;
+            }
+
+            return true;
         }
         
     }

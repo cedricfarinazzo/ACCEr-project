@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Net;
 using System.Runtime.Versioning;
@@ -20,7 +21,7 @@ namespace SMNetwork.Client
                 Network.Connect("88.139.79.108" , port);
             }
         }
-
+        
         public bool Create(string login, string firstname, string lastname, string email, string password, string description = "")
         {
             try
@@ -68,11 +69,11 @@ namespace SMNetwork.Client
             }
         }
 
-        public string AskProgress()
+        public Dictionary<string, string> AskProgress()
         {
             try
             {
-                string result = Network.AskProgress(DataClient.Token);
+                Dictionary<string, string> result = Network.AskProgress(DataClient.Token);
                 if (result == null)
                 {
                     throw new Exception();
@@ -82,7 +83,34 @@ namespace SMNetwork.Client
             }
             catch (Exception)
             {
-                return null;
+                Dictionary<string, string> data = new Dictionary<string, string>();
+                data.Add("SoloStats", "0");
+                data.Add("MultiStats", "0");
+                data.Add("LastTime", DateTime.Now.ToString());
+                return data;
+            }
+        }
+        
+        public bool UpdateProgress(int solo, int multi)
+        {
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            data.Add("SoloStats", solo.ToString());
+            data.Add("MultiStats", multi.ToString());
+            data.Add("LastTime", DateTime.Now.ToString());
+            
+            try
+            {
+                Dictionary<string, string> result = Network.AskProgress(DataClient.Token);
+                if (result == null)
+                {
+                    throw new Exception();
+                }
+
+                return Network.UpdateProgress(DataClient.Token, data);
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 
@@ -160,7 +188,7 @@ namespace SMNetwork.Client
             }
         }
 
-        public bool UpadatePassword(string oldpass, string newpass)
+        public bool UpdatePassword(string oldpass, string newpass)
         {
             try
             {
@@ -177,6 +205,42 @@ namespace SMNetwork.Client
             bool result = Network.Logout(DataClient.Token);
             DataClient.Token = "";
             return result;
+        }
+
+        public List<Dictionary<string, string>> AskMapList()
+        {
+            try
+            {
+                return Network.AskMapList(DataClient.Token);
+            }
+            catch (Exception)
+            {
+                return new List<Dictionary<string, string>>();
+            }
+        }
+        
+        public Dictionary<string, string> AskMapId(int id)
+        {
+            try
+            {
+                return Network.AskMapId(DataClient.Token, id);
+            }
+            catch (Exception)
+            {
+                return new Dictionary<string, string>();
+            }
+        }
+        
+        public bool SendMap(string name, string json)
+        {
+            try
+            {
+                return Network.SendMap(DataClient.Token, json, name);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

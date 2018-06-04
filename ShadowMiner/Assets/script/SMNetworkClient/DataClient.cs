@@ -1,11 +1,9 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using SMNetwork;
 
 namespace SMNetwork.Client
 {
-    [Serializable]
     public static class DataClient
     {
         public static string Address { get; set; }

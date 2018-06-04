@@ -121,7 +121,7 @@ public class myaccount : MonoBehaviour {
 		    && confpassword.text != ""
 		    && newpassword.text == confpassword.text)
 		{
-			Debug.Log(SMClient.UpadatePassword(oldpassword.text, newpassword.text));
+			Debug.Log(SMClient.UpdatePassword(oldpassword.text, newpassword.text));
 		}
 		return;
 	}

@@ -83,78 +83,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_20.unity
     guid: ebe55bfcdef2b134f96ae67deddef4c3
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_21.unity
-    guid: 16aeb51f9064772438432f910bc36b28
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_22.unity
-    guid: e5cb79b3d1aad5a41a27641cf0c45dd6
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_23.unity
-    guid: ea661348fb5236b4ca93bfac6bd7d6db
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_24.unity
-    guid: a179dc906e6a5b043a74f7e780add7a6
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_25.unity
-    guid: 64fa33e9b53e1d3469b867887627c7f0
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_26.unity
-    guid: b4dee8451a6b2934290064d4f7880ea1
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_27.unity
-    guid: bb1bdb664e35624419a33c5ff606e4da
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_28.unity
-    guid: 34266c72a4fdafb44b73f6bb368ee9b6
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_29.unity
-    guid: 76ee7693e091e8c4992393cb04fc01b8
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_30.unity
-    guid: 5915aa22e1a2ce642a7ab07401ab19de
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_31.unity
-    guid: c650d62be8ce6b646a97b8d4cf16a643
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_32.unity
-    guid: 2bf50e1c4096e014a99905c4d050dc83
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_33.unity
-    guid: 54a083790afcc544691db8737ce51d10
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_34.unity
-    guid: 4bb42915822099d43ba1da987a1cf6c3
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_35.unity
-    guid: 981eca1ef00dd7948ac00a9c3728750e
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_36.unity
-    guid: fc51749816a26094eba9a81473350984
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_37.unity
-    guid: e72ea636d479b1a44ba8e9559f12f2cd
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_38.unity
-    guid: a567e5dfc5875c34d90535b71c2c24d1
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_39.unity
-    guid: c68c24e3bd1266f498b45ebf8937f427
-  - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_40.unity
-    guid: 00a92eba1b5a6794ba0e5cf55eb56401
   - enabled: 1
     path: Assets/_scene/multi/lobby.unity
     guid: 5f21fb3789c0aeb4ebe2e538b704bd16
   - enabled: 1
     path: Assets/_scene/multi/level/Multi_room_1.unity
     guid: bc256c175709c3f498ad289d6db00ce5
-  - enabled: 0
-    path: Assets/_scene/building/build_scene_cedric.unity
-    guid: 8beaafcd7185c3f43a08c7c1832de61f
   - enabled: 1
     path: Assets/_scene/solo/niveaux_solo.unity
     guid: 53d38d55c5925b547bed58d0b8edf47f
   - enabled: 1
     path: Assets/_scene/account/failedNetwork.unity
     guid: ae51679e7af2f43499d1391f01b6a4ef
+  - enabled: 1
+    path: Assets/package/giles/Assets/GILES/Scenes/Level Editor.unity
+    guid: b0171d1d9fa113e4aa973deb5506ce6b
