@@ -6,7 +6,7 @@ public class OpenDoor : MonoBehaviour {
 
 	protected KeyCode touche;
 
-    protected new Animation animation;
+    protected Animation animation;
     protected GameObject _g;
     protected bool open = false;
 
