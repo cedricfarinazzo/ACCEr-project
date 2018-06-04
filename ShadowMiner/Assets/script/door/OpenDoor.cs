@@ -6,11 +6,11 @@ public class OpenDoor : MonoBehaviour {
 
 	protected KeyCode touche;
 
-    protected Animation animation;
+    protected new Animation animation;
     protected GameObject _g;
     protected bool open = false;
 
-    private int timeout = 0;
+    protected int timeout = 0;
 
 	// Use this for initialization
 	void Start () {

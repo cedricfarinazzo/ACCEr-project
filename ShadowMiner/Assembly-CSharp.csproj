@@ -301,6 +301,8 @@
      <Compile Include="Assets\script\account\inscription.cs" />
      <Compile Include="Assets\script\account\logout.cs" />
      <Compile Include="Assets\script\account\myaccount.cs" />
+     <Compile Include="Assets\script\custommap\LoadFromNetwork.cs" />
+     <Compile Include="Assets\script\custommap\LoadOnClick.cs" />
      <Compile Include="Assets\script\DisableMouseCursor.cs" />
      <Compile Include="Assets\script\door\keydoorscript.cs" />
      <Compile Include="Assets\script\door\OpenDoor.cs" />
@@ -340,8 +342,6 @@
      <Compile Include="Assets\script\SMNetworkClient\Network.cs" />
      <Compile Include="Assets\script\SMNetworkClient\Protocol.cs" />
      <Compile Include="Assets\script\SMProgress\Progress.cs" />
-     <Compile Include="Assets\script\SMProgress\ProgressMulti.cs" />
-     <Compile Include="Assets\script\SMProgress\ProgressSolo.cs" />
      <Compile Include="Assets\script\Solo\choixniveauxsolo.cs" />
      <Compile Include="Assets\script\sound\UpdateVolume.cs" />
      <Compile Include="Assets\script\trap\dégats.cs" />
