@@ -28,7 +28,10 @@ public class NetworkCharacter : Photon.MonoBehaviour {
             transform.position = Vector3.Lerp(transform.position, trueLoc, Time.deltaTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, trueRot, Time.deltaTime);
         }
-        Debug.Log(PhotonNetwork.room.PlayerCount);
+        else
+        {
+            gameObject.GetComponentInChildren<TextMesh>().text = SaveData.SaveData.GetString("Photon.playername");
+        }
 	    if (PhotonNetwork.room.PlayerCount == 3 && !onGame)
 	    {
 	        onGame = true;
@@ -43,6 +46,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
             if (!pv.isMine)
             {
                 this.trueLoc = (Vector3)stream.ReceiveNext();
+                gameObject.GetComponentInChildren<TextMesh>().text = (string)stream.ReceiveNext();
             }
         }
         else
@@ -50,6 +54,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
             if (pv.isMine)
             {
                 stream.SendNext(transform.position);
+                stream.SendNext(SaveData.SaveData.GetString("Photon.playername"));
             }
         }
     }

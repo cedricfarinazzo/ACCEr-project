@@ -20,18 +20,28 @@ public class PreLobbyManager : Photon.MonoBehaviour
 		try
 		{
 			try
-			{SMClient = new Client();}
-			catch(Exception)
-			{Debug.Log ("Failed to join server");
-				SceneManager.LoadScene ("failedNetwork");}
-			SMNetwork.Client.DataClient.Email = SaveData.SaveData.GetString("DataClient.Email");
-			SMNetwork.Client.DataClient.Token = SaveData.SaveData.GetString("DataClient.Token");
-			SMNetwork.Client.DataClient.User = SaveData.SaveData.GetObject<SMNetwork.DataUser>("DataClient.User");
-			if (SMClient.AskMyProfil() == null)
 			{
-				SceneManager.LoadScene("connexion");
-				return;
-			}
+                SMClient = new Client();
+                SMNetwork.Client.DataClient.Email = SaveData.SaveData.GetString("DataClient.Email");
+                SMNetwork.Client.DataClient.Token = SaveData.SaveData.GetString("DataClient.Token");
+                SMNetwork.Client.DataClient.User = SaveData.SaveData.GetObject<SMNetwork.DataUser>("DataClient.User");
+                var data = SMClient.AskMyProfil();
+                if (data == null)
+                {
+                    SceneManager.LoadScene("connexion");
+                    return;
+                }
+                else
+                {
+                    SaveData.SaveData.SaveString("Photon.playername", data.Login);
+                }
+            }
+			catch(Exception)
+			{
+                Debug.Log ("Failed to join server");
+				SceneManager.LoadScene ("failedNetwork");
+            }
+
 			if (!PhotonNetwork.connectedAndReady)
 			{
 				PhotonNetwork.ConnectUsingSettings(param.Version);
