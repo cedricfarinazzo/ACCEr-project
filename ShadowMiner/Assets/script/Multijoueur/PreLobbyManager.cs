@@ -47,8 +47,9 @@ public class PreLobbyManager : Photon.MonoBehaviour
 				PhotonNetwork.ConnectUsingSettings(param.Version);
 				PhotonNetwork.offlineMode = false;
 			}
+            PhotonNetwork.playerName = SaveData.SaveData.GetString("Photon.playername");
 
-			string sceneName = "";
+            string sceneName = "";
 			foreach (var room in PhotonNetwork.GetRoomList())
 			{
 				if (room.IsOpen && room.PlayerCount != room.MaxPlayers)

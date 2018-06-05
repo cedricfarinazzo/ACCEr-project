@@ -14,6 +14,10 @@ public class LobbyManager : Photon.MonoBehaviour {
     protected Text countText;
     [SerializeField]
     protected Text RoomNameText;
+    [SerializeField]
+    protected Text Title;
+    [SerializeField]
+    protected Text List;
 
     [SerializeField] protected GameObject gameManager;
 
@@ -39,10 +43,6 @@ public class LobbyManager : Photon.MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        /*
-        try
-        {*/
-
 	    try
 	    {
 	        if (this.joined)
@@ -52,26 +52,26 @@ public class LobbyManager : Photon.MonoBehaviour {
 	        }
             if (PhotonNetwork.room.PlayerCount == 3)
             {
+                if (PhotonNetwork.isMasterClient)
+                {
+                    PhotonNetwork.room.IsOpen = false;
+                }
                 MoveToGame();
-                this.gameObject.SetActive(false);
+                Title.text = "Multijoueur Game";
             }
+            string playerslist = "PLayer List : \n" + SaveData.SaveData.GetString("Photon.playername") + "\n";
+            var players = PhotonNetwork.otherPlayers;
+            Debug.Log(PhotonNetwork.room.PlayerCount);
+            foreach(var player in players)
+            {
+                playerslist += player.NickName + "\n";
+            }
+            List.text = playerslist;
 	    }
 	    catch (Exception e)
 	    {
             
 	    }
-
-        /*}
-        catch (UnityException)
-        {
-            Debug.Log("failed to join server");
-            SceneManager.LoadScene("failedNetwork");
-        }
-        catch (Exception)
-        {
-            Debug.Log("failed to join server");
-            SceneManager.LoadScene("failedNetwork");
-        }*/
 	}
 
     void OnJoinedLobby()
