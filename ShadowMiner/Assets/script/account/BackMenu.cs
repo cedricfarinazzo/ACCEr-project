@@ -15,11 +15,6 @@ public class BackMenu : MonoBehaviour {
         Cursor.lockState = CursorLockMode.None;
         Back.onClick.AddListener(BackToMenu);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void BackToMenu()
     {

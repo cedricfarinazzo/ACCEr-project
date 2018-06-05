@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene1: niveaux_solo
-  scene2: lobby
+  scene2: multimenu
   scene3: connexion
   scene4: parametre
   scene5: Level Editor

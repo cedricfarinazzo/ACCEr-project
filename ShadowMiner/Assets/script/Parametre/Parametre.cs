@@ -38,7 +38,7 @@ namespace SMParametre
             new int[2] {1680, 1050},
         };
 
-	    public string Version = "0.2";
+	    public readonly string Version = "0.3";
         public Dictionary<string, KeyCode> Key = new Dictionary<string, KeyCode>()
         {
             { "MoveUp", KeyCode.Z},

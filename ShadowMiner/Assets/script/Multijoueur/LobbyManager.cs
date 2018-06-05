@@ -76,7 +76,8 @@ public class LobbyManager : Photon.MonoBehaviour {
 
     void OnJoinedLobby()
     {
-        PhotonNetwork.JoinRandomRoom();
+        //PhotonNetwork.JoinRandomRoom();
+        JoinLobby();
     }
 
     void JoinLobby()
@@ -87,9 +88,17 @@ public class LobbyManager : Photon.MonoBehaviour {
             IsVisible = true,
             MaxPlayers = 3
         };
-        System.Random tools = new System.Random();
-        string random = tools.Next().ToString().Substring(0, 2);
-        PhotonNetwork.JoinOrCreateRoom(SceneManager.GetActiveScene().name+"=="+random, opt, TypedLobby.Default);
+        string roomname = SaveData.SaveData.GetString("Multi.mode");
+        try
+        {
+            PhotonNetwork.JoinOrCreateRoom(roomname, opt, TypedLobby.Default);
+        }
+        catch (Exception)
+        {
+            //full or error
+            SceneManager.LoadScene("joinroomerror");
+        }
+        
     }
 
     private void MoveToGame()
@@ -122,5 +131,6 @@ public class LobbyManager : Photon.MonoBehaviour {
         j.GetComponentInChildren<AudioListener>().enabled = true;
         this.joined = true;
         PhotonPlayer = j;
+        SaveData.SaveData.DeleteKey("Multi.mode");
     }
 }
