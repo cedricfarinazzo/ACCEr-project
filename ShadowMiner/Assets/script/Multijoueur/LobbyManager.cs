@@ -29,7 +29,7 @@ public class LobbyManager : Photon.MonoBehaviour {
             PhotonNetwork.ConnectUsingSettings(param.Version);
             PhotonNetwork.offlineMode = false;
         }
-        PhotonNetwork.player.name = 
+        PhotonNetwork.playerName = 
             SaveData.SaveData.GetString("User.login") == ""
                 ? "Bob" :
                 SaveData.SaveData.GetString("User.login");

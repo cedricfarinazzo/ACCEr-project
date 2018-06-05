@@ -1,30 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-[Serializable]
-public class DisplayName : Photon.MonoBehaviour {
+public class DisplayName : MonoBehaviour {
 
-    [NonSerialized]
     private bool enabled = true;
-    public static string Name = "Bob";
 
     // Use this for initialization
     void Start () {
-        if (photonView.isMine)
-        {
-            Name = SaveData.SaveData.GetString("User.login") == "" 
-                ? "Bob" : 
-                SaveData.SaveData.GetString("User.login");
-        }
-        UpdateLogin();
-	}
 
-    public void UpdateLogin()
-    {
-        gameObject.GetComponent<TextMesh>().text = Name;
-    }
+	}
 
     void OnBecameVisible()
     {
@@ -51,17 +36,4 @@ public class DisplayName : Photon.MonoBehaviour {
             }
         }
 	}
-
-    
-    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.isWriting)
-        {
-            stream.SendNext(Name);
-        }
-        else
-        {
-            Name = (string)stream.ReceiveNext();
-        }
-    }
 }
