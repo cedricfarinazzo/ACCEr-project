@@ -16,11 +16,21 @@ namespace SMNetwork.Client
             DataClient.Initialize(address, port);
             try
             {
-                DataClient.Client.Client.Connect(DataClient.Address, DataClient.Port);
+                var result = DataClient.Client.Client.BeginConnect(DataClient.Address, DataClient.Port, null, null );
+                bool success = result.AsyncWaitHandle.WaitOne(new TimeSpan(0,0,0,0,750), true);
+                if (!success)
+                {
+                    throw new Exception();
+                }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                DataClient.Client.Client.Connect(DataClient.IpAddressEntry.AddressList, port);
+                var result = DataClient.Client.Client.BeginConnect(DataClient.IpAddressEntry.AddressList, port, null, null);
+                bool success = result.AsyncWaitHandle.WaitOne(new TimeSpan(0,0,0,0,750), true);
+                if (!success)
+                {
+                    throw new Exception();
+                }
             }
         }
         

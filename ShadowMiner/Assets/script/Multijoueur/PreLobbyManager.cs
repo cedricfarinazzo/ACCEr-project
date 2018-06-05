@@ -17,17 +17,14 @@ public class PreLobbyManager : Photon.MonoBehaviour
 	// Use this for initialization
 	void Start () {
 		Parametre param = SMParametre.Parametre.Load();
-		try
-		{
-			try
-			{SMClient = new Client();}
-			catch(Exception)
-			{Debug.Log ("Failed to join server");
-				SceneManager.LoadScene ("failedNetwork");}
-			SMNetwork.Client.DataClient.Email = SaveData.SaveData.GetString("DataClient.Email");
+		/*try
+		{*/
+            SMClient = new Client();
+            SMNetwork.Client.DataClient.Email = SaveData.SaveData.GetString("DataClient.Email");
 			SMNetwork.Client.DataClient.Token = SaveData.SaveData.GetString("DataClient.Token");
 			SMNetwork.Client.DataClient.User = SaveData.SaveData.GetObject<SMNetwork.DataUser>("DataClient.User");
             var data = SMClient.AskMyProfil();
+Debug.Log(data);
             if (data == null)
 			{
 				SceneManager.LoadScene("connexion");
@@ -61,11 +58,11 @@ public class PreLobbyManager : Photon.MonoBehaviour
 			}
 			SaveData.SaveData.SaveString("Loader.Next", sceneName);
 			SceneManager.LoadScene("loading");
-		}
+		/*}
 		catch (Exception)
 		{
 			Debug.Log("failed to join server: No network");
 			SceneManager.LoadScene("failedNetwork");
-		}
+		}*/
 	}
 }

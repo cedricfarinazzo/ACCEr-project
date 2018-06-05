@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using SMParametre;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,9 +13,10 @@ public class NetworkManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Debug.Log("Start server");
+        Parametre param = SMParametre.Parametre.Load();
         if (!PhotonNetwork.connected)
         {
-            PhotonNetwork.ConnectUsingSettings("0.1");
+            PhotonNetwork.ConnectUsingSettings(param.Version);
             PhotonNetwork.offlineMode = false;
         }
        

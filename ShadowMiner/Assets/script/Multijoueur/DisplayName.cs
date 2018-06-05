@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[SerializeField]
 public class DisplayName : Photon.MonoBehaviour {
 
-    private bool enabled;
+    private bool enabled = true;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +17,17 @@ public class DisplayName : Photon.MonoBehaviour {
             gameObject.GetComponent<TextMesh>().text = login;
         }
 	}
+
+    public void UpdateLogin()
+    {
+        if (photonView.isMine)
+        {
+            string login = SaveData.SaveData.GetString("User.login") == ""
+                ? "Bob" :
+                SaveData.SaveData.GetString("User.login");
+            gameObject.GetComponent<TextMesh>().text = login;
+        }
+    }
 
     void OnBecameVisible()
     {

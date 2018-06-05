@@ -56,7 +56,7 @@ public class LobbyManager : Photon.MonoBehaviour {
                 this.gameObject.SetActive(false);
             }
 	    }
-	    catch (Exception e)
+	    catch (Exception)
 	    {
             
 	    }
