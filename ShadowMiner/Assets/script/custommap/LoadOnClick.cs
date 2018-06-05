@@ -5,6 +5,7 @@ using SMNetwork;
 using SMNetwork.Client;
 using GILES;
 using GILES.Example;
+using System;
 
 public class LoadOnClick : MonoBehaviour {
 
@@ -15,8 +16,14 @@ public class LoadOnClick : MonoBehaviour {
         SMNetwork.Client.DataClient.Email = SaveData.SaveData.GetString("DataClient.Email");
         SMNetwork.Client.DataClient.Token = SaveData.SaveData.GetString("DataClient.Token");
         SMNetwork.Client.DataClient.User = SaveData.SaveData.GetObject<SMNetwork.DataUser>("DataClient.User");
-        string json = smClient.AskMapId(id)["mapjsonzip"];
-        Debug.Log(json);
-        pb_SceneLoader.LoadSceneModeFromJson(json);
+        try
+        {
+            string json = smClient.AskMapId(id)["mapjsonzip"];
+            Debug.Log(json);
+            pb_SceneLoader.LoadSceneModeFromJson(json);
+        }
+        catch (Exception)
+        { }
+        
     }
 }
