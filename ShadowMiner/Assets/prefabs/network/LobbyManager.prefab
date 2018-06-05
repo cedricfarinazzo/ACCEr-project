@@ -138,9 +138,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e0b98c17525b940946022f301cc622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1844643854361432, guid: dc68ec145855eaa499b2de02bcdebc00, type: 2}
+  player: {fileID: 1399729689718644, guid: 29436c3eb3af489409c5eb076809e905, type: 2}
   countText: {fileID: 114791290408144752}
   RoomNameText: {fileID: 114690207938468480}
+  Title: {fileID: 0}
+  List: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!114 &114113706317507194
 MonoBehaviour:
   m_ObjectHideFlags: 1

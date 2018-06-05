@@ -19,6 +19,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
     void Start () {
         this.pv = GetComponent<PhotonView>();
         _photonId = PhotonNetwork.room.PlayerCount - 1;
+        Debug.Log(SaveData.SaveData.GetString("Photon.playername"));
     }
 	
 	// Update is called once per frame
@@ -28,7 +29,6 @@ public class NetworkCharacter : Photon.MonoBehaviour {
             transform.position = Vector3.Lerp(transform.position, trueLoc, Time.deltaTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, trueRot, Time.deltaTime);
         }
-        Debug.Log(PhotonNetwork.room.PlayerCount);
 	    if (PhotonNetwork.room.PlayerCount == 3 && !onGame)
 	    {
 	        onGame = true;
@@ -40,14 +40,14 @@ public class NetworkCharacter : Photon.MonoBehaviour {
     {
         if (stream.isReading)
         {
-            if (!pv.isMine)
+            if (!photonView.isMine)
             {
                 this.trueLoc = (Vector3)stream.ReceiveNext();
             }
         }
         else
         {
-            if (pv.isMine)
+            if (photonView.isMine)
             {
                 stream.SendNext(transform.position);
             }
