@@ -38,7 +38,7 @@ public class DisplayName : Photon.MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        gameObject.SetActive(enabled);
+        gameObject.GetComponent<MeshRenderer>().enabled = enabled;
         if (enabled)
         {
             Camera[] list = Camera.allCameras;
@@ -47,10 +47,12 @@ public class DisplayName : Photon.MonoBehaviour {
                 Vector3 v = cam.transform.position - transform.position;
                 v.x = v.z = 0.0f;
                 transform.LookAt(cam.transform.position - v);
+                transform.Rotate(0, 180, 0);
             }
         }
 	}
 
+    
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.isWriting)
