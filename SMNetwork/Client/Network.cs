@@ -244,8 +244,7 @@ namespace SMNetwork.Client
             {
                 return new List<Dictionary<string, string>>();
             }
-
-            return JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(receiveMessage.Progress);
+            return JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(receiveMessage.Message);
         }
         
         public static Dictionary<string, string> AskMapId(string token, int id)
@@ -262,8 +261,8 @@ namespace SMNetwork.Client
             {
                 return new Dictionary<string, string>();
             }
-            Dictionary<string, string> data = JsonConvert.DeserializeObject<Dictionary<string, string>>(receiveMessage.Progress);
-            data.Add("mapjsonzip", receiveMessage.MApJsonZip);
+            Dictionary<string, string> data = JsonConvert.DeserializeObject<Dictionary<string, string>>(receiveMessage.Message);
+            //data.Add("mapjsonzip", receiveMessage.MApJsonZip);
             return data;
         }
         

@@ -10,7 +10,7 @@ public class OpenDoor : MonoBehaviour {
     protected GameObject _g;
     protected bool open = false;
 
-    private int timeout = 0;
+    protected int timeout = 0;
 
 	// Use this for initialization
 	void Start () {

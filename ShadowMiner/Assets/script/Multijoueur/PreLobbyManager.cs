@@ -27,11 +27,16 @@ public class PreLobbyManager : Photon.MonoBehaviour
 			SMNetwork.Client.DataClient.Email = SaveData.SaveData.GetString("DataClient.Email");
 			SMNetwork.Client.DataClient.Token = SaveData.SaveData.GetString("DataClient.Token");
 			SMNetwork.Client.DataClient.User = SaveData.SaveData.GetObject<SMNetwork.DataUser>("DataClient.User");
-			if (SMClient.AskMyProfil() == null)
+            var data = SMClient.AskMyProfil();
+            if (data == null)
 			{
 				SceneManager.LoadScene("connexion");
 				return;
 			}
+            else
+            {
+                SaveData.SaveData.SaveString("User.login", data.Login);
+            }
 			if (!PhotonNetwork.connectedAndReady)
 			{
 				PhotonNetwork.ConnectUsingSettings(param.Version);

@@ -24,6 +24,24 @@ EditorBuildSettings:
     path: Assets/_scene/account/profilplayer.unity
     guid: 0d5760145dcb9684184420b0a087c67c
   - enabled: 1
+    path: Assets/_scene/account/progressplayer.unity
+    guid: 787c8c301d1c85d42bf08bc2ef7a2a81
+  - enabled: 1
+    path: Assets/_scene/account/failedNetwork.unity
+    guid: ae51679e7af2f43499d1391f01b6a4ef
+  - enabled: 1
+    path: Assets/package/ACCEr-giles/Assets/GILES/Scenes/Level Editor.unity
+    guid: b0171d1d9fa113e4aa973deb5506ce6b
+  - enabled: 1
+    path: Assets/package/ACCEr-giles/Assets/GILES/Scenes/Empty Scene.unity
+    guid: e0421fea30c15da478141928e734e31c
+  - enabled: 1
+    path: Assets/_scene/CustomMap/MapLoader.unity
+    guid: dbd3a647cd2b5ba49b32cf316ee04c1e
+  - enabled: 1
+    path: Assets/_scene/solo/niveaux_solo.unity
+    guid: 53d38d55c5925b547bed58d0b8edf47f
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_1.unity
     guid: 762ce4654478dbc42ab2efcddc6f4066
   - enabled: 1
@@ -89,12 +107,3 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_scene/multi/level/Multi_room_1.unity
     guid: bc256c175709c3f498ad289d6db00ce5
-  - enabled: 1
-    path: Assets/_scene/solo/niveaux_solo.unity
-    guid: 53d38d55c5925b547bed58d0b8edf47f
-  - enabled: 1
-    path: Assets/_scene/account/failedNetwork.unity
-    guid: ae51679e7af2f43499d1391f01b6a4ef
-  - enabled: 1
-    path: Assets/package/giles/Assets/GILES/Scenes/Level Editor.unity
-    guid: b0171d1d9fa113e4aa973deb5506ce6b

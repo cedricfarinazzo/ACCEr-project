@@ -1,65 +1,50 @@
 ﻿using System;
+using SaveData;
 
 namespace SMProgress
 {
     [Serializable]
     public class Progress
     {
-
-        private ProgressMulti multi;
-        private ProgressSolo solo;
-
-        public ProgressMulti Multi
-        {
-            get
-            {
-                return multi;
-            }
-
-            set
-            {
-                multi = value;
-            }
-        }
-
-        public ProgressSolo Solo
-        {
-            get
-            {
-                return solo;
-            }
-
-            set
-            {
-                solo = value;
-            }
-        }
+        public int SoloStats = 0;
+        public int MultiStats = 0;
+        public string LastUpdate = DateTime.Now.ToString();
 
         public Progress()
         {
-            solo = new ProgressSolo();
-            multi = new ProgressMulti();
+
         }
 
-        public override string ToString()
+        public static Progress Load()
         {
-            return Solo.ToString() + " " + Multi.ToString();
-        }
-
-        public static Progress Parse(string text)
-        {
-            try
-            {
-                string[] data = text.Split(' ');
-                Progress p = new Progress();
-                p.Solo = ProgressSolo.Parse(data[0]);
-                p.Multi = ProgressMulti.Parse(data[1]);
-                return p;
-            }
-            catch(Exception)
+            Progress p = SaveData.SaveData.GetObject<Progress>("Progress");
+            if (p == null)
             {
                 return new Progress();
             }
+            return p;
         }
+
+        public void Save()
+        {
+            SaveData.SaveData.SaveObject("Progress", this);
+        }
+
+        public static void IncrementSolo()
+        {
+            Progress p = Progress.Load();
+            p.SoloStats++;
+            p.LastUpdate = DateTime.Now.ToString();
+            p.Save();
+        }
+
+        public static void IncrementMulti()
+        {
+            Progress p = Progress.Load();
+            p.MultiStats++;
+            p.LastUpdate = DateTime.Now.ToString();
+            p.Save();
+        }
+
     }
 }
