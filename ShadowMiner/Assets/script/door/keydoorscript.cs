@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class keydoorscript : OpenDoor {
 
-	protected bool havekey = false;
+	protected bool havekey = true;
 	protected GameObject _key;
 
+	// Use this for initialization
+	void Start () {
+		SMParametre.Parametre param = SMParametre.Parametre.Load ();
+		touche = param.Key ["Interact"];
+		this._g = this.gameObject;
+		this.animation = this.gameObject.GetComponentInChildren<Animation>();
+	}
+
+	// Update is called once per frame
 	void Update()
 	{
 		if (this.timeout > 0)
 		{
 			this.timeout--;
 		}
-		if (Input.GetKeyDown (this.touche) && _key.gameObject.tag == "Player") {
-			havekey = true;
-		}
-
 	}
 
 	public new void OnTriggerStay(Collider other)
