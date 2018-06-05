@@ -1,9 +1,8 @@
-﻿using SMParametre;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NetworkManager : Photon.MonoBehaviour {
+public class NetworkManager : MonoBehaviour {
 
     [SerializeField]
     GameObject player;
@@ -13,10 +12,9 @@ public class NetworkManager : Photon.MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Debug.Log("Start server");
-        Parametre param = SMParametre.Parametre.Load();
         if (!PhotonNetwork.connected)
         {
-            PhotonNetwork.ConnectUsingSettings(param.Version);
+            PhotonNetwork.ConnectUsingSettings("0.1");
             PhotonNetwork.offlineMode = false;
         }
        
