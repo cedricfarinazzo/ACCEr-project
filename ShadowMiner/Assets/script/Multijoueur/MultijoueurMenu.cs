@@ -97,11 +97,19 @@ public class MultijoueurMenu : Photon.MonoBehaviour {
             for (int i = 0; i < gameList.Length; i++)
             {
                 var room = gameList[i];
-                GameObject newItem = Instantiate(MapContainer) as GameObject;
-                newItem.name = room.name;
-                newItem.GetComponentInChildren<Text>().text = "Room name : " + room.Name + " with " + room.PlayerCount.ToString() + " / 3"; ;
-                newItem.transform.SetParent(MapContainerParent.transform, false);
-                containerlist.Add(newItem);
+                if (room.IsOpen && room.PlayerCount < 3)
+                {
+                    GameObject newItem = Instantiate(MapContainer) as GameObject;
+                    newItem.name = room.Name;
+                    newItem.GetComponentInChildren<Text>().text = "Room name : " + room.Name + " with " + room.PlayerCount.ToString() + " / 3"; ;
+                    newItem.transform.SetParent(MapContainerParent.transform, false);
+                    containerlist.Add(newItem);
+                }
+            }
+            if (containerlist.Count == 0)
+            {
+                Empty.SetActive(true);
+                Exist.SetActive(false);
             }
         }
     }

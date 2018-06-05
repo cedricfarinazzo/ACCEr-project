@@ -51,6 +51,18 @@ public class PreLobbyManager : Photon.MonoBehaviour
             string scenetoload = SaveData.SaveData.GetString("Multi.mode");
             string sceneName;
 
+            foreach(var room in PhotonNetwork.GetRoomList())
+            {
+                if (room.Name == scenetoload)
+                {
+                    if (!room.IsOpen || room.playerCount == 3)
+                    {
+                        SceneManager.LoadScene("joinroomerror");
+                        return;
+                    }
+                }
+            }
+            
             if (scenetoload == "" || scenetoload == "new")
 			{
 				int n = Random.Range(0, gameList.Length);
