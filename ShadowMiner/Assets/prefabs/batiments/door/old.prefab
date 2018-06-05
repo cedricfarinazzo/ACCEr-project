@@ -73,6 +73,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4391125347605302}
+  - component: {fileID: 65290214372537616}
+  - component: {fileID: 111221575720508016}
   m_Layer: 0
   m_Name: porte
   m_TagString: Untagged
@@ -208,8 +210,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4084894975924918}
+  - component: {fileID: 114072529417271474}
+  - component: {fileID: 135438477393873368}
+  - component: {fileID: 65494633044197340}
   m_Layer: 0
-  m_Name: porte_serrure
+  m_Name: old
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -880,6 +885,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65290214372537616
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1059818283553294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0064168, y: 3.018941, z: 1.9885621}
+  m_Center: {x: 0.24364686, y: -2.1078677, z: -3.1081526}
 --- !u!65 &65374811173846730
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -892,6 +909,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65494633044197340
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1900143078073374}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9711244, y: 3.6142988, z: 2.8460665}
+  m_Center: {x: -0.47093046, y: 0.17829013, z: -0.88631964}
 --- !u!65 &65611481008197356
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -952,6 +981,45 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!111 &111221575720508016
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1059818283553294}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 662a4458f14d7fd4984b4a8b2647c35d, type: 2}
+  - {fileID: 7400000, guid: e39199e1ccc17f343b8344960a61ebc2, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &114072529417271474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1900143078073374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6178e3846f8647428e230d8faf91a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &135438477393873368
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1900143078073374}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.5
+  m_Center: {x: -0.5, y: 0.3, z: -1}
 --- !u!135 &135813646492217590
 SphereCollider:
   m_ObjectHideFlags: 1
