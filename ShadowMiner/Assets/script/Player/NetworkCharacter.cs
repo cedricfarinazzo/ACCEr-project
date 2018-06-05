@@ -19,6 +19,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
     void Start () {
         this.pv = GetComponent<PhotonView>();
         _photonId = PhotonNetwork.room.PlayerCount - 1;
+        Debug.Log(SaveData.SaveData.GetString("Photon.playername"));
     }
 	
 	// Update is called once per frame
@@ -46,7 +47,8 @@ public class NetworkCharacter : Photon.MonoBehaviour {
             if (!pv.isMine)
             {
                 this.trueLoc = (Vector3)stream.ReceiveNext();
-                gameObject.GetComponentInChildren<TextMesh>().text = (string)stream.ReceiveNext();
+                string playername = (string)stream.ReceiveNext();
+                gameObject.GetComponentInChildren<TextMesh>().text = playername;
             }
         }
         else
