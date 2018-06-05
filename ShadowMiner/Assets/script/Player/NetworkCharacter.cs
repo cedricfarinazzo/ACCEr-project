@@ -27,6 +27,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
         {
             transform.position = Vector3.Lerp(transform.position, trueLoc, Time.deltaTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, trueRot, Time.deltaTime);
+            gameObject.GetComponentInChildren<DisplayName>().name = this.GetComponent<PhotonView>().owner.NickName;
         }
         Debug.Log(PhotonNetwork.room.PlayerCount);
 	    if (PhotonNetwork.room.PlayerCount == 3 && !onGame)

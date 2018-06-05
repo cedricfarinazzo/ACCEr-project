@@ -29,6 +29,10 @@ public class LobbyManager : Photon.MonoBehaviour {
             PhotonNetwork.ConnectUsingSettings(param.Version);
             PhotonNetwork.offlineMode = false;
         }
+        PhotonNetwork.player.NickName = 
+            SaveData.SaveData.GetString("User.login") == ""
+                ? "Bob" :
+                SaveData.SaveData.GetString("User.login");
         PhotonNetwork.JoinLobby();
     }
 
@@ -121,6 +125,9 @@ public class LobbyManager : Photon.MonoBehaviour {
         j.GetComponentInChildren<Camera>().enabled = true;
         j.GetComponentInChildren<AudioListener>().enabled = true;
         this.joined = true;
+        j.name = SaveData.SaveData.GetString("User.login") == ""
+                ? "Bob" :
+                SaveData.SaveData.GetString("User.login");
         PhotonPlayer = j;
     }
 }

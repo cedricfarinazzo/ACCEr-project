@@ -8,13 +8,13 @@ public class DisplayName : Photon.MonoBehaviour {
 
     [NonSerialized]
     private bool enabled = true;
-    protected string name = "Bob";
+    public static string Name = "Bob";
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         if (photonView.isMine)
         {
-            name = SaveData.SaveData.GetString("User.login") == "" 
+            Name = SaveData.SaveData.GetString("User.login") == "" 
                 ? "Bob" : 
                 SaveData.SaveData.GetString("User.login");
         }
@@ -23,7 +23,7 @@ public class DisplayName : Photon.MonoBehaviour {
 
     public void UpdateLogin()
     {
-        gameObject.GetComponent<TextMesh>().text = name;
+        gameObject.GetComponent<TextMesh>().text = Name;
     }
 
     void OnBecameVisible()
@@ -55,11 +55,11 @@ public class DisplayName : Photon.MonoBehaviour {
     {
         if (stream.isWriting)
         {
-            stream.SendNext(name);
+            stream.SendNext(Name);
         }
         else
         {
-            name = (string)stream.ReceiveNext();
+            Name = (string)stream.ReceiveNext();
         }
     }
 }
