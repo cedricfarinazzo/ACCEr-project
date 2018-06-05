@@ -50,4 +50,16 @@ public class DisplayName : Photon.MonoBehaviour {
             }
         }
 	}
+
+    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            stream.SendNext(name);
+        }
+        else
+        {
+            name = (string)stream.ReceiveNext();
+        }
+    }
 }
