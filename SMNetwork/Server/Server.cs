@@ -54,7 +54,7 @@ namespace SMNetwork.Server
             {
                 Log(ConsoleColor.DarkRed, "[", "S", "] Exception during execution of the server");
                 Console.WriteLine(e);
-                throw;
+                Start();
             }
             return;
         }
@@ -76,7 +76,7 @@ namespace SMNetwork.Server
                 }
                 catch (Exception)
                 {
-                    break;
+                    
                 }
             }
             return;
@@ -84,27 +84,33 @@ namespace SMNetwork.Server
 
         public void PollClients()
         {
-            while (true)
+            while (DataServer.Continue)
             {
-                int i = 0;
-                while (i < DataServer.Clients.Count)
+                try
                 {
-                    try
+                    int i = 0;
+                    while (i < DataServer.Clients.Count)
                     {
-                        var client = DataServer.Clients[i];
-                        if (client == null || !client.Client.Connected)
-                            DataServer.Clients.Remove(client);
-                        else if (client.Available())
+                        try
                         {
-                            client.IsQueued = true;
-                            DataServer.Tasks.Enqueue(client);
+                            var client = DataServer.Clients[i];
+                            if (client == null || !client.Client.Connected)
+                                DataServer.Clients.Remove(client);
+                            else if (client.Available())
+                            {
+                                client.IsQueued = true;
+                                DataServer.Tasks.Enqueue(client);
+                            }
                         }
+                        catch(Exception e)
+                        {
+                            Console.WriteLine(e);
+                        }
+                        i++;
                     }
-                    catch(Exception e)
-                    {
-                        Console.WriteLine(e);
-                    }
-                    i++;
+                }
+                catch (Exception)
+                {
                 }
             }
             return;
@@ -112,25 +118,31 @@ namespace SMNetwork.Server
 
         public void HandleTasks()
         {
-            while (true)
+            while (DataServer.Continue)
             {
-                if (DataServer.Tasks.Count == 0)
-                {
-                    continue;
-                }
-
-                DataTcpClient client = DataServer.Tasks.Dequeue();
-
                 try
                 {
+                    if (DataServer.Tasks.Count == 0)
+                    {
+                    continue;
+                    }
+                    
+                    DataTcpClient client = DataServer.Tasks.Dequeue();
+                    
+                    try
+                    {
                     Thread requestTh = new Thread(() => this.HandleRequests(client)) { IsBackground = true};
                     requestTh.Start();
-                }
-                catch (Exception e)
-                {
+                    }
+                    catch (Exception e)
+                    {
                     client.IsQueued = false;
                     Console.WriteLine(e.Message);
                     throw;
+                    }
+                }
+                catch (Exception)
+                {
                 }
             }
             return;
@@ -138,7 +150,6 @@ namespace SMNetwork.Server
 
         public void HandleRequests(DataTcpClient client)
         {
-
             Protocol msg = Receive(client.Client);
             Protocol resp;
             if (msg != null)
