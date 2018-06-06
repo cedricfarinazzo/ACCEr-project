@@ -9,6 +9,8 @@ public class IAtarget : MonoBehaviour {
 
 	[SerializeField]
 	private NavMeshAgent _agent;
+    [SerializeField]
+    private Animator anim;
 
 	[SerializeField] protected Vector3 startposition;
 	[SerializeField] protected float roamRadius;
@@ -17,22 +19,21 @@ public class IAtarget : MonoBehaviour {
 	[SerializeField]
 	private int _reloadTargetFree = 175;
 
-	protected Vector3 Target;
+    public bool attack = false;
+
+    Vector3 lastpos = Vector3.zero;
+
+    protected Vector3 Target;
 	
 	// Use this for initialization
 	void Start ()
-	{
-		Target = Vector3.zero;
-		SetDestination(Target);
+    {
+        lastpos = gameObject.transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (targetting)
-		{
-			SetDestination(Target);
-		}
-		else
+		if (!targetting && !attack)
 		{
 			if (_reloadTargetFree == 0)
 			{
@@ -44,27 +45,45 @@ public class IAtarget : MonoBehaviour {
 				_reloadTargetFree--;
 			}
 		}
-		
-	}
 
-	private void OnTriggerStay(Collider other)
+        if (attack)
+        {
+            _agent.SetDestination(gameObject.transform.position);
+        }
+
+        Vector3 delta = gameObject.transform.position - lastpos;
+        anim.SetBool("jump", delta.y > 0);
+        float lenght = new Vector2(delta.x, delta.z).magnitude;
+        anim.SetBool("walk", 0 < lenght && lenght <= 0.3f);
+        anim.SetBool("run", 0.3f < lenght);
+        lastpos = gameObject.transform.position;
+    }
+
+    private void OnTriggerStay(Collider other)
 	{
-		if (other.gameObject.CompareTag("Player") && !targetting)
+		if (other.gameObject.CompareTag("Player") && !targetting && !attack)
 		{
 			Debug.Log("target: on");
 			Target = other.transform.position;
+            targetting = true;
+            SetDestination(Target);
+            _reloadTargetFree = 0;
 		}
-	}
 
-	/*
+        if (attack)
+        {
+            _agent.SetDestination(gameObject.transform.position);
+        }
+    }
+
+	
 	private void OnTriggerExit(Collider other)
 	{
-		if (other.gameObject.CompareTag("Player") && targetting)
-		{
-			Debug.Log("target: off");
-			target = Vector3.zero;
-		}
-	}*/
+        Debug.Log("target: off");
+        targetting = false;
+        _agent.SetDestination(gameObject.transform.position);
+        
+	}
 	
 	void FreeRoam()
 	{
@@ -88,4 +107,11 @@ public class IAtarget : MonoBehaviour {
 			Console.WriteLine(e);
 		}
 	}
+
+    /*
+    void OnAnimatorMove()
+    {
+        // Update position to agent position
+        transform.position = _agent.nextPosition;
+    }*/
 }

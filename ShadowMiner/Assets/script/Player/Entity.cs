@@ -31,7 +31,7 @@ public class Entity : Photon.MonoBehaviour {
         this.g = this.gameObject;
     }
 
-    protected void attack(GameObject target)
+    public void attack(GameObject target)
     {
         Entity e = target.GetComponent<Entity>();
         e.getDamage(this.damage);
