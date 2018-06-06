@@ -112,7 +112,6 @@ public class ParametreKey : MonoBehaviour {
 
     void ClickButtonAttack()
     {
-        AttackButton.interactable = false;
         currentkey = Attack.name;
         AttackText.text = "Selected";
     }
@@ -149,7 +148,7 @@ public class ParametreKey : MonoBehaviour {
         RunText.text = param.Key["Run"].ToString();
         JumpText.text = param.Key["Jump"].ToString();
         InteractText.text = param.Key["Interact"].ToString();
-        AttackText.text = param.Key["Attack"].ToString();
+        AttackText.text = "Mouse" + param.Mouse["Attack"].ToString();
     }
 
     void OnGUI()
@@ -157,36 +156,43 @@ public class ParametreKey : MonoBehaviour {
         Event e = Event.current;
         if (e != null)
         {
-            if (e.shift)
+            if (currentkey != "Attack")
             {
-                ChangeKey(currentkey, KeyCode.LeftShift);
-                Debug.Log(currentkey + " : " + e.type.ToString());
+                if (e.shift)
+                {
+                    ChangeKey(currentkey, KeyCode.LeftShift);
+                    Debug.Log(currentkey + " : " + e.type.ToString());
+                }
+                if (e.alt)
+                {
+                    ChangeKey(currentkey, e.keyCode);
+                    Debug.Log(currentkey + " : " + e.keyCode.ToString());
+                }
+                if (e.isKey)
+                {
+                    ChangeKey(currentkey, e.keyCode);
+                    Debug.Log(currentkey + " : " + e.keyCode.ToString());
+                }
             }
-            if (e.alt)
+            else
             {
-                ChangeKey(currentkey, e.keyCode);
-                Debug.Log(currentkey + " : " + e.keyCode.ToString());
-            }
-            if (e.isKey)
-            {
-                ChangeKey(currentkey, e.keyCode);
-                Debug.Log(currentkey + " : " + e.keyCode.ToString());
-            }
-            if (e.isMouse)
-            {
-                if (e.button == 0)
-                    Debug.Log("Left Click");
-                else
-                    if (e.button == 1)
-                            Debug.Log("Right Click");
-                        else
-                        if (e.button == 2)
-                            Debug.Log("Middle Click");
-                        else
-                            if (e.button > 2)
-                            Debug.Log("Another button in the mouse clicked");
-
-
+                if (e.isMouse)
+                {
+                    param.Mouse[currentkey] = e.button;
+                    if (e.button == 0)
+                        Debug.Log("Left Click");
+                    else
+                        if (e.button == 1)
+                        Debug.Log("Right Click");
+                    else
+                            if (e.button == 2)
+                        Debug.Log("Middle Click");
+                    else
+                                if (e.button > 2)
+                        Debug.Log("Another button in the mouse clicked");
+                }
+                ShowKey();
+                param.Save();
             }
         }
     }
