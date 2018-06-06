@@ -47,10 +47,15 @@ namespace SMParametre
             { "MoveRight", KeyCode.D },
             { "Run", KeyCode.LeftShift },
             { "Jump", KeyCode.Space},
-            { "Interact", KeyCode.E },
-            { "Attack", KeyCode.Mouse0 }, 
+            { "Interact", KeyCode.E }, 
 	        { "Escape", KeyCode.Escape}
         };
+
+        public Dictionary<string, int> Mouse = new Dictionary<string, int>()
+        {
+            { "Attack", 0 }
+        };
+
 		public float VolumeSonore = 1;
 		public float Sensi = 1;
 		public int Quality = 5; // <= 5
