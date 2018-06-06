@@ -112,6 +112,7 @@ public class ParametreKey : MonoBehaviour {
 
     void ClickButtonAttack()
     {
+        AttackButton.interactable = false;
         currentkey = Attack.name;
         AttackText.text = "Selected";
     }
@@ -157,11 +158,36 @@ public class ParametreKey : MonoBehaviour {
         if (e != null)
         {
             if (e.shift)
+            {
                 ChangeKey(currentkey, KeyCode.LeftShift);
-                Debug.Log(currentkey + " : " + KeyCode.LeftShift.ToString());
-            if (e.isKey)
+                Debug.Log(currentkey + " : " + e.type.ToString());
+            }
+            if (e.alt)
+            {
                 ChangeKey(currentkey, e.keyCode);
                 Debug.Log(currentkey + " : " + e.keyCode.ToString());
+            }
+            if (e.isKey)
+            {
+                ChangeKey(currentkey, e.keyCode);
+                Debug.Log(currentkey + " : " + e.keyCode.ToString());
+            }
+            if (e.isMouse)
+            {
+                if (e.button == 0)
+                    Debug.Log("Left Click");
+                else
+                    if (e.button == 1)
+                            Debug.Log("Right Click");
+                        else
+                        if (e.button == 2)
+                            Debug.Log("Middle Click");
+                        else
+                            if (e.button > 2)
+                            Debug.Log("Another button in the mouse clicked");
+
+
+            }
         }
     }
 }
