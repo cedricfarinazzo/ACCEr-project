@@ -14,6 +14,10 @@ public class LobbyManager : Photon.MonoBehaviour {
     protected Text countText;
     [SerializeField]
     protected Text RoomNameText;
+    [SerializeField]
+    protected Text Title;
+    [SerializeField]
+    protected Text List;
 
     [SerializeField] protected GameObject gameManager;
 
@@ -39,10 +43,6 @@ public class LobbyManager : Photon.MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        /*
-        try
-        {*/
-
 	    try
 	    {
 	        if (this.joined)
@@ -52,31 +52,32 @@ public class LobbyManager : Photon.MonoBehaviour {
 	        }
             if (PhotonNetwork.room.PlayerCount == 3)
             {
+                if (PhotonNetwork.isMasterClient)
+                {
+                    PhotonNetwork.room.IsOpen = false;
+                }
                 MoveToGame();
-                this.gameObject.SetActive(false);
+                Title.text = "Multijoueur Game";
             }
+            string playerslist = "PLayer List : \n" + SaveData.SaveData.GetString("Photon.playername") + "\n";
+            var players = PhotonNetwork.otherPlayers;
+            Debug.Log(PhotonNetwork.room.PlayerCount);
+            foreach(var player in players)
+            {
+                playerslist += player.NickName + "\n";
+            }
+            List.text = playerslist;
 	    }
 	    catch (Exception e)
 	    {
             
 	    }
-
-        /*}
-        catch (UnityException)
-        {
-            Debug.Log("failed to join server");
-            SceneManager.LoadScene("failedNetwork");
-        }
-        catch (Exception)
-        {
-            Debug.Log("failed to join server");
-            SceneManager.LoadScene("failedNetwork");
-        }*/
 	}
 
     void OnJoinedLobby()
     {
-        PhotonNetwork.JoinRandomRoom();
+        //PhotonNetwork.JoinRandomRoom();
+        JoinLobby();
     }
 
     void JoinLobby()
@@ -87,9 +88,17 @@ public class LobbyManager : Photon.MonoBehaviour {
             IsVisible = true,
             MaxPlayers = 3
         };
-        System.Random tools = new System.Random();
-        string random = tools.Next().ToString().Substring(0, 2);
-        PhotonNetwork.JoinOrCreateRoom(SceneManager.GetActiveScene().name+"=="+random, opt, TypedLobby.Default);
+        string roomname = SaveData.SaveData.GetString("Multi.mode");
+        try
+        {
+            PhotonNetwork.JoinOrCreateRoom(roomname, opt, TypedLobby.Default);
+        }
+        catch (Exception)
+        {
+            //full or error
+            SceneManager.LoadScene("joinroomerror");
+        }
+        
     }
 
     private void MoveToGame()
@@ -122,5 +131,6 @@ public class LobbyManager : Photon.MonoBehaviour {
         j.GetComponentInChildren<AudioListener>().enabled = true;
         this.joined = true;
         PhotonPlayer = j;
+        SaveData.SaveData.DeleteKey("Multi.mode");
     }
 }

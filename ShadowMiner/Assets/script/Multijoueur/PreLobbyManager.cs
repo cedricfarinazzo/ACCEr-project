@@ -47,25 +47,38 @@ public class PreLobbyManager : Photon.MonoBehaviour
 				PhotonNetwork.ConnectUsingSettings(param.Version);
 				PhotonNetwork.offlineMode = false;
 			}
+            PhotonNetwork.playerName = SaveData.SaveData.GetString("Photon.playername");
+            string scenetoload = SaveData.SaveData.GetString("Multi.mode");
+            string sceneName;
 
-			string sceneName = "";
-			foreach (var room in PhotonNetwork.GetRoomList())
-			{
-				if (room.IsOpen && room.PlayerCount != room.MaxPlayers)
-				{
-					string name = room.Name;
-					sceneName = name.Split('=')[0];
-					break;
-				}
-			}
-
-			if (sceneName == "")
+            foreach(var room in PhotonNetwork.GetRoomList())
+            {
+                if (room.Name == scenetoload)
+                {
+                    if (!room.IsOpen || room.playerCount == 3)
+                    {
+                        SceneManager.LoadScene("joinroomerror");
+                        return;
+                    }
+                }
+            }
+            
+            if (scenetoload == "" || scenetoload == "new")
 			{
 				int n = Random.Range(0, gameList.Length);
 				sceneName = gameList[n];
-			}
-			SaveData.SaveData.SaveString("Loader.Next", sceneName);
-			SceneManager.LoadScene("loading");
+                System.Random tools = new System.Random();
+                string random = tools.Next().ToString().Substring(0, 2);
+                scenetoload = sceneName + "==" + random;
+                SaveData.SaveData.SaveString("Multi.mode", scenetoload);
+            }
+            else
+            {
+                sceneName = scenetoload.Split('=')[0];
+            }
+            SaveData.SaveData.SaveString("Loader.Next", sceneName);
+            SceneManager.LoadScene("loading");
+			
 		}
 		catch (Exception)
 		{

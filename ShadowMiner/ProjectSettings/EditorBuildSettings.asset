@@ -102,8 +102,14 @@ EditorBuildSettings:
     path: Assets/_scene/solo/level/Solo_level_20.unity
     guid: ebe55bfcdef2b134f96ae67deddef4c3
   - enabled: 1
+    path: Assets/_scene/multi/multimenu.unity
+    guid: 8749293603b669c499213a1933159fe5
+  - enabled: 1
     path: Assets/_scene/multi/lobby.unity
     guid: 5f21fb3789c0aeb4ebe2e538b704bd16
+  - enabled: 1
+    path: Assets/_scene/multi/joinroomerror.unity
+    guid: bd73ffb0d54c1d0479553d892832e280
   - enabled: 1
     path: Assets/_scene/multi/level/Multi_room_1.unity
     guid: bc256c175709c3f498ad289d6db00ce5

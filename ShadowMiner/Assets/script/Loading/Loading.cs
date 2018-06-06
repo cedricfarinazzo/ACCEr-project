@@ -52,7 +52,7 @@ public class Loading : MonoBehaviour {
         //This is particularly good for creating loading screens. You could also load the Scene by build //number.
 
         AsyncOperation asyncLoad;
-
+        Debug.Log("Load Scene: " + Next);
         try
         {
             asyncLoad= SceneManager.LoadSceneAsync(Next);
