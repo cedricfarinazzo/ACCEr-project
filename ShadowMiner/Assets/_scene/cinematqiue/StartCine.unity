@@ -153,6 +153,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114107880775865242, guid: 04ac7ddc8b8be1141b2d59d773af5146,
+        type: 2}
+      propertyPath: timebeforemenu
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04ac7ddc8b8be1141b2d59d773af5146, type: 2}
   m_IsPrefabParent: 0

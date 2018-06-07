@@ -45,7 +45,7 @@ public class progress : MonoBehaviour {
         }
         Progress progress = Progress.Load();
         solo.text = "Solo progression : " + progress.SoloStats;
-        multi.text = "Multiplayer game won : " + progress.MultiStats;
+        multi.text = "Multiplayer games won : " + progress.MultiStats;
         lastupdate.text = "Last update : " + progress.LastUpdate;
 
 
@@ -93,7 +93,7 @@ public class progress : MonoBehaviour {
             progress.MultiStats = progress.MultiStats < int.Parse(data["MultiStats"]) ? int.Parse(data["MultiStats"]) : progress.MultiStats;
             progress.LastUpdate = DateTime.Parse(progress.LastUpdate) < DateTime.Parse(data["LastTime"]) ? data["LastTime"] : progress.LastUpdate;
             solo.text = "Solo progression : " + progress.SoloStats;
-            multi.text = "Multiplayer game won : " + progress.MultiStats;
+            multi.text = "Multiplayer games won : " + progress.MultiStats;
             lastupdate.text = "Last update : " + progress.LastUpdate;
             progress.Save();
         }
