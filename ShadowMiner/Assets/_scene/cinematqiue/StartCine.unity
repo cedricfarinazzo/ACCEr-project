@@ -33,7 +33,7 @@ RenderSettings:
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 512
+  m_DefaultReflectionResolution: 256
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
@@ -156,7 +156,11 @@ Prefab:
     - target: {fileID: 114107880775865242, guid: 04ac7ddc8b8be1141b2d59d773af5146,
         type: 2}
       propertyPath: timebeforemenu
-      value: 100
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843852974784662, guid: 04ac7ddc8b8be1141b2d59d773af5146, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04ac7ddc8b8be1141b2d59d773af5146, type: 2}
