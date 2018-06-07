@@ -1,13 +1,12 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowMiner", "ShadowMiner.csproj", "{8D5C4E94-2F5D-2319-56B8-61382B7E546F}"
+Project("{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1}") = "ShadowMiner", "ShadowMiner.csproj", "{8D5C4E94-2F5D-2319-56B8-61382B7E546F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowMiner.Plugins", "ShadowMiner.Plugins.csproj", "{C2841281-5F18-59D2-CCD9-999AD47A1685}"
+Project("{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1}") = "ShadowMiner.Plugins", "ShadowMiner.Plugins.csproj", "{C2841281-5F18-59D2-CCD9-999AD47A1685}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowMiner.Editor", "ShadowMiner.Editor.csproj", "{A6A3172E-F0B5-BFE7-9066-39CC1B5269C1}"
+Project("{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1}") = "ShadowMiner.Editor", "ShadowMiner.Editor.csproj", "{A6A3172E-F0B5-BFE7-9066-39CC1B5269C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowMiner.Editor.Plugins", "ShadowMiner.Editor.Plugins.csproj", "{B3E6EE40-0B8C-09F3-ADD3-0D50FDF297A7}"
+Project("{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1}") = "ShadowMiner.Editor.Plugins", "ShadowMiner.Editor.Plugins.csproj", "{B3E6EE40-0B8C-09F3-ADD3-0D50FDF297A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
