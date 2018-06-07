@@ -2688,6 +2688,7 @@ MonoBehaviour:
   anim: {fileID: 95914470579752648}
   startposition: {x: 0, y: 0, z: 0}
   roamRadius: 9
+  targetting: 0
   _reloadTargetFree: 100
   attack: 0
 --- !u!114 &114030466102721880
@@ -2720,6 +2721,7 @@ MonoBehaviour:
   fall_damage: 10
   LifeBar: {fileID: 0}
   canvasLife: {fileID: 0}
+  maxchute: 2
 --- !u!135 &135302552123535494
 SphereCollider:
   m_ObjectHideFlags: 1

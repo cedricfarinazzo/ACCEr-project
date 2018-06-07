@@ -2285,6 +2285,7 @@ MonoBehaviour:
   fall_damage: 10
   LifeBar: {fileID: 114459146509320848}
   canvasLife: {fileID: 1251398107452702}
+  maxchute: 2
 --- !u!114 &114090499790930296
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -28,7 +28,7 @@ public class PlayerController : Photon.MonoBehaviour {
     //[SerializeField]
     protected KeyCode inputrun;
 
-    private int reloadjump = 10;
+    private float reloadjump = 10;
 
     [SerializeField] protected Animator animator;
     protected AudioSource _audioSource;
@@ -84,7 +84,7 @@ public class PlayerController : Photon.MonoBehaviour {
         
         if (reloadjump < 10)
         {
-            reloadjump++;
+            reloadjump += 1;
         }
         Debug.DrawRay(transform.position, this.gameObject.transform.TransformDirection(Vector3.down) * (this.gameObject.transform.lossyScale.y), Color.red);
 
@@ -124,18 +124,18 @@ public class PlayerController : Photon.MonoBehaviour {
         if (Input.GetKey(this.inputfront) && !Input.GetKey(this.inputrun))
         {
             this.gameObject.transform.Translate(0, 0, this.speedwalk * Time.deltaTime);
-            if (Input.GetKeyDown(this.inputjump) && IsGrounded())
+            /*if (Input.GetKeyDown(this.inputjump) && IsGrounded())
             {
                 jump();
             }
             else
-            {
+            {*/
                 PlayWalkClip();
                 animator.SetBool("walk", true);
                 animator.SetBool("run", false);
                 animator.SetBool("jump", false);
                 
-            }
+            //}
             //this.anim.Play("walk");
         }
 
@@ -143,18 +143,18 @@ public class PlayerController : Photon.MonoBehaviour {
         {
             this.gameObject.transform.Translate(0, 0, this.speedrun * Time.deltaTime);
             //this.anim.Play("run");
-            if (Input.GetKeyDown(this.inputjump) && IsGrounded())
+            /*if (Input.GetKeyDown(this.inputjump) && IsGrounded())
             {
                 jump();
             }
             else
-            {
+            {*/
                 PlayRunClip();
                 animator.SetBool("walk", false);
                 animator.SetBool("run", true);
                 animator.SetBool("jump", false);
 
-            }
+            //}
             
         }
 
@@ -162,33 +162,36 @@ public class PlayerController : Photon.MonoBehaviour {
         {
             this.gameObject.transform.Translate(0, 0, -(this.speedwalk / 2) * Time.deltaTime);
             //this.anim.Play("walk");
+            /*
             if (Input.GetKeyDown(this.inputjump) && IsGrounded())
             {
                 jump();
             }
             else
-            {
+            {*/
                 PlayWalkClip();
                 animator.SetBool("walk", true);
                 animator.SetBool("run", false);
                 animator.SetBool("jump", false);
 
-            }
+            //}
         }
         
     }
 
     protected void jump()
     {
+        /*
         if (Input.GetKey(this.inputjump))
          {
              animator.SetBool("jump", false);
-         }
-        if (reloadjump == 10)
+         }*/
+        if (reloadjump >= 10)
         {
             reloadjump = 0;
             if (Input.GetKey(this.inputjump) && IsGrounded())
             {
+                
                 PlayJumpClip();
                 Vector3 v = this.gameObject.GetComponent<Rigidbody>().velocity;
                 v.y = this.forcejump.y;

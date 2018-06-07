@@ -7,8 +7,10 @@ public class faux_sol : MonoBehaviour {
     public bool activation = false;
 	public GameObject fauxsol;
 
-	// Use this for initialization
-	void Start () {
+    public IAtarget sm;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 
@@ -19,7 +21,7 @@ public class faux_sol : MonoBehaviour {
 		}
 	}
 	// Update is called once per frame
-	void Update () {
-		
+	public void Update () {
+        activation = sm.targetting;
 	}
 }
