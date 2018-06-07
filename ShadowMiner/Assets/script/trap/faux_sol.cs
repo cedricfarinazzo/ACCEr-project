@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class faux_sol : MonoBehaviour {
 
+    public bool activation = false;
 	public GameObject fauxsol;
 
 	// Use this for initialization
@@ -11,9 +12,9 @@ public class faux_sol : MonoBehaviour {
 		
 	}
 
-	void OnTriggerEnter(Collider col){
+	void OnTriggerStay(Collider col){
 		GameObject jeuobjet = col.gameObject;
-		if (jeuobjet.tag == "Player") {
+		if (activation && jeuobjet.tag == "Player") {
 			fauxsol.SetActive (false);
 		}
 	}
