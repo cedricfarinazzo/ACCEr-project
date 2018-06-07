@@ -24,11 +24,6 @@ public class LoadFromNetwork : MonoBehaviour {
         try
         {
             smClient = new Client();
-        }
-        catch (UnityException)
-        {
-            Debug.Log("failed to join server");
-            isoffline = true;
             SMNetwork.Client.DataClient.Email = SaveData.SaveData.GetString("DataClient.Email");
             SMNetwork.Client.DataClient.Token = SaveData.SaveData.GetString("DataClient.Token");
             SMNetwork.Client.DataClient.User = SaveData.SaveData.GetObject<SMNetwork.DataUser>("DataClient.User");
@@ -36,6 +31,12 @@ public class LoadFromNetwork : MonoBehaviour {
             {
                 isoffline = true;
             }
+        }
+        catch (UnityException)
+        {
+            Debug.Log("failed to join server");
+            isoffline = true;
+            
         }
         catch (Exception)
         {

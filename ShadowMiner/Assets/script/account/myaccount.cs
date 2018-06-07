@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 using System.Drawing;
 using System.Drawing.Imaging;
 using Image = UnityEngine.UI.Image;
+using SMProgress;
 
 public class myaccount : MonoBehaviour {
 	private SMNetwork.Client.Client SMClient;
@@ -53,7 +54,16 @@ public class myaccount : MonoBehaviour {
 		{
 			SceneManager.LoadScene("connexion");
 		}
-		email.text = DataClient.Email;
+
+        Debug.Log("REFRESH");
+        Progress progress = Progress.Load();
+        var data = SMClient.AskProgress();
+        progress.SoloStats = progress.SoloStats < int.Parse(data["SoloStats"]) ? int.Parse(data["SoloStats"]) : progress.SoloStats;
+        progress.MultiStats = progress.MultiStats < int.Parse(data["MultiStats"]) ? int.Parse(data["MultiStats"]) : progress.MultiStats;
+        progress.LastUpdate = DateTime.Parse(progress.LastUpdate) < DateTime.Parse(data["LastTime"]) ? data["LastTime"] : progress.LastUpdate;
+        progress.Save();
+
+        email.text = DataClient.Email;
 		prénom.text = DataClient.User.Firstname;
 		nom.text = DataClient.User.Lastname;
 		pseudo.text = DataClient.User.Login;

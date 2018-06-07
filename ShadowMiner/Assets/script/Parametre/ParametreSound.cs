@@ -23,8 +23,10 @@ public class ParametreSound : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
-	}
+        param = SMParametre.Parametre.Load();
+        mixer.SetFloat("Main", param.VolumeSonore);
+        Sound.value = param.VolumeSonore;
+    }
 
     public void Change(float arg0)
     {
