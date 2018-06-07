@@ -2440,6 +2440,7 @@ MonoBehaviour:
   fall_damage: 10
   LifeBar: {fileID: 114155427066784156}
   canvasLife: {fileID: 1846532022131630}
+  maxchute: 2
 --- !u!114 &114315147488765138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2863,10 +2864,10 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114223745609127978, guid: dc68ec145855eaa499b2de02bcdebc00, type: 2}
-  - {fileID: 114873352926542008, guid: dc68ec145855eaa499b2de02bcdebc00, type: 2}
-  - {fileID: 114873352926542008, guid: dc68ec145855eaa499b2de02bcdebc00, type: 2}
-  - {fileID: 114121283592420958, guid: dc68ec145855eaa499b2de02bcdebc00, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

@@ -17,7 +17,6 @@ public class IAttack : MonoBehaviour {
         {
             reloadtime--;
         }
-        Debug.Log(reloadtime);
     }
 
     public void OnTriggerStay(Collider other)

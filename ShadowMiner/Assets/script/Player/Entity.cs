@@ -17,6 +17,7 @@ public class Entity : Photon.MonoBehaviour {
 
     [SerializeField] protected Image LifeBar;
     [SerializeField] protected GameObject canvasLife;
+    [SerializeField] protected int maxchute;
 
     private float LastPost;
     private float fallDist;
@@ -71,6 +72,8 @@ public class Entity : Photon.MonoBehaviour {
         {
             this.Death();
         }
+        UpdateLifeBar();
+        LastPost = this.gameObject.transform.position.y;
     }
 
     public void UpdateLifeBar()
@@ -81,16 +84,20 @@ public class Entity : Photon.MonoBehaviour {
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.isWriting)
+        if (PhotonNetwork.connectedAndReady)
         {
-            stream.SendNext(this.damage);
-            stream.SendNext(this.life);
+            if (stream.isWriting)
+            {
+                stream.SendNext(this.damage);
+                stream.SendNext(this.life);
+            }
+            else
+            {
+                this.damage = (int)stream.ReceiveNext();
+                this.life = (int)stream.ReceiveNext();
+            }
         }
-        else
-        {
-            this.damage = (int)stream.ReceiveNext();
-            this.life = (int)stream.ReceiveNext();
-        }
+        
     }
     
     bool IsGrounded()
@@ -101,24 +108,31 @@ public class Entity : Photon.MonoBehaviour {
 
     public void FallDamage()
     {
+        Debug.Log(fallDist);
         if (LastPost > this.gameObject.transform.position.y)
         {
             fallDist += LastPost - this.gameObject.transform.position.y;
         }
 
-        if (fallDist < 5000 && IsGrounded())
+        if (fallDist < maxchute && IsGrounded())
         {
-            fallDist = 0;
-            LastPost = 0;
+            //fallDist = 0;
+            //LastPost = 0;
             Debug.Log("Fail without damage");
         }
 
-        if (fallDist >= 5000 && IsGrounded())
+        if (fallDist >= maxchute && IsGrounded())
         {
+            //fallDist = 0;
+            //LastPost = 0;
+            life -= fall_damage + (int)(Mathf.Sqrt(fallDist*maxchute))*2;
+            Debug.Log("Fail with damage : " + fall_damage + "  " + life);
+        }
+
+        if (IsGrounded())
+        {
+            LastPost = this.gameObject.transform.position.y;
             fallDist = 0;
-            LastPost = 0;
-            life -= fall_damage;
-            Debug.Log("Fail with damage");
         }
     }
 }

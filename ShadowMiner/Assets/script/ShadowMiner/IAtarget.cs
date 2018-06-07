@@ -15,7 +15,7 @@ public class IAtarget : MonoBehaviour {
 	[SerializeField] protected Vector3 startposition;
 	[SerializeField] protected float roamRadius;
 
-	private bool targetting = false;
+	public bool targetting = false;
 	[SerializeField]
 	private int _reloadTargetFree = 175;
 
@@ -63,7 +63,7 @@ public class IAtarget : MonoBehaviour {
 	{
 		if (other.gameObject.CompareTag("Player") && !targetting && !attack)
 		{
-			Debug.Log("target: on");
+			//Debug.Log("target: on");
 			Target = other.transform.position;
             targetting = true;
             SetDestination(Target);
@@ -79,7 +79,7 @@ public class IAtarget : MonoBehaviour {
 	
 	private void OnTriggerExit(Collider other)
 	{
-        Debug.Log("target: off");
+        //Debug.Log("target: off");
         targetting = false;
         _agent.SetDestination(gameObject.transform.position);
         
