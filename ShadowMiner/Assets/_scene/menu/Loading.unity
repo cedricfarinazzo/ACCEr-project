@@ -719,7 +719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b793624bce5dd4c8e737a01c6c1bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextDefault: menu
+  NextDefault: StartCine
   bar: {fileID: 1791561528}
   text: {fileID: 653220772}
 --- !u!1001 &2019416452
