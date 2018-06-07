@@ -14,7 +14,7 @@ public class cinematiquemine : MonoBehaviour {
     [SerializeField] private bool open = false;
 
     [SerializeField] private bool menu = false;
-    [SerializeField] private int timebeforemenu = 1;
+    [SerializeField] private int timebeforemenu = 100;
 
     // Use this for initialization
 	void Start () {
@@ -23,7 +23,7 @@ public class cinematiquemine : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         Vector3 delta = gameObject.transform.position - Target.transform.position;
         transform.LookAt(Target.transform);
         if (delta.magnitude > 40)
