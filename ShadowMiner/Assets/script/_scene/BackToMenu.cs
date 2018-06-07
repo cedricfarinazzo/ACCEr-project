@@ -26,7 +26,7 @@ public class BackToMenu : MonoBehaviour {
             {
                 PhotonNetwork.Disconnect();
             }
-            SaveData.SaveData.SaveString("menu", name);
+            SaveData.SaveData.SaveString("Loader.Next",menu);
             SceneManager.LoadScene("loading");
         }
     }
