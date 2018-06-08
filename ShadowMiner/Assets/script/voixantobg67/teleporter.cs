@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class teleporter : MonoBehaviour {
 
+	public GameObject place_le_teleporter_sortie_ici;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -14,18 +16,10 @@ public class teleporter : MonoBehaviour {
 		
 	}
 
-	public void OnTriggerStay(Collider other)
+	public void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.tag == "Player") {
-			if (other.transform.position.y == 15) {
-				if (other.transform.position.x < 143) {
-					other.transform.position = new Vector3 (-140, 15, other.transform.position.z);
-				} else {
-					other.transform.position = new Vector3 (-161, 15, other.transform.position.z);
-				}
-				other.transform.eulerAngles = new Vector3 (other.transform.eulerAngles.x, other.transform.eulerAngles.y+180 >= 360 ? other.transform.eulerAngles.y-180 : 
-					other.transform.eulerAngles.y+180, other.transform.eulerAngles.z);
+			other.transform.position = new Vector3(other.transform.position.x,other.transform.position.y,place_le_teleporter_sortie_ici.transform.position.z);
 			}
 		}
 	}
-}

@@ -30,12 +30,15 @@ namespace SMProgress
             SaveData.SaveData.SaveObject("Progress", this);
         }
 
-        public static void IncrementSolo()
+        public static void IncrementSolo(int sceneid)
         {
             Progress p = Progress.Load();
-            p.SoloStats++;
-            p.LastUpdate = DateTime.Now.ToString();
-            p.Save();
+            if (sceneid > p.SoloStats)
+            {
+                p.SoloStats++;
+                p.LastUpdate = DateTime.Now.ToString();
+                p.Save();
+            }
         }
 
         public static void IncrementMulti()
