@@ -59,19 +59,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_5.unity
     guid: 52130c9f02c71e049ae3dec4871f4e35
-  - enabled: 0
-    path: Assets/_scene/building/old_s6.unity
-    guid: 3ed71d5fbc74d2a4bb53467835e6a2e0
-  - enabled: 0
+  - enabled: 1
+    path: Assets/_scene/solo/level/Solo_level_6.unity
+    guid: b1a0d839171b84949b2b3fef0a886f24
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_7.unity
     guid: b30059f4b0b9d2f47bf9e896b42bd8a1
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_8.unity
     guid: 7e6159bf23bc34942bf5f5b7bba53fce
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_9.unity
     guid: 27c63bc3bc3e7594e8a814a31f61d836
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_10.unity
     guid: 387c028b24fc3ba42913aba7a4f5ef77
   - enabled: 0

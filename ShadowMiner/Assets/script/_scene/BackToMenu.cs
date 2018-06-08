@@ -11,10 +11,27 @@ public class BackToMenu : MonoBehaviour {
 
     [SerializeField]
     public GameObject success;
+    [SerializeField]
+    public GameObject failed;
+
+    [SerializeField]
+    public GameObject player;
 
     public void Start()
     {
         success.GetComponentInChildren<Button>().onClick.AddListener(ClickToMenu);
+        failed.GetComponentInChildren<Button>().onClick.AddListener(ClickToMenu);
+    }
+
+    public void Update()
+    {
+        if (player == null)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0f;
+            failed.SetActive(true);
+        }
     }
 
     public void OnTriggerEnter(Collider other)
