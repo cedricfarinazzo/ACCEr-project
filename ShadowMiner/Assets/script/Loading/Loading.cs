@@ -24,7 +24,7 @@ public class Loading : MonoBehaviour {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         string newnext = SaveData.SaveData.GetString("Loader.Next");
-        if (newnext == "")
+        if (newnext == "" || newnext == null)
         {
             Next = NextDefault;
         }
@@ -57,11 +57,16 @@ public class Loading : MonoBehaviour {
         {
             asyncLoad= SceneManager.LoadSceneAsync(Next);
         }
-        catch (Exception e)
+        catch (UnityException e)
         {
             asyncLoad= SceneManager.LoadSceneAsync("menu");
         }
-           
+
+        if (asyncLoad == null)
+        {
+            SaveData.SaveData.SaveString("Loader.Next", "menu");
+            SceneManager.LoadScene("Loading");
+        }
         
         //Wait until the last operation fully loads to return anything
         while (!asyncLoad.isDone)
