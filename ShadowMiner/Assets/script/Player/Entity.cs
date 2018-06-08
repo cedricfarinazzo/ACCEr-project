@@ -108,7 +108,7 @@ public class Entity : Photon.MonoBehaviour {
 
     public void FallDamage()
     {
-        Debug.Log(fallDist);
+        //Debug.Log(fallDist);
         if (LastPost > this.gameObject.transform.position.y)
         {
             fallDist += LastPost - this.gameObject.transform.position.y;
@@ -118,7 +118,7 @@ public class Entity : Photon.MonoBehaviour {
         {
             //fallDist = 0;
             //LastPost = 0;
-            Debug.Log("Fail without damage");
+            //Debug.Log("Fail without damage");
         }
 
         if (fallDist >= maxchute && IsGrounded())
