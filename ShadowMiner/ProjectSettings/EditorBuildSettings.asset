@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/_scene/menu/Loading.unity
     guid: a9e7c79990dd2c540bcd22b4926ec344
   - enabled: 1
-    path: Assets/_scene/cinematqiue/StartCine.unity
+    path: Assets/_scene/cinematique/StartCine.unity
     guid: 4f57196be4fb53c48a5c9aa1408c6f59
   - enabled: 1
     path: Assets/_scene/menu/menu.unity
@@ -60,7 +60,7 @@ EditorBuildSettings:
     path: Assets/_scene/solo/level/Solo_level_5.unity
     guid: 52130c9f02c71e049ae3dec4871f4e35
   - enabled: 0
-    path: Assets/_scene/solo/level/Solo_level_6.unity
+    path: Assets/_scene/building/old_s6.unity
     guid: 3ed71d5fbc74d2a4bb53467835e6a2e0
   - enabled: 0
     path: Assets/_scene/solo/level/Solo_level_7.unity

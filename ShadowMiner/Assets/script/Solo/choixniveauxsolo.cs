@@ -20,8 +20,18 @@ public class choixniveauxsolo : MonoBehaviour {
     void Start () {
 	    Cursor.visible = true;
 	    Cursor.lockState = CursorLockMode.None;
+        int soloprogress = SMProgress.Progress.Load().SoloStats;
         for (int i = 0; i < niv.Count && i < scene.Count; i++)
         {
+            if (i <= soloprogress)
+            {
+                niv[i].interactable = true;
+            }
+            else
+            {
+                niv[i].interactable = false;
+            }
+
             string name = scene[i];
             niv[i].onClick.AddListener(
             delegate 
