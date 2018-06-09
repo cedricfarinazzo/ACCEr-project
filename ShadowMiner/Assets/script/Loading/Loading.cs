@@ -16,6 +16,8 @@ public class Loading : MonoBehaviour {
     [SerializeField] protected Image bar;
     [SerializeField] protected Text text;
 
+    [SerializeField] protected Image bleuscreen;
+
     private string Next;
     
     // Use this for initialization
@@ -43,7 +45,10 @@ public class Loading : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            bleuscreen.enabled = true;
+        }
     }
 
     IEnumerator LoadYourAsyncScene()
