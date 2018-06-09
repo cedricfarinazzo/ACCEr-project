@@ -141,6 +141,7 @@ public class LobbyManager : Photon.MonoBehaviour {
         j.GetComponentInChildren<CursorTurnVerti>().enabled = true;
         j.GetComponentInChildren<Camera>().enabled = true;
         j.GetComponentInChildren<AudioListener>().enabled = true;
+        j.GetComponentInChildren<PauseManager>().enabled = true;
         this.joined = true;
         PhotonPlayer = j;
         SaveData.SaveData.DeleteKey("Multi.mode");

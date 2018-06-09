@@ -1837,7 +1837,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Play offline
+  m_Text: 'Solo
 
 '
 --- !u!222 &1313472609
@@ -3480,7 +3480,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Play online
+  m_Text: Multiplayer
 --- !u!222 &1711969761
 CanvasRenderer:
   m_ObjectHideFlags: 0
