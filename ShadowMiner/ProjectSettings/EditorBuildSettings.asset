@@ -119,3 +119,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_scene/multi/level/Multi_room_2.unity
     guid: e81c7b34d40001f47b59764cad7edef3
+  - enabled: 1
+    path: Assets/_scene/cinematique/Trailer.unity
+    guid: 4ae98303fe004e240bceaff981ffcf22
