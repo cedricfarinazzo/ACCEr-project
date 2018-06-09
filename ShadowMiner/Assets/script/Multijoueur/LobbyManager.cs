@@ -11,6 +11,8 @@ public class LobbyManager : Photon.MonoBehaviour {
     [SerializeField]
     protected GameObject player;
     [SerializeField]
+    protected GameObject monster;
+    [SerializeField]
     protected Text countText;
     [SerializeField]
     protected Text RoomNameText;
@@ -121,8 +123,18 @@ public class LobbyManager : Photon.MonoBehaviour {
 
     public void Instantiate()
     {
-        GameObject j = PhotonNetwork.Instantiate(player.name, this.transform.position + Vector3.up * 2, Quaternion.identity, 0);
-        j.GetComponent<PlayerController>().enabled = true;
+        GameObject j;
+        if (PhotonNetwork.room.PlayerCount == 3)
+        {
+            j = PhotonNetwork.Instantiate(monster.name, this.transform.position + Vector3.up * 2, Quaternion.identity, 0);
+            j.GetComponent<SMplayer>().enabled = true;
+        }
+        else
+        {
+            j = PhotonNetwork.Instantiate(player.name, this.transform.position + Vector3.up * 2, Quaternion.identity, 0);
+            j.GetComponent<PlayerController>().enabled = true;
+        }
+        
         j.GetComponent<CursorTurnHory>().enabled = true;
         j.GetComponent<Entity>().enabled = true;
         j.GetComponent<NetworkCharacter>().enabled = true;

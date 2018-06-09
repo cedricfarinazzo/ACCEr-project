@@ -5,7 +5,14 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player: {instanceID: 0}
+  - monster: {fileID: 1336392868307474, guid: 695963886c9f4ae4590cd4632f11ac08, type: 2}
+  - countText: {instanceID: 0}
+  - RoomNameText: {instanceID: 0}
+  - Title: {instanceID: 0}
+  - List: {instanceID: 0}
+  - gameManager: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
