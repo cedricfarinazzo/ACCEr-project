@@ -22,9 +22,10 @@ public class LobbyManager : Photon.MonoBehaviour {
     protected Text List;
 
     [SerializeField] protected GameObject gameManager;
+    [SerializeField] protected GameObject minuteur;
 
 
-    private GameObject PhotonPlayer;
+    public GameObject PhotonPlayer;
     private bool joined = false;
 
     // Use this for initialization
@@ -107,6 +108,7 @@ public class LobbyManager : Photon.MonoBehaviour {
     {
         if (joined)
         {
+            minuteur.SetActive(true);
             gameManager.SetActive(true);
         }
     }
@@ -126,13 +128,15 @@ public class LobbyManager : Photon.MonoBehaviour {
         GameObject j;
         if (PhotonNetwork.room.PlayerCount == 3)
         {
-            j = PhotonNetwork.Instantiate(monster.name, this.transform.position + Vector3.up * 2, Quaternion.identity, 0);
+            j = PhotonNetwork.Instantiate(monster.name, this.transform.position + Vector3.up * 2 + Vector3.back * PhotonNetwork.room.PlayerCount, Quaternion.identity, 0);
             j.GetComponent<SMplayer>().enabled = true;
+            j.name = "ShadowMiner";
         }
         else
         {
-            j = PhotonNetwork.Instantiate(player.name, this.transform.position + Vector3.up * 2, Quaternion.identity, 0);
+            j = PhotonNetwork.Instantiate(player.name, this.transform.position + Vector3.up * 2 + Vector3.back * PhotonNetwork.room.PlayerCount, Quaternion.identity, 0);
             j.GetComponent<PlayerController>().enabled = true;
+            j.name = "Miner";
         }
         
         j.GetComponent<CursorTurnHory>().enabled = true;

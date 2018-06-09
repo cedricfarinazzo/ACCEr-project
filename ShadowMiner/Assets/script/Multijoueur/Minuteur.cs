@@ -31,12 +31,62 @@ public class Minuteur : Photon.MonoBehaviour {
         if (0 >= currenttime)
         {
             currenttime = 0;
+            EndTime();
         }
         timerrenderer = new TimeSpan(0, 0, currenttime);
         
         gameObject.GetComponentInChildren<Text>().text = "Minuteur : " + timerrenderer.ToString();
             
 	}
+
+    void EndTime()
+    {
+        Time.timeScale = 0f;
+        GameObject player = transform.parent.GetComponentInChildren<LobbyManager>().PhotonPlayer;
+        if (player == null && GameObject.FindGameObjectsWithTag("Player").Length == 0)
+        {
+            SMWon(false);
+        }
+        else if (player.name == "ShadowMiner")
+        {
+            if (GameObject.FindGameObjectsWithTag("Player").Length == 0)
+            {
+                SMWon(true);
+            }
+            else
+            {
+                MinerWon(true);
+            }
+        }
+        else if (player.name == "Miner")
+        {
+            MinerWon(false);
+        }
+    }
+
+    private void MinerWon(bool issm)
+    {
+        if (issm)
+        {
+
+        }
+        else
+        {
+            SMProgress.Progress.IncrementMulti();
+        }
+    }
+
+    private void SMWon(bool issm)
+    {
+        if (issm)
+        {
+            SMProgress.Progress.IncrementMulti();
+        }
+        else
+        {
+
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -47,7 +97,11 @@ public class Minuteur : Photon.MonoBehaviour {
     {
         if (stream.isWriting)
         {
-            this.currenttime = (int)stream.ReceiveNext();
+            int receive = (int)stream.ReceiveNext();
+            if (receive > currenttime)
+            {
+                currenttime = receive;
+            }
         }
         else
         {
