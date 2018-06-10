@@ -10,6 +10,8 @@ public class ChangeSceneOnClickScript : MonoBehaviour {
 
     public void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         butt.onClick.AddListener(Load);
     }
 

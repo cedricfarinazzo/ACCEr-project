@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/_scene/menu/menu.unity
     guid: bc578586c5ef2064f893d9fb8f6c7f89
   - enabled: 1
+    path: Assets/_scene/menu/credits.unity
+    guid: 5ad420192043aca4c80ef0fefbd0ca8c
+  - enabled: 1
     path: Assets/_scene/menu/parametre.unity
     guid: dece46ea7aaed7e4ba77d4ebec2670eb
   - enabled: 1
