@@ -625,11 +625,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 135290191986281026, guid: 2049faa37cdfabe408875454449bd367,
-        type: 2}
-      propertyPath: m_Radius
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 114257368138485278, guid: 2049faa37cdfabe408875454449bd367,
         type: 2}
       propertyPath: player
@@ -674,7 +669,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-480594
+  m_Name: pb_Mesh-118754
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
