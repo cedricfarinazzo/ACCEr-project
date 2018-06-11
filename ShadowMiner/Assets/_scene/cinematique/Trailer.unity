@@ -190,7 +190,7 @@ VideoPlayer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 640887992}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 7e3c6c6a0cd9f2248a1c7526b4cc4f70, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: e5a87b2e421f6814c83d62a15a642e60, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 734141540}
@@ -207,7 +207,7 @@ VideoPlayer:
   - {fileID: 417367032}
   m_DirectAudioVolumes:
   - 1
-  m_Url: C:\Users\FARINAZZO CEDRIC\Downloads\TRAILER_v2.webm
+  m_Url: https://youtu.be/WFj_nM2zHcI
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
