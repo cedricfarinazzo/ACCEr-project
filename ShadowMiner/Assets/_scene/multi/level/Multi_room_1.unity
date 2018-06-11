@@ -293,7 +293,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4499426147108234, guid: 73112a988f619064bae70589da8f9e51, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.4
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 4499426147108234, guid: 73112a988f619064bae70589da8f9e51, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1211,7 +1211,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4499426147108234, guid: 73112a988f619064bae70589da8f9e51, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.4
+      value: 0.257
       objectReference: {fileID: 0}
     - target: {fileID: 4499426147108234, guid: 73112a988f619064bae70589da8f9e51, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1522,7 +1522,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4233454829571994, guid: 17ac39ed9f4be7c458f763911213a621, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.51
       objectReference: {fileID: 0}
     - target: {fileID: 4233454829571994, guid: 17ac39ed9f4be7c458f763911213a621, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1666,7 +1666,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1939937965175728, guid: 82b44b21458b36e4d99f6e14766d6dde, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4022869525958222, guid: 82b44b21458b36e4d99f6e14766d6dde, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1680,6 +1680,16 @@ Prefab:
     - target: {fileID: 65577997151566018, guid: 82b44b21458b36e4d99f6e14766d6dde,
         type: 2}
       propertyPath: m_Center.z
+      value: -5.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 65105960032418434, guid: 82b44b21458b36e4d99f6e14766d6dde,
+        type: 2}
+      propertyPath: m_Center.z
+      value: 5.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 65429962014062998, guid: 82b44b21458b36e4d99f6e14766d6dde,
+        type: 2}
+      propertyPath: m_Center.x
       value: -5.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
