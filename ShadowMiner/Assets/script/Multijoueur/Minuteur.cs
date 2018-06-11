@@ -9,6 +9,8 @@ public class Minuteur : Photon.MonoBehaviour {
     [SerializeField] protected int minute;
     [SerializeField] protected int seconde;
 
+    [SerializeField] protected Text timer;
+
     protected int timerout;
     private int starttime;
     private int currenttime;
@@ -20,6 +22,7 @@ public class Minuteur : Photon.MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        timer.GetComponent<Text>().enabled = true;
         timerout = 60 * minute + seconde;
         starttime = (int)Time.time;
         currenttime = 0;
@@ -35,9 +38,17 @@ public class Minuteur : Photon.MonoBehaviour {
         }
         timerrenderer = new TimeSpan(0, 0, currenttime);
         
-        gameObject.GetComponentInChildren<Text>().text = "Minuteur : " + timerrenderer.ToString();
+        timer.text = "Timer : " + timerrenderer.ToString();
             
 	}
+
+    public void PlayerIsDead()
+    {
+        if (transform.parent.GetComponentInChildren<LobbyManager>().PhotonPlayer == null)
+        {
+            GameObject.Find("ThirdCamera").GetComponentInChildren<Camera>().enabled= true;
+        }
+    }
 
     void EndTime()
     {
@@ -47,7 +58,7 @@ public class Minuteur : Photon.MonoBehaviour {
         {
             SMWon(false);
         }
-        else if (player.name == "ShadowMiner")
+        else if (player.tag == "Monster")
         {
             if (GameObject.FindGameObjectsWithTag("Player").Length == 0)
             {
@@ -58,7 +69,7 @@ public class Minuteur : Photon.MonoBehaviour {
                 MinerWon(true);
             }
         }
-        else if (player.name == "Miner")
+        else if (player.tag == "Miner" || player.tag == "Esprit")
         {
             MinerWon(false);
         }

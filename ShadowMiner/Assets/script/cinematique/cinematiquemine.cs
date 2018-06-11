@@ -21,9 +21,17 @@ public class cinematiquemine : MonoBehaviour {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    private void Update()
+    {
+        if (Input.anyKey)
+        {
+            ChangeScene();
+        }
+    }
+
+    // Update is called once per frame
+    void FixedUpdate () {
         Vector3 delta = gameObject.transform.position - Target.transform.position;
         transform.LookAt(Target.transform);
         if (delta.magnitude > 40)
@@ -49,8 +57,13 @@ public class cinematiquemine : MonoBehaviour {
 
         if (timebeforemenu == 0 && menu)
         {
-            SaveData.SaveData.SaveString("Loader.Next", scene);
-            SceneManager.LoadScene("loading");
+            ChangeScene();
         }
+    }
+
+    public void ChangeScene()
+    {
+        SaveData.SaveData.SaveString("Loader.Next", scene);
+        SceneManager.LoadScene("loading");
     }
 }
