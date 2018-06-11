@@ -23,6 +23,7 @@ public class LobbyManager : Photon.MonoBehaviour {
 
     [SerializeField] protected GameObject gameManager;
     [SerializeField] protected GameObject minuteur;
+    protected Minuteur timer;
 
 
     public GameObject PhotonPlayer;
@@ -37,6 +38,7 @@ public class LobbyManager : Photon.MonoBehaviour {
             PhotonNetwork.offlineMode = false;
         }
         PhotonNetwork.JoinLobby();
+        timer = minuteur.GetComponent<Minuteur>();
     }
 
     public void SetText()

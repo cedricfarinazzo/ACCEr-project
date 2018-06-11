@@ -12,8 +12,16 @@ public class Trailer : MonoBehaviour {
 	void Start () {
         player.loopPointReached += OnEnd;
 	}
-	
-	public void OnEnd(VideoPlayer vp)
+
+    private void Update()
+    {
+        if (Input.anyKey)
+        {
+            OnEnd(null);
+        }
+    }
+
+    public void OnEnd(VideoPlayer vp)
     {
         SaveData.SaveData.SaveString("Loader.Next", "menu");
         SceneManager.LoadScene("loading");

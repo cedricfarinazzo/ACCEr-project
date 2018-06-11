@@ -18,6 +18,9 @@ public class logout : MonoBehaviour {
 	}
 
 	public void Logout(){
+        SMProgress.Progress p = new SMProgress.Progress();
+        p.SoloStats = 0;
+        p.MultiStats = 0;
 		nouveauclient.Logout ();
 		SaveData.SaveData.DeleteKey("DataClient.Email");
 		SaveData.SaveData.DeleteKey("DataClient.Token");

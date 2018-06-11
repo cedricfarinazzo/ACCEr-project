@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using SMProgress;
+using SMNetwork.Client;
 
 public class Minuteur : Photon.MonoBehaviour {
 
@@ -10,6 +12,8 @@ public class Minuteur : Photon.MonoBehaviour {
     [SerializeField] protected int seconde;
 
     [SerializeField] protected Text timer;
+
+    [SerializeField] protected GameObject EndCanvas, Minerwon, Minerloose, smwon, smloose;
 
     protected int timerout;
     private int starttime;
@@ -39,6 +43,8 @@ public class Minuteur : Photon.MonoBehaviour {
         timerrenderer = new TimeSpan(0, 0, currenttime);
         
         timer.text = "Timer : " + timerrenderer.ToString();
+
+        PlayerIsDead();
             
 	}
 
@@ -54,6 +60,7 @@ public class Minuteur : Photon.MonoBehaviour {
     {
         Time.timeScale = 0f;
         GameObject player = transform.parent.GetComponentInChildren<LobbyManager>().PhotonPlayer;
+        EndCanvas.SetActive(true);
         if (player == null && GameObject.FindGameObjectsWithTag("Player").Length == 0)
         {
             SMWon(false);
@@ -79,11 +86,15 @@ public class Minuteur : Photon.MonoBehaviour {
     {
         if (issm)
         {
-
+            smloose.SetActive(true);
         }
         else
         {
+            smwon.SetActive(true);
             SMProgress.Progress.IncrementMulti();
+            Client SMClient = new Client();
+            Progress progress = Progress.Load();
+            SMClient.UpdateProgress(progress.SoloStats, progress.MultiStats);
         }
     }
 
@@ -91,11 +102,15 @@ public class Minuteur : Photon.MonoBehaviour {
     {
         if (issm)
         {
+            smwon.SetActive(true);
             SMProgress.Progress.IncrementMulti();
+            Client SMClient = new Client();
+            Progress progress = Progress.Load();
+            SMClient.UpdateProgress(progress.SoloStats, progress.MultiStats);
         }
         else
         {
-
+            smloose.SetActive(true);
         }
     }
 

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using SMNetwork.Client;
 using SaveData;
 using System;
+using SMProgress;
 
 public class connexion : MonoBehaviour {
 
@@ -71,6 +72,12 @@ public class connexion : MonoBehaviour {
             SaveData.SaveData.SaveString("DataClient.Token", DataClient.Token);
             SaveData.SaveData.SaveString("DataClient.Email", DataClient.Email);
             SaveData.SaveData.SaveObject("DataClient.User", DataClient.User);
+            Progress progress = Progress.Load();
+            var data = SMClient.AskProgress();
+            progress.SoloStats = progress.SoloStats < int.Parse(data["SoloStats"]) ? int.Parse(data["SoloStats"]) : progress.SoloStats;
+            progress.MultiStats = progress.MultiStats < int.Parse(data["MultiStats"]) ? int.Parse(data["MultiStats"]) : progress.MultiStats;
+            progress.LastUpdate = DateTime.Parse(progress.LastUpdate) < DateTime.Parse(data["LastTime"]) ? data["LastTime"] : progress.LastUpdate;
+            progress.Save();
             MoveToAccount();
         }
         else
