@@ -29,8 +29,16 @@ public class connexion : MonoBehaviour {
             this.SMClient = new Client();
             DataClient.Email = SaveData.SaveData.GetString("DataClient.Email");
             DataClient.Token = SaveData.SaveData.GetString("DataClient.Token");
-            if (SMClient.AskMyProfil() != null)
+            var data = SMClient.AskMyProfil();
+            if ( data != null)
             {
+                Progress progress = Progress.Load();
+                var datap = SMClient.AskProgress();
+                progress.SoloStats = progress.SoloStats < int.Parse(datap["SoloStats"]) ? int.Parse(datap["SoloStats"]) : progress.SoloStats;
+                progress.MultiStats = progress.MultiStats < int.Parse(datap["MultiStats"]) ? int.Parse(datap["MultiStats"]) : progress.MultiStats;
+                progress.LastUpdate = DateTime.Parse(progress.LastUpdate) < DateTime.Parse(datap["LastTime"]) ? datap["LastTime"] : progress.LastUpdate;
+                progress.Save();
+                SaveData.SaveData.SaveString("Photon.playername", data.Login);
                 SceneManager.LoadScene("profilplayer");
             }
 

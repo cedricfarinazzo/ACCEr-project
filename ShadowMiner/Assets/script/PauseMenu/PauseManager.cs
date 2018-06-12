@@ -35,7 +35,15 @@ public class PauseManager : MonoBehaviour
 
         if (visible)
         {
-            Time.timeScale = 0f;
+            if (PhotonNetwork.inRoom)
+            {
+
+            }
+            else
+            {
+                Time.timeScale = 0f;
+            }
+            
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             canvas.SetActive(true);

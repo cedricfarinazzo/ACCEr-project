@@ -4,20 +4,10 @@ using UnityEngine;
 
 public class EntityNetwork : Entity {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-
     protected virtual void Death()
     {
         PhotonNetwork.Destroy(gameObject);
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 
     public void getDamage(int damage)
     {

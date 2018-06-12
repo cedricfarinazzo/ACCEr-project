@@ -62,7 +62,7 @@ public class LobbyManager : Photon.MonoBehaviour {
                     PhotonNetwork.room.IsOpen = false;
                 }
                 MoveToGame();
-                Title.text = "Multijoueur Game";
+                Title.text = "Multiplayer Game";
             }
             string playerslist = "PLayer List : \n" + SaveData.SaveData.GetString("Photon.playername") + "\n";
             var players = PhotonNetwork.otherPlayers;

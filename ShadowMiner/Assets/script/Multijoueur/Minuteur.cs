@@ -39,12 +39,15 @@ public class Minuteur : Photon.MonoBehaviour {
         {
             currenttime = 0;
             EndTime();
+        }else
+        {
+            PlayerIsDead();
         }
         timerrenderer = new TimeSpan(0, 0, currenttime);
         
         timer.text = "Timer : " + timerrenderer.ToString();
 
-        PlayerIsDead();
+        
             
 	}
 

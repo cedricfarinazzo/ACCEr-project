@@ -763,16 +763,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 695963886c9f4ae4590cd4632f11ac08, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &82326760 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4358112640237942, guid: 695963886c9f4ae4590cd4632f11ac08,
-    type: 2}
-  m_PrefabInternal: {fileID: 82326759}
---- !u!95 &82326761 stripped
-Animator:
-  m_PrefabParentObject: {fileID: 95052904907440144, guid: 695963886c9f4ae4590cd4632f11ac08,
-    type: 2}
-  m_PrefabInternal: {fileID: 82326759}
 --- !u!43 &108253751
 Mesh:
   m_ObjectHideFlags: 0
@@ -2107,63 +2097,6 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
---- !u!1 &399849897
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1725104114114782, guid: b1662814a6a6232409d9b56dbb3ca4ac,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 399849898}
-  - component: {fileID: 399849900}
-  - component: {fileID: 399849899}
-  m_Layer: 0
-  m_Name: AttackComponent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &399849898
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4892052106531452, guid: b1662814a6a6232409d9b56dbb3ca4ac,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 399849897}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.58823526, z: 0}
-  m_LocalScale: {x: 0.58823526, y: 0.58823526, z: 0.58823526}
-  m_Children: []
-  m_Father: {fileID: 82326760}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &399849899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 399849897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7864b18246e648b4da06157dde3c8c02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 82326761}
---- !u!135 &399849900
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 135479709565767084, guid: b1662814a6a6232409d9b56dbb3ca4ac,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 399849897}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.4
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &409959255
 GameObject:
   m_ObjectHideFlags: 0

@@ -58,8 +58,8 @@ public class OpenDoorNetwork : Photon.MonoBehaviour {
         {
             //this.animation.SetBool("open", true);
             //_g.GetComponent<BoxCollider>().enabled = false;
-            this.open = true;
-            photonView.RPC("ChangeState", PhotonTargets.Others);
+            //this.open = true;
+            photonView.RPC("ChangeState", PhotonTargets.All);
         }
     }
 
@@ -75,20 +75,23 @@ public class OpenDoorNetwork : Photon.MonoBehaviour {
         {
             //this.animation.SetBool("close", true);
             //_g.GetComponent<BoxCollider>().enabled = true;
-            this.open = false;
-            photonView.RPC("ChangeState", PhotonTargets.Others);
+            //this.open = false;
+            photonView.RPC("ChangeState", PhotonTargets.All);
         }
     }
-
+    
+    /*
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.isWriting)
         {
-            open = (bool)stream.ReceiveNext();
+            stream.SendNext(open);
+            Debug.Log("Send");
         }
         else
         {
-            stream.SendNext(open);
+            open = (bool)stream.ReceiveNext();
+            Debug.Log("Receive");
         }
-    }
+    }*/
 }
