@@ -8,7 +8,7 @@ public class OpenDoorNetwork : MonoBehaviour {
 
     protected Animator animation;
     protected GameObject _g;
-    protected bool open = false;
+    public bool open = false;
 
     protected int timeout = 0;
 

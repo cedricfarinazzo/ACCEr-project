@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 135989568914398264}
   - component: {fileID: 65384492642365714}
   - component: {fileID: 114141918375394032}
+  - component: {fileID: 114754284463815122}
   m_Layer: 0
   m_Name: doorNetwork
   m_TagString: Untagged
@@ -1606,6 +1607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b2251b4f14472468210f381f29898a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  open: 0
 --- !u!114 &114187498235193232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1629,6 +1631,32 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
+--- !u!114 &114754284463815122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1122354501090080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 114141918375394032}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &114780960956444900
 MonoBehaviour:
   m_ObjectHideFlags: 1
