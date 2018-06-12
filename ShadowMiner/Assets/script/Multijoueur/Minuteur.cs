@@ -126,15 +126,15 @@ public class Minuteur : Photon.MonoBehaviour {
     {
         if (stream.isWriting)
         {
+            stream.SendNext(currenttime);
+        }
+        else
+        {
             int receive = (int)stream.ReceiveNext();
             if (receive > currenttime)
             {
                 currenttime = receive;
             }
-        }
-        else
-        {
-            stream.SendNext(currenttime);
         }
     }
 }

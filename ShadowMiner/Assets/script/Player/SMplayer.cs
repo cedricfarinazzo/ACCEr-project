@@ -25,6 +25,7 @@ public class SMplayer : Photon.MonoBehaviour {
     protected KeyCode inputjump;
     //[SerializeField]
     protected KeyCode inputrun;
+    protected int inputattack;
    
 
     private float reloadjump = 10;
@@ -45,7 +46,7 @@ public class SMplayer : Photon.MonoBehaviour {
     //rigidbody
     protected Rigidbody ri;
 
-    protected int reload_attack = 75;
+    protected int reload_attack = 0;
 
     // Use this for initialization
     void Start()
@@ -59,7 +60,7 @@ public class SMplayer : Photon.MonoBehaviour {
         this.inputright = param.Key["MoveRight"];
         this.inputjump = param.Key["Jump"];
         this.inputrun = param.Key["Run"];
-       // this.inputattack = param.Mouse["Attack"];
+        this.inputattack = param.Mouse["Attack"];
         this.playercollider = this.gameObject.GetComponent<CapsuleCollider>();
         this.ri = this.gameObject.GetComponent<Rigidbody>();
     }
@@ -185,12 +186,13 @@ public class SMplayer : Photon.MonoBehaviour {
             animator.SetBool("attack", false);
             //}
         }
-        /*
+        
         if (Input.GetMouseButtonDown(this.inputattack) && reload_attack == 0)
         {
             animator.SetBool("attack", true);
-            reload_attack = 75;
-        }*/
+            Debug.Log("ATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTACK");
+            reload_attack = 20;
+        }
 
     }
 

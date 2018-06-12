@@ -19,7 +19,6 @@ public class NetworkCharacter : Photon.MonoBehaviour {
     void Start () {
         this.pv = GetComponent<PhotonView>();
         _photonId = PhotonNetwork.room.PlayerCount - 1;
-        Debug.Log(SaveData.SaveData.GetString("Photon.playername"));
     }
 	
 	// Update is called once per frame
@@ -56,7 +55,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 
     void MoveToGame()
     {
-        Debug.Log("MoveToGame");
+        Debug.Log("MoveToGame "+ _photonId);
         this.gameObject.transform.position = posList[_photonId];
     }
 }

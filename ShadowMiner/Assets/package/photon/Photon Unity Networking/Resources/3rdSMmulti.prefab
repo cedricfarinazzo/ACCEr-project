@@ -614,6 +614,7 @@ GameObject:
   - component: {fileID: 114342506943962068}
   - component: {fileID: 114565922188208916}
   - component: {fileID: 114248172703936060}
+  - component: {fileID: 114167314456101128}
   m_Layer: 0
   m_Name: 3rdSMmulti
   m_TagString: Untagged
@@ -1827,7 +1828,7 @@ Transform:
   m_GameObject: {fileID: 1336392868307474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4478601493390460}
   - {fileID: 4393107030768392}
@@ -3168,6 +3169,17 @@ MonoBehaviour:
   Resume: {fileID: 114443641009672386}
   BackMenu: {fileID: 114196666268762830}
   visible: 0
+--- !u!114 &114167314456101128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1336392868307474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c952582b709abe54c8ab601ad8b500e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114196666268762830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3261,7 +3273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 200
   max_life: 200
-  damage: 21
+  damage: 200000
   fall_damage: 10
   LifeBar: {fileID: 114600642808606608}
   canvasLife: {fileID: 1485249772943656}
@@ -3560,7 +3572,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1336392868307474}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ba81b146f3eaa4449fa3015abce14a5, type: 3}
   m_Name: 

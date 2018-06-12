@@ -15,10 +15,9 @@ public class SMattackNet : MonoBehaviour {
         this.inputattack = param.Mouse["Attack"];
     }
 
-    
-
     public void Update()
-    {anim.SetBool("attack", false);
+    {
+        //anim.SetBool("attack", false);
         if (reloadtime > 0)
         {
             reloadtime--;
@@ -31,8 +30,8 @@ public class SMattackNet : MonoBehaviour {
         {
             Debug.Log("SM attack");
             gameObject.GetComponentInParent<EntityNetwork>().attack(other.gameObject);
-            anim.SetBool("attack", true);
-            reloadtime = 50;
+            //anim.SetBool("attack", true);
+            reloadtime = 20;
         }
     }
 }
