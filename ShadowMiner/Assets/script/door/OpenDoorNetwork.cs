@@ -35,7 +35,7 @@ public class OpenDoorNetwork : Photon.MonoBehaviour {
 
     public void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Monster")
         {
             if (Input.GetKeyDown(this.touche) && this.timeout == 0)
             {
