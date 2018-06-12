@@ -142,7 +142,7 @@ public class LobbyManager : Photon.MonoBehaviour {
         }
         
         j.GetComponent<CursorTurnHory>().enabled = true;
-        j.GetComponent<Entity>().enabled = true;
+        j.GetComponent<EntityNetwork>().enabled = true;
         j.GetComponent<NetworkCharacter>().enabled = true;
         j.GetComponentInChildren<CursorTurnVerti>().enabled = true;
         j.GetComponentInChildren<Camera>().enabled = true;

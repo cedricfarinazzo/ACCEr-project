@@ -587,6 +587,7 @@ GameObject:
   - component: {fileID: 114058397425301158}
   - component: {fileID: 114560720028834838}
   - component: {fileID: 82383690371897930}
+  - component: {fileID: 114053030203838180}
   m_Layer: 0
   m_Name: 3rdPlayer
   m_TagString: Player
@@ -1510,7 +1511,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1399729689718644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.442265, y: 1.22, z: 9.208019}
+  m_LocalPosition: {x: 5.567662, y: 47.40791, z: -50.203964}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4374226876502130}
@@ -2301,6 +2302,24 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114053030203838180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1399729689718644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ac9c75fa0532bc4e9bd2b81355a012c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 100
+  max_life: 100
+  damage: 0
+  fall_damage: 10
+  LifeBar: {fileID: 114673690683581752}
+  canvasLife: {fileID: 1298792139324668}
+  maxchute: 3
 --- !u!114 &114058397425301158
 MonoBehaviour:
   m_ObjectHideFlags: 1

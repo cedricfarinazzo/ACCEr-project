@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenDoorNetwork : MonoBehaviour {
+public class OpenDoorNetwork : Photon.MonoBehaviour {
 
     protected KeyCode touche;
 
@@ -59,7 +59,14 @@ public class OpenDoorNetwork : MonoBehaviour {
             //this.animation.SetBool("open", true);
             //_g.GetComponent<BoxCollider>().enabled = false;
             this.open = true;
+            photonView.RPC("ChangeState", PhotonTargets.Others);
         }
+    }
+
+    [PunRPC]
+    public void ChangeState()
+    {
+        open = !open;
     }
 
     public void closedoor()
@@ -69,6 +76,7 @@ public class OpenDoorNetwork : MonoBehaviour {
             //this.animation.SetBool("close", true);
             //_g.GetComponent<BoxCollider>().enabled = true;
             this.open = false;
+            photonView.RPC("ChangeState", PhotonTargets.Others);
         }
     }
 
