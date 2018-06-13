@@ -19,6 +19,8 @@ public class Minuteur : Photon.MonoBehaviour {
     private int starttime;
     private int currenttime;
 
+    private bool end = false;
+
     public int RestTime
     {
         get { return currenttime; }
@@ -61,12 +63,28 @@ public class Minuteur : Photon.MonoBehaviour {
 
     void EndTime()
     {
+        if (end)
+        {
+            return;
+        }
+        end = true;
+
         Time.timeScale = 0f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         GameObject player = transform.parent.GetComponentInChildren<LobbyManager>().PhotonPlayer;
         EndCanvas.SetActive(true);
-        if (player == null && GameObject.FindGameObjectsWithTag("Player").Length == 0)
+        if (player == null)
         {
-            SMWon(false);
+            if (GameObject.FindGameObjectsWithTag("Player").Length == 0)
+            {
+                SMWon(false);
+            }
+            else
+            {
+                MinerWon(false);
+            }
+            
         }
         else if (player.tag == "Monster")
         {
@@ -79,7 +97,7 @@ public class Minuteur : Photon.MonoBehaviour {
                 MinerWon(true);
             }
         }
-        else if (player.tag == "Miner" || player.tag == "Esprit")
+        else
         {
             MinerWon(false);
         }
@@ -93,7 +111,7 @@ public class Minuteur : Photon.MonoBehaviour {
         }
         else
         {
-            smwon.SetActive(true);
+            Minerwon.SetActive(true);
             SMProgress.Progress.IncrementMulti();
             Client SMClient = new Client();
             Progress progress = Progress.Load();
@@ -113,7 +131,7 @@ public class Minuteur : Photon.MonoBehaviour {
         }
         else
         {
-            smloose.SetActive(true);
+            Minerloose.SetActive(true);
         }
     }
 

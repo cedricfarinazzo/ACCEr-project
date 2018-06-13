@@ -59,14 +59,19 @@ public class OpenDoorNetwork : Photon.MonoBehaviour {
             //this.animation.SetBool("open", true);
             //_g.GetComponent<BoxCollider>().enabled = false;
             //this.open = true;
-            photonView.RPC("ChangeState", PhotonTargets.All);
+            photonView.RPC("ChangeState", PhotonTargets.All, GetComponent<PhotonView>().viewID);
         }
     }
 
     [PunRPC]
-    public void ChangeState()
+    public void ChangeState(int viewid)
     {
-        open = !open;
+        GameObject go = PhotonView.Find(viewid).gameObject;
+        if (go.GetComponent<PhotonView>().isMine)
+        {
+            open = !open;
+        }
+        
     }
 
     public void closedoor()
