@@ -35,76 +35,76 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_scene/account/failedNetwork.unity
     guid: ae51679e7af2f43499d1391f01b6a4ef
-  - enabled: 0
+  - enabled: 1
     path: Assets/package/ACCEr-giles/Assets/GILES/Scenes/Level Editor.unity
     guid: b0171d1d9fa113e4aa973deb5506ce6b
-  - enabled: 0
+  - enabled: 1
     path: Assets/package/ACCEr-giles/Assets/GILES/Scenes/Empty Scene.unity
     guid: e0421fea30c15da478141928e734e31c
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/CustomMap/MapLoader.unity
     guid: dbd3a647cd2b5ba49b32cf316ee04c1e
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/niveaux_solo.unity
     guid: 53d38d55c5925b547bed58d0b8edf47f
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_1.unity
     guid: 762ce4654478dbc42ab2efcddc6f4066
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_2.unity
     guid: cc196d58d82208b4d8f75c4124a725ca
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_3.unity
     guid: c89c828735635824a8dfd9430cdf9a77
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_4.unity
     guid: d33c2bddd916e494a91b240e045ceed5
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_5.unity
     guid: 52130c9f02c71e049ae3dec4871f4e35
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_6.unity
     guid: b1a0d839171b84949b2b3fef0a886f24
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_7.unity
     guid: b30059f4b0b9d2f47bf9e896b42bd8a1
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_8.unity
     guid: 7e6159bf23bc34942bf5f5b7bba53fce
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_9.unity
     guid: 27c63bc3bc3e7594e8a814a31f61d836
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_10.unity
     guid: 387c028b24fc3ba42913aba7a4f5ef77
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_11.unity
     guid: eda549b3f9d124644accce3314d3e6a1
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_12.unity
     guid: cf954b7973ae57541b69a720435df6ef
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_13.unity
     guid: 0d4c1789f1e834747adc0ca835c04a08
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_14.unity
     guid: 09aef3efcdef7ca4f8c93678c06ec411
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_15.unity
     guid: d168a23e29cab5c4ca36de418ecbc20a
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_16.unity
     guid: 8426660783fe38c41b56942f12b2c043
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_17.unity
     guid: d486704246ea8c04fa6d459d69434590
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_18.unity
     guid: f828394028d893145a9a8f5b603aeb9a
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_19.unity
     guid: 0b37d2ed7f275d24d8bb71ad622d417b
-  - enabled: 0
+  - enabled: 1
     path: Assets/_scene/solo/level/Solo_level_20.unity
     guid: ebe55bfcdef2b134f96ae67deddef4c3
   - enabled: 1
